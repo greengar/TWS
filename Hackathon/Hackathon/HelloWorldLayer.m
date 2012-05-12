@@ -48,6 +48,8 @@
 		[self addChild: label];
 
         [self schedule: @selector(tick:)];
+        
+        NSLog(@"hi this is kim");
 
 	}
 	return self;
