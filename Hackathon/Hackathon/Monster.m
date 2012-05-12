@@ -7,37 +7,37 @@
 //
 
 #import "Monster.h"
+#import "Constants.h"
 
 @implementation Monster
 
-//@synthesize x = _x;
-//@synthesize y = _y;
 @synthesize word = _word;
 
-int const INITIAL_POINTS = 30;
-int const MINIMUM_POINTS = 5;
-NSString* const MONSTER_IMAGE = @"icon.png";
-
+NSString* const MINION_MONSTER_IMAGE = @"icon.png";
 
 - (NSString*)description {
      NSString* description = [NSString stringWithFormat:@"xPos: %@, yPos: %@, word: %@",[NSNumber numberWithFloat:self.position.x],[NSNumber numberWithFloat:self.position.y],self.word];
     return description;
 }
 
-- (Monster*)create:(int)x:(int)y:(NSString*)word {
-    if (self = [super initWithFile:MONSTER_IMAGE]) {
-//        self.x = x;
-//        self.y = y;
+- (Monster*)createWithX:(int)x y:(int)y word:(NSString*)word {
+    if (self = [super initWithFile:MINION_MONSTER_IMAGE]) {
         self.position = ccp(x,y);
         self.word = word;
     }
+    
+    [self moveRandomly];
     return self;
 }
 
-- (CGPoint)move:(int)x:(int)y {
+- (CGPoint)moveX:(int)x y:(int)y {
     CGPoint newPosition = CGPointMake(self.position.x - x, self.position.y - y);
     self.position = newPosition;
     return self.position;
+}
+
+- (void)moveRandomly {
+
 }
 
 - (void)die {

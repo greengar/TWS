@@ -138,16 +138,16 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	return self;
 }
 
--(void) randomMonsterGenerator:(ccTime) dt {
+-(void)randomMonsterGenerator:(ccTime) dt {
     nextMonsterTimer -= dt;
     while (nextMonsterTimer < 0) {
         nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
         
-        // create new monster with random word
-        NSLog(@"New monster");
-        int randomNumber = arc4random() % [self.dictionary count];
-        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomNumber - 1))];
-        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
+        // create new monster with random word and random location at the top
+        int randomWordGen = arc4random() % [self.dictionary count];
+        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
+        int randomXLoc = arc4random() % (int)screenSize.width;
+        Monster* newMonster = [[Monster alloc] createWithX:randomXLoc y:screenSize.height word:newWord];
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
         NSLog(@"new monster is %@",newMonster);
