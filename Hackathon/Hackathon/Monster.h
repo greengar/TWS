@@ -13,4 +13,11 @@
     
 }
 
+@property int x; // x =  is left
+@property int y; // y = 0 is top
+@property (nonatomic, strong) NSString* word;
+
+- (int)moveForward:(int)amount;
+- (void)die;
+
 @end
