@@ -46,8 +46,16 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
+
+        [self schedule: @selector(tick:)];
+
 	}
 	return self;
+}
+
+// main update loop
+-(void) tick: (ccTime) dt {
+    NSLog(@"tick");
 }
 
 // on "dealloc" you need to release all your retained objects
