@@ -156,7 +156,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 	self.timerLabel = nil;
     self.scoreLabel = nil;
-    
+    self.textEntryLabel = nil;
+    self.textEntryFieldUI = nil;
+    self.textEntryFieldCC = nil;
+
+
+
+
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }

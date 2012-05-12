@@ -464,6 +464,7 @@
 		90FC0543155EFD21002C3BAE /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				90FC06C8155F1872002C3BAE /* CCTextField */,
 				90FC0639155EFD23002C3BAE /* LICENSE_cocos2d.txt */,
 				90FC0648155EFD23002C3BAE /* LICENSE_CocosDenshion.txt */,
 				90FC0653155EFD23002C3BAE /* LICENSE_TouchJSON.txt */,
@@ -771,6 +772,17 @@
 				90FC067E155EFD23002C3BAE /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		90FC06C8155F1872002C3BAE /* CCTextField */ = {
+			isa = PBXGroup;
+			children = (
+				90FC06C9155F1872002C3BAE /* CCTextField.h */,
+				90FC06CA155F1872002C3BAE /* CCTextField.m */,
+				90FC06CB155F1872002C3BAE /* README.md */,
+			);
+			name = CCTextField;
+			path = libs/CCTextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
