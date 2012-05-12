@@ -9,12 +9,16 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "Monster.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
 @synthesize timerLabel = _timerLabel;
 @synthesize scoreLabel = _scoreLabel;
+@synthesize dictionary = _dictionary;
+
+NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 +(CCScene *) scene
 {
@@ -65,18 +69,24 @@
         self.scoreLabel.position = ccp(screenSize.width, screenSize.height);
         [self addChild:self.scoreLabel z:1];
         
+        // 'dictionary' is filled upon game load and holds all possible words
+        NSError* error;
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
+        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
+        self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
         
         [self schedule: @selector(tick:)];
         
-        NSLog(@"hi this is kim");
-
+        //        int randomNumber = arc4random() % 
+        //        NSString* newWord = self.dictionary
+        //        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
+        
 	}
 	return self;
 }
 
 // main update loop
 -(void) tick: (ccTime) dt {
-    NSLog(@"tick");
 }
 
 // on "dealloc" you need to release all your retained objects

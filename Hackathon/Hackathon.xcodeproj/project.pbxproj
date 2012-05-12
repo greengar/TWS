@@ -123,6 +123,8 @@
 		90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0684155EFD23002C3BAE /* RootViewController.m */; };
 		90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */; };
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
+		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
+		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -364,6 +366,9 @@
 		90FC06A8155F01F7002C3BAE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		90FC06A9155F01F7002C3BAE /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
 		90FC06AB155F0262002C3BAE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F96BD872155F075400CF399A /* MinionDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionDragon.h; sourceTree = "<group>"; };
+		F96BD873155F075400CF399A /* MinionDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionDragon.m; sourceTree = "<group>"; };
+		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +438,8 @@
 				90FC067C155EFD23002C3BAE /* Supporting Files */,
 				90FC06A8155F01F7002C3BAE /* Monster.h */,
 				90FC06A9155F01F7002C3BAE /* Monster.m */,
+				F96BD872155F075400CF399A /* MinionDragon.h */,
+				F96BD873155F075400CF399A /* MinionDragon.m */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";
@@ -759,6 +766,7 @@
 		90FC067C155EFD23002C3BAE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */,
 				90FC067D155EFD23002C3BAE /* Prefix.pch */,
 				90FC067E155EFD23002C3BAE /* main.m */,
 			);
@@ -824,6 +832,7 @@
 				90FC053D155EFD21002C3BAE /* Icon.png in Resources */,
 				90FC053F155EFD21002C3BAE /* Icon@2x.png in Resources */,
 				90FC0542155EFD21002C3BAE /* iTunesArtwork in Resources */,
+				F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +942,7 @@
 				90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */,
 				90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */,
 				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
+				F96BD874155F075400CF399A /* MinionDragon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1036,7 @@
 				90FC068E155EFD23002C3BAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
