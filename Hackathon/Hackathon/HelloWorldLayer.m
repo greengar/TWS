@@ -31,6 +31,24 @@
 	return scene;
 }
 
+-(void) notifyTime:(double) time {
+    int min = time / 60;
+    int sec = ((int) time) % 60;
+    [self.timerLabel setString:[NSString stringWithFormat:@"%i:%i", min, sec]];
+}
+
+-(void) notifyScore:(int) theScore {
+    [self.scoreLabel setString:[NSString stringWithFormat:@"Score: %i", score]];
+}
+
+// reset all re-playable game elements
+-(void) resetGame {
+    timeLeft = GAME_LENGTH_SECONDS;
+    score = 0;
+    [self notifyTime:timeLeft];
+    [self notifyScore:score];
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -65,18 +83,21 @@
         self.scoreLabel.position = ccp(screenSize.width, screenSize.height);
         [self addChild:self.scoreLabel z:1];
         
+        [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
         
-        NSLog(@"hi this is kim");
-
 	}
 	return self;
 }
 
 // main update loop
 -(void) tick: (ccTime) dt {
-    NSLog(@"tick");
+    if (timeLeft > 0) {
+        // game not over yet so:
+        timeLeft -= dt;
+        [self notifyTime:MAX(timeLeft, 0)];
+    }
 }
 
 // on "dealloc" you need to release all your retained objects
