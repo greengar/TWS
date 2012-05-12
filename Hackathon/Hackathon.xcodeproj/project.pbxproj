@@ -123,7 +123,8 @@
 		90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0684155EFD23002C3BAE /* RootViewController.m */; };
 		90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */; };
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
-		90FC06AE155F0E07002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06AD155F0E07002C3BAE /* CCTextField.m */; };
+		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
+		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -365,8 +366,9 @@
 		90FC06A8155F01F7002C3BAE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		90FC06A9155F01F7002C3BAE /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
 		90FC06AB155F0262002C3BAE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		90FC06AC155F0E07002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCTextField.h; path = ../../CCTextField/CCTextField.h; sourceTree = "<group>"; };
-		90FC06AD155F0E07002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCTextField.m; path = ../../CCTextField/CCTextField.m; sourceTree = "<group>"; };
+		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
+		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
+		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,8 +462,7 @@
 		90FC0543155EFD21002C3BAE /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				90FC06AC155F0E07002C3BAE /* CCTextField.h */,
-				90FC06AD155F0E07002C3BAE /* CCTextField.m */,
+				90FC06C8155F1872002C3BAE /* CCTextField */,
 				90FC0639155EFD23002C3BAE /* LICENSE_cocos2d.txt */,
 				90FC0648155EFD23002C3BAE /* LICENSE_CocosDenshion.txt */,
 				90FC0653155EFD23002C3BAE /* LICENSE_TouchJSON.txt */,
@@ -770,6 +771,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		90FC06C8155F1872002C3BAE /* CCTextField */ = {
+			isa = PBXGroup;
+			children = (
+				90FC06C9155F1872002C3BAE /* CCTextField.h */,
+				90FC06CA155F1872002C3BAE /* CCTextField.m */,
+				90FC06CB155F1872002C3BAE /* README.md */,
+			);
+			name = CCTextField;
+			path = libs/CCTextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -829,6 +841,7 @@
 				90FC053D155EFD21002C3BAE /* Icon.png in Resources */,
 				90FC053F155EFD21002C3BAE /* Icon@2x.png in Resources */,
 				90FC0542155EFD21002C3BAE /* iTunesArtwork in Resources */,
+				90FC06CD155F1872002C3BAE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,7 +951,7 @@
 				90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */,
 				90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */,
 				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
-				90FC06AE155F0E07002C3BAE /* CCTextField.m in Sources */,
+				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
