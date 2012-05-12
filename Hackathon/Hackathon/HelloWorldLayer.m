@@ -21,6 +21,7 @@
 @synthesize textEntryFieldUI = _textEntryFieldUI;
 @synthesize dictionary = _dictionary;
 @synthesize monsters = _monsters;
+@synthesize lastWord = _lastWord;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -78,6 +79,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        self.lastWord = @"";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -138,7 +140,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
         
         // create new monster with random word
-        NSLog(@"New monster");
         int randomNumber = arc4random() % [self.dictionary count];
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomNumber - 1))];
         Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
@@ -151,12 +152,35 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 // main update loop
 -(void) tick: (ccTime) dt {
-    if (timeLeft > 0) {
-        // game not over yet so:
+    if (timeLeft > 0) { // game not over yet so:
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
+
+        // check if a new word was entered (very inefficient) and then check against all monsters
+        NSString *newWord = self.textEntryFieldCC.text;
+        if (![newWord isEqualToString:self.lastWord]) {
+            NSLog(@"New word: %@", newWord);
+            NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
+            for (Monster *monster in self.monsters) {
+                if ([monster attackWithWord:newWord]) {
+                    [deadMonsters addObject:monster];
+                }
+            }
+            for (Monster *monster in deadMonsters) {
+                [monster die];
+                score+=1;
+                [self notifyScore:score];
+            }
+            if ([deadMonsters count] > 0) {
+                // we killed a monster, so clear field
+                self.textEntryFieldCC.text = @"";
+            }
+            [self.monsters minusSet:deadMonsters];
+            self.lastWord = [NSString stringWithString:newWord];
+        }
     }
+    
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -171,7 +195,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.textEntryLabel = nil;
     self.textEntryFieldUI = nil;
     self.textEntryFieldCC = nil;
-
+    self.lastWord = nil;
 
 
 
