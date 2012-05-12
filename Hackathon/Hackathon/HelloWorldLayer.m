@@ -104,8 +104,8 @@
         //[self.textEntryFieldUI becomeFirstResponder];
         
 */        
-        self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(100, 100) fontName:@"Arial-BoldMT" andFontSize:20];
-        self.textEntryFieldCC.position = ccp(200,200);
+        self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
+        self.textEntryFieldCC.position = ccp(0,210);
         [self addChild:self.textEntryFieldCC];
         self.textEntryFieldCC.label.color = ccWHITE;
         [self.textEntryFieldCC setText:@"Hello world"];
