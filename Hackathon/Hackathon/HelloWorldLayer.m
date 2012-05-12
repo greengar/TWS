@@ -107,9 +107,9 @@
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.position = ccp(0,210);
         [self addChild:self.textEntryFieldCC];
-        self.textEntryFieldCC.label.color = ccWHITE;
-        [self.textEntryFieldCC setText:@"Hello world"];
-        
+        [self.textEntryFieldCC setTextColor:ccWHITE];
+        [self.textEntryFieldCC setText:@""];
+        [self.textEntryFieldCC setFocus];
         
         [self resetGame]; // reset all counters, labels, etc.
         
