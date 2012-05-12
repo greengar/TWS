@@ -9,6 +9,7 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "Monster.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -18,6 +19,23 @@
 @synthesize textEntryLabel = _textEntryLabel;
 @synthesize textEntryFieldCC = _textEntryFieldCC;
 @synthesize textEntryFieldUI = _textEntryFieldUI;
+@synthesize dictionary = _dictionary;
+@synthesize monsters = _monsters;
+
+NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
+
+#pragma mark - setters and getters 
+
+- (NSMutableSet*)monsters { 
+    if (_monsters == nil) {
+        _monsters = [[NSMutableSet alloc] init];
+    }
+    return _monsters;
+}
+
+- (void)setMonsters:(NSMutableSet*)monsters {
+    _monsters = monsters;
+}
 
 +(CCScene *) scene
 {
@@ -87,13 +105,11 @@
         self.scoreLabel.position = ccp(screenSize.width, screenSize.height);
         [self addChild:self.scoreLabel z:1];
         
-        // Set up text entry fields. See documentation for CCTextField for the why
-  
-/*
-        // Create the CCTextField from some UITextField and a CCLabelTTF (several CCTextFields can share the same UITextField this way)
-        self.textEntryFieldUI = [[[UITextField alloc] initWithFrame:CGRectMake(2000, 200, 150, 50)] autorelease ]; // Make sure it's not visible
-        // Set any attributes to your field
-        self.textEntryFieldUI.keyboardType = UIKeyboardTypeDefault;
+        // 'dictionary' is filled upon game load and holds all possible words
+        NSError* error;
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
+        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
+        self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
         
         self.textEntryLabel = [CCLabelTTF labelWithString:@"XXXX" fontName:@"Arial-BoldMT" fontSize:30];
         
@@ -103,7 +119,6 @@
         [self addChild:self.textEntryFieldCC];
         //[self.textEntryFieldUI becomeFirstResponder];
         
-*/        
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.position = ccp(0,210);
         [self addChild:self.textEntryFieldCC];
@@ -115,6 +130,10 @@
         
         [self schedule: @selector(tick:)];
         
+        //        int randomNumber = arc4random() % 
+        //        NSString* newWord = self.dictionary
+        //        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
+        
 	}
 	return self;
 }
@@ -123,8 +142,15 @@
     nextMonsterTimer -= dt;
     while (nextMonsterTimer < 0) {
         nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
-        // CALL MONSTER GENERATION CODE HERE
+        
+        // create new monster with random word
         NSLog(@"New monster");
+        int randomNumber = arc4random() % [self.dictionary count];
+        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomNumber - 1))];
+        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
+        [self.monsters addObject:newMonster];
+        [self addChild:newMonster];
+        NSLog(@"new monster is %@",newMonster);
     }
 }
 

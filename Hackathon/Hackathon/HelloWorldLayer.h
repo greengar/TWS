@@ -22,6 +22,8 @@
 }
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
+@property (nonatomic, retain) NSArray* dictionary;
+@property (nonatomic, retain) NSMutableSet* monsters;
 
 @property (nonatomic, retain) UITextField *textEntryFieldUI;
 @property (nonatomic, retain) CCLabelTTF *textEntryLabel;
