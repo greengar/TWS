@@ -35,6 +35,25 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	return scene;
 }
 
+-(void) notifyTime:(double) time {
+    int min = time / 60;
+    int sec = ((int) time) % 60;
+    [self.timerLabel setString:[NSString stringWithFormat:@"%i:%i", min, sec]];
+}
+
+-(void) notifyScore:(int) theScore {
+    [self.scoreLabel setString:[NSString stringWithFormat:@"Score: %i", score]];
+}
+
+// reset all re-playable game elements
+-(void) resetGame {
+    timeLeft = GAME_LENGTH_SECONDS;
+    nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
+    score = 0;
+    [self notifyTime:timeLeft];
+    [self notifyScore:score];
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -84,6 +103,16 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	}
 	return self;
 }
+
+-(void) randomMonsterGenerator:(ccTime) dt {
+    nextMonsterTimer -= dt;
+    while (nextMonsterTimer < 0) {
+        nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
+        // CALL MONSTER GENERATION CODE HERE
+        NSLog(@"New monster");
+    }
+}
+
 
 // main update loop
 -(void) tick: (ccTime) dt {
