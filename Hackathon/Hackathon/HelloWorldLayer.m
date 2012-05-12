@@ -21,6 +21,7 @@
 @synthesize textEntryFieldUI = _textEntryFieldUI;
 @synthesize dictionary = _dictionary;
 @synthesize monsters = _monsters;
+@synthesize lastWord = _lastWord;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -78,6 +79,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        self.lastWord = @"";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -109,22 +111,16 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSError* error;
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
-        self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
+        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-        self.textEntryLabel = [CCLabelTTF labelWithString:@"XXXX" fontName:@"Arial-BoldMT" fontSize:30];
-        
-        // Finally
-        self.textEntryFieldCC = [CCTextField textFieldWithLabel:self.textEntryLabel andTextField:self.textEntryFieldUI];
-        self.textEntryFieldCC.position = ccp(200, 200);
-        [self addChild:self.textEntryFieldCC];
-        //[self.textEntryFieldUI becomeFirstResponder];
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.position = ccp(0,210);
+        self.textEntryFieldCC.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [self addChild:self.textEntryFieldCC];
-        self.textEntryFieldCC.label.color = ccWHITE;
-        [self.textEntryFieldCC setText:@"Hello world"];
-        
+        [self.textEntryFieldCC setTextColor:ccWHITE];
+        [self.textEntryFieldCC setText:@""];
+        [self.textEntryFieldCC setFocus];
         
         [self resetGame]; // reset all counters, labels, etc.
         
@@ -157,12 +153,36 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 // main update loop
 -(void) tick: (ccTime) dt {
-    if (timeLeft > 0) {
-        // game not over yet so:
+    if (timeLeft > 0) { // game not over yet so:
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
+
+        // check if a new word was entered (very inefficient) and then check against all monsters
+        NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
+        if (![newWord isEqualToString:self.lastWord]) {
+            NSLog(@"New word: %@", newWord);
+            NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
+            for (Monster *monster in self.monsters) {
+                if ([monster attackWithWord:newWord]) {
+                    NSLog(@"Found one!!!!");
+                    [deadMonsters addObject:monster];
+                }
+            }
+            for (Monster *monster in deadMonsters) {
+                [monster die];
+                score+=1;
+                [self notifyScore:score];
+            }
+            if ([deadMonsters count] > 0) {
+                // we killed a monster, so clear field
+                self.textEntryFieldCC.text = @"";
+            }
+            [self.monsters minusSet:deadMonsters];
+            self.lastWord = [NSString stringWithString:newWord];
+        }
     }
+    
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -177,7 +197,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.textEntryLabel = nil;
     self.textEntryFieldUI = nil;
     self.textEntryFieldCC = nil;
-
+    self.lastWord = nil;
 
 
 

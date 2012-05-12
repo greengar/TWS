@@ -41,7 +41,19 @@ NSString* const MINION_MONSTER_IMAGE = @"icon.png";
 }
 
 - (void)die {
-    
+    [self runAction:[CCSequence actions:
+                     [CCScaleTo actionWithDuration:1 scale:0.1],
+                     [CCCallBlock actionWithBlock:^{
+        [self removeFromParentAndCleanup:YES];
+    }],
+                     nil]];
+}
+
+-(BOOL) attackWithWord:(NSString *)attackWord {
+    BOOL equal = [attackWord isEqualToString:self.word];
+    //NSLog(@"Equal: %i  %@ <-> %@", self.word, attackWord);
+    //NSLog(@"Length: %i <-> %i", [self.word length], [attackWord length]);
+    return equal;
 }
 
 @end

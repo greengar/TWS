@@ -163,6 +163,25 @@
 	return YES;
 }
 
+-(void) setFocus {
+    BOOL reset = NO;
+    
+    if ([self.textField delegate] != self) {
+        reset = YES;
+    }
+    
+    [self.textField setDelegate:self];
+    
+    if (reset) {
+        [realString release];
+        realString = [self.label.string retain];
+        [self.textField setText:realString];
+    }
+    
+    [self.textField becomeFirstResponder];
+
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	
 	CGPoint p = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:[touch locationInView:touch.view]]];
@@ -172,21 +191,7 @@
 	
 	if (CGRectContainsPoint(r, p)) {
 		
-		BOOL reset = NO;
-		
-		if ([self.textField delegate] != self) {
-			reset = YES;
-		}
-		
-		[self.textField setDelegate:self];
-		
-		if (reset) {
-			[realString release];
-			realString = [self.label.string retain];
-			[self.textField setText:realString];
-		}
-		
-		[self.textField becomeFirstResponder];
+        [self setFocus];
 		return YES;
 	}
 	
@@ -219,13 +224,16 @@
 
 - (NSString *)text {
 	
+    return realString;
+    // (erand): original code assumed the carret was part of the string. Turns out it's not.
+    /*
 	if (showingTicker) {
 		return [realString substringToIndex:realString.length - 1];
 	}
 	else {
 		return realString;
 	}
-	
+	*/
 }
 
 - (void)setTextColor:(ccColor3B)color {
