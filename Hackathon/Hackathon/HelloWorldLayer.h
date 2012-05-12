@@ -9,11 +9,17 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "Constants.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    double timeLeft;
+    double score;
+    CGSize screenSize;
 }
+
+@property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
