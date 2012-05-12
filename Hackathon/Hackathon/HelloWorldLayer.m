@@ -17,8 +17,22 @@
 @synthesize timerLabel = _timerLabel;
 @synthesize scoreLabel = _scoreLabel;
 @synthesize dictionary = _dictionary;
+@synthesize monsters = _monsters;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
+
+#pragma mark - setters and getters 
+
+- (NSMutableSet*)monsters { 
+    if (_monsters == nil) {
+        _monsters = [[NSMutableSet alloc] init];
+    }
+    return _monsters;
+}
+
+- (void)setMonsters:(NSMutableSet*)monsters {
+    _monsters = monsters;
+}
 
 +(CCScene *) scene
 {
@@ -94,6 +108,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
         self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
         
+        [self resetGame]; // reset all counters, labels, etc.
+        
         [self schedule: @selector(tick:)];
         
         //        int randomNumber = arc4random() % 
@@ -108,14 +124,27 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     nextMonsterTimer -= dt;
     while (nextMonsterTimer < 0) {
         nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
-        // CALL MONSTER GENERATION CODE HERE
+        
+        // create new monster with random word
         NSLog(@"New monster");
+        int randomNumber = arc4random() % [self.dictionary count];
+        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomNumber - 1))];
+        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
+        [self.monsters addObject:newMonster];
+        [self addChild:newMonster];
+        NSLog(@"new monster is %@",newMonster);
     }
 }
 
 
 // main update loop
 -(void) tick: (ccTime) dt {
+    if (timeLeft > 0) {
+        // game not over yet so:
+        timeLeft -= dt;
+        [self notifyTime:MAX(timeLeft, 0)];
+        [self randomMonsterGenerator:dt];
+    }
 }
 
 // on "dealloc" you need to release all your retained objects

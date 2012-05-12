@@ -22,6 +22,7 @@
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
 @property (nonatomic, retain) NSArray* dictionary;
+@property (nonatomic, retain) NSMutableSet* monsters;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
