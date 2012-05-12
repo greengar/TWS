@@ -44,6 +44,7 @@
 // reset all re-playable game elements
 -(void) resetGame {
     timeLeft = GAME_LENGTH_SECONDS;
+    nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
     score = 0;
     [self notifyTime:timeLeft];
     [self notifyScore:score];
@@ -91,12 +92,23 @@
 	return self;
 }
 
+-(void) randomMonsterGenerator:(ccTime) dt {
+    nextMonsterTimer -= dt;
+    while (nextMonsterTimer < 0) {
+        nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
+        // CALL MONSTER GENERATION CODE HERE
+        NSLog(@"New monster");
+    }
+}
+
+
 // main update loop
 -(void) tick: (ccTime) dt {
     if (timeLeft > 0) {
         // game not over yet so:
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
+        [self randomMonsterGenerator:dt];
     }
 }
 
