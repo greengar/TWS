@@ -50,7 +50,10 @@ NSString* const MONSTER_IMAGE = @"icon.png";
 }
 
 -(BOOL) attackWithWord:(NSString *)attackWord {
-    return [attackWord isEqualToString:self.word];
+    BOOL equal = [attackWord isEqualToString:self.word];
+    //NSLog(@"Equal: %i  %@ <-> %@", self.word, attackWord);
+    //NSLog(@"Length: %i <-> %i", [self.word length], [attackWord length]);
+    return equal;
 }
 
 @end

@@ -111,7 +111,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSError* error;
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
-        self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
+        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
@@ -158,12 +158,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self randomMonsterGenerator:dt];
 
         // check if a new word was entered (very inefficient) and then check against all monsters
-        NSString *newWord = self.textEntryFieldCC.text;
+        NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         if (![newWord isEqualToString:self.lastWord]) {
             NSLog(@"New word: %@", newWord);
             NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
+                    NSLog(@"Found one!!!!");
                     [deadMonsters addObject:monster];
                 }
             }
