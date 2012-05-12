@@ -16,6 +16,9 @@
 
 @synthesize timerLabel = _timerLabel;
 @synthesize scoreLabel = _scoreLabel;
+@synthesize textEntryLabel = _textEntryLabel;
+@synthesize textEntryFieldCC = _textEntryFieldCC;
+@synthesize textEntryFieldUI = _textEntryFieldUI;
 @synthesize dictionary = _dictionary;
 @synthesize monsters = _monsters;
 
@@ -107,6 +110,21 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
         self.dictionary = [fileContents componentsSeparatedByString:@"\n"];
+        
+        self.textEntryLabel = [CCLabelTTF labelWithString:@"XXXX" fontName:@"Arial-BoldMT" fontSize:30];
+        
+        // Finally
+        self.textEntryFieldCC = [CCTextField textFieldWithLabel:self.textEntryLabel andTextField:self.textEntryFieldUI];
+        self.textEntryFieldCC.position = ccp(200, 200);
+        [self addChild:self.textEntryFieldCC];
+        //[self.textEntryFieldUI becomeFirstResponder];
+        
+        self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
+        self.textEntryFieldCC.position = ccp(0,210);
+        [self addChild:self.textEntryFieldCC];
+        self.textEntryFieldCC.label.color = ccWHITE;
+        [self.textEntryFieldCC setText:@"Hello world"];
+        
         
         [self resetGame]; // reset all counters, labels, etc.
         

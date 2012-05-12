@@ -125,6 +125,8 @@
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
+		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
+		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -369,6 +371,9 @@
 		F96BD872155F075400CF399A /* MinionDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionDragon.h; sourceTree = "<group>"; };
 		F96BD873155F075400CF399A /* MinionDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionDragon.m; sourceTree = "<group>"; };
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
+		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
+		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
+		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -845,6 +850,7 @@
 				90FC053F155EFD21002C3BAE /* Icon@2x.png in Resources */,
 				90FC0542155EFD21002C3BAE /* iTunesArtwork in Resources */,
 				F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */,
+				90FC06CD155F1872002C3BAE /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,6 +961,7 @@
 				90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */,
 				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
 				F96BD874155F075400CF399A /* MinionDragon.m in Sources */,
+				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
