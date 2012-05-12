@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MNCenter.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,29 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    MNCenter *networkCenter = [[MNCenter alloc] init];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+    label.numberOfLines = 10;
+    label.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
+    [self.view addSubview:label];
+    
+    [networkCenter startWithDeviceAvailable:^(Device *device) {
+        NSLog(@"device became available");
+        label.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+        for (Device *d in [networkCenter sortedDevices]) {
+            label.text = [label.text stringByAppendingFormat:@"%@\n", d.deviceName];
+        }
+    } deviceUnavailable:^(Device *device) {
+        NSLog(@"device became unavailable");
+        label.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+        for (Device *d in [networkCenter sortedDevices]) {
+            label.text = [label.text stringByAppendingFormat:@"%@\n", d.deviceName];
+        }
+    }];
+    
+    //[label release];
 }
 
 - (void)viewDidUnload
