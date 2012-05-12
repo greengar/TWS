@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A976917E155F0F2E00AD11A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A976917D155F0F2E00AD11A6 /* UIKit.framework */; };
+		A9769180155F0F2E00AD11A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A976917F155F0F2E00AD11A6 /* Foundation.framework */; };
+		A9769182155F0F2E00AD11A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9769181155F0F2E00AD11A6 /* CoreGraphics.framework */; };
+		A9769188155F0F2E00AD11A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9769186155F0F2E00AD11A6 /* InfoPlist.strings */; };
+		A976918A155F0F2E00AD11A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9769189155F0F2E00AD11A6 /* main.m */; };
+		A976918E155F0F2E00AD11A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A976918D155F0F2E00AD11A6 /* AppDelegate.m */; };
+		A9769191155F0F2E00AD11A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9769190155F0F2E00AD11A6 /* ViewController.m */; };
+		A9769194155F0F2E00AD11A6 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9769192155F0F2E00AD11A6 /* ViewController_iPhone.xib */; };
+		A9769197155F0F2E00AD11A6 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9769195155F0F2E00AD11A6 /* ViewController_iPad.xib */; };
+		A976919F155F0F2F00AD11A6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A976919E155F0F2F00AD11A6 /* SenTestingKit.framework */; };
+		A97691A0155F0F2F00AD11A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A976917D155F0F2E00AD11A6 /* UIKit.framework */; };
+		A97691A1155F0F2F00AD11A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A976917F155F0F2E00AD11A6 /* Foundation.framework */; };
+		A97691A9155F0F2F00AD11A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A97691A7155F0F2F00AD11A6 /* InfoPlist.strings */; };
+		A97691AC155F0F2F00AD11A6 /* MeshNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A97691AB155F0F2F00AD11A6 /* MeshNetworkTests.m */; };
+		A97691B6155F0F6E00AD11A6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97691B5155F0F6E00AD11A6 /* GameKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A97691A2155F0F2F00AD11A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9769170155F0F2E00AD11A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9769178155F0F2E00AD11A6;
+			remoteInfo = MeshNetwork;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A9769179155F0F2E00AD11A6 /* MeshNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeshNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A976917D155F0F2E00AD11A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A976917F155F0F2E00AD11A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A9769181155F0F2E00AD11A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A9769185155F0F2E00AD11A6 /* MeshNetwork-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeshNetwork-Info.plist"; sourceTree = "<group>"; };
+		A9769187155F0F2E00AD11A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A9769189155F0F2E00AD11A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A976918B155F0F2E00AD11A6 /* MeshNetwork-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MeshNetwork-Prefix.pch"; sourceTree = "<group>"; };
+		A976918C155F0F2E00AD11A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A976918D155F0F2E00AD11A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A976918F155F0F2E00AD11A6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A9769190155F0F2E00AD11A6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A9769193155F0F2E00AD11A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		A9769196155F0F2E00AD11A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A976919D155F0F2F00AD11A6 /* MeshNetworkTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeshNetworkTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A976919E155F0F2F00AD11A6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A97691A6155F0F2F00AD11A6 /* MeshNetworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeshNetworkTests-Info.plist"; sourceTree = "<group>"; };
+		A97691A8155F0F2F00AD11A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A97691AA155F0F2F00AD11A6 /* MeshNetworkTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshNetworkTests.h; sourceTree = "<group>"; };
+		A97691AB155F0F2F00AD11A6 /* MeshNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeshNetworkTests.m; sourceTree = "<group>"; };
+		A97691B5155F0F6E00AD11A6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9769176155F0F2E00AD11A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A97691B6155F0F6E00AD11A6 /* GameKit.framework in Frameworks */,
+				A976917E155F0F2E00AD11A6 /* UIKit.framework in Frameworks */,
+				A9769180155F0F2E00AD11A6 /* Foundation.framework in Frameworks */,
+				A9769182155F0F2E00AD11A6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9769199155F0F2F00AD11A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A976919F155F0F2F00AD11A6 /* SenTestingKit.framework in Frameworks */,
+				A97691A0155F0F2F00AD11A6 /* UIKit.framework in Frameworks */,
+				A97691A1155F0F2F00AD11A6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A976916E155F0F2E00AD11A6 = {
+			isa = PBXGroup;
+			children = (
+				A9769183155F0F2E00AD11A6 /* MeshNetwork */,
+				A97691A4155F0F2F00AD11A6 /* MeshNetworkTests */,
+				A976917C155F0F2E00AD11A6 /* Frameworks */,
+				A976917A155F0F2E00AD11A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A976917A155F0F2E00AD11A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9769179155F0F2E00AD11A6 /* MeshNetwork.app */,
+				A976919D155F0F2F00AD11A6 /* MeshNetworkTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A976917C155F0F2E00AD11A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A97691B5155F0F6E00AD11A6 /* GameKit.framework */,
+				A976917D155F0F2E00AD11A6 /* UIKit.framework */,
+				A976917F155F0F2E00AD11A6 /* Foundation.framework */,
+				A9769181155F0F2E00AD11A6 /* CoreGraphics.framework */,
+				A976919E155F0F2F00AD11A6 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9769183155F0F2E00AD11A6 /* MeshNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				A976918C155F0F2E00AD11A6 /* AppDelegate.h */,
+				A976918D155F0F2E00AD11A6 /* AppDelegate.m */,
+				A976918F155F0F2E00AD11A6 /* ViewController.h */,
+				A9769190155F0F2E00AD11A6 /* ViewController.m */,
+				A9769192155F0F2E00AD11A6 /* ViewController_iPhone.xib */,
+				A9769195155F0F2E00AD11A6 /* ViewController_iPad.xib */,
+				A9769184155F0F2E00AD11A6 /* Supporting Files */,
+			);
+			path = MeshNetwork;
+			sourceTree = "<group>";
+		};
+		A9769184155F0F2E00AD11A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A9769185155F0F2E00AD11A6 /* MeshNetwork-Info.plist */,
+				A9769186155F0F2E00AD11A6 /* InfoPlist.strings */,
+				A9769189155F0F2E00AD11A6 /* main.m */,
+				A976918B155F0F2E00AD11A6 /* MeshNetwork-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A97691A4155F0F2F00AD11A6 /* MeshNetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				A97691AA155F0F2F00AD11A6 /* MeshNetworkTests.h */,
+				A97691AB155F0F2F00AD11A6 /* MeshNetworkTests.m */,
+				A97691A5155F0F2F00AD11A6 /* Supporting Files */,
+			);
+			path = MeshNetworkTests;
+			sourceTree = "<group>";
+		};
+		A97691A5155F0F2F00AD11A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A97691A6155F0F2F00AD11A6 /* MeshNetworkTests-Info.plist */,
+				A97691A7155F0F2F00AD11A6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9769178155F0F2E00AD11A6 /* MeshNetwork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A97691AF155F0F2F00AD11A6 /* Build configuration list for PBXNativeTarget "MeshNetwork" */;
+			buildPhases = (
+				A9769175155F0F2E00AD11A6 /* Sources */,
+				A9769176155F0F2E00AD11A6 /* Frameworks */,
+				A9769177155F0F2E00AD11A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeshNetwork;
+			productName = MeshNetwork;
+			productReference = A9769179155F0F2E00AD11A6 /* MeshNetwork.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A976919C155F0F2F00AD11A6 /* MeshNetworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A97691B2155F0F2F00AD11A6 /* Build configuration list for PBXNativeTarget "MeshNetworkTests" */;
+			buildPhases = (
+				A9769198155F0F2F00AD11A6 /* Sources */,
+				A9769199155F0F2F00AD11A6 /* Frameworks */,
+				A976919A155F0F2F00AD11A6 /* Resources */,
+				A976919B155F0F2F00AD11A6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A97691A3155F0F2F00AD11A6 /* PBXTargetDependency */,
+			);
+			name = MeshNetworkTests;
+			productName = MeshNetworkTests;
+			productReference = A976919D155F0F2F00AD11A6 /* MeshNetworkTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9769170155F0F2E00AD11A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = A9769173155F0F2E00AD11A6 /* Build configuration list for PBXProject "MeshNetwork" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A976916E155F0F2E00AD11A6;
+			productRefGroup = A976917A155F0F2E00AD11A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9769178155F0F2E00AD11A6 /* MeshNetwork */,
+				A976919C155F0F2F00AD11A6 /* MeshNetworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9769177155F0F2E00AD11A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9769188155F0F2E00AD11A6 /* InfoPlist.strings in Resources */,
+				A9769194155F0F2E00AD11A6 /* ViewController_iPhone.xib in Resources */,
+				A9769197155F0F2E00AD11A6 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A976919A155F0F2F00AD11A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A97691A9155F0F2F00AD11A6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A976919B155F0F2F00AD11A6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9769175155F0F2E00AD11A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A976918A155F0F2E00AD11A6 /* main.m in Sources */,
+				A976918E155F0F2E00AD11A6 /* AppDelegate.m in Sources */,
+				A9769191155F0F2E00AD11A6 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9769198155F0F2F00AD11A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A97691AC155F0F2F00AD11A6 /* MeshNetworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A97691A3155F0F2F00AD11A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9769178155F0F2E00AD11A6 /* MeshNetwork */;
+			targetProxy = A97691A2155F0F2F00AD11A6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A9769186155F0F2E00AD11A6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9769187155F0F2E00AD11A6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A9769192155F0F2E00AD11A6 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9769193155F0F2E00AD11A6 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		A9769195155F0F2E00AD11A6 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9769196155F0F2E00AD11A6 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		A97691A7155F0F2F00AD11A6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A97691A8155F0F2F00AD11A6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A97691AD155F0F2F00AD11A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A97691AE155F0F2F00AD11A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A97691B0155F0F2F00AD11A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MeshNetwork/MeshNetwork-Prefix.pch";
+				INFOPLIST_FILE = "MeshNetwork/MeshNetwork-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A97691B1155F0F2F00AD11A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MeshNetwork/MeshNetwork-Prefix.pch";
+				INFOPLIST_FILE = "MeshNetwork/MeshNetwork-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A97691B3155F0F2F00AD11A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MeshNetwork.app/MeshNetwork";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MeshNetwork/MeshNetwork-Prefix.pch";
+				INFOPLIST_FILE = "MeshNetworkTests/MeshNetworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A97691B4155F0F2F00AD11A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MeshNetwork.app/MeshNetwork";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MeshNetwork/MeshNetwork-Prefix.pch";
+				INFOPLIST_FILE = "MeshNetworkTests/MeshNetworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9769173155F0F2E00AD11A6 /* Build configuration list for PBXProject "MeshNetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A97691AD155F0F2F00AD11A6 /* Debug */,
+				A97691AE155F0F2F00AD11A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A97691AF155F0F2F00AD11A6 /* Build configuration list for PBXNativeTarget "MeshNetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A97691B0155F0F2F00AD11A6 /* Debug */,
+				A97691B1155F0F2F00AD11A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A97691B2155F0F2F00AD11A6 /* Build configuration list for PBXNativeTarget "MeshNetworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A97691B3155F0F2F00AD11A6 /* Debug */,
+				A97691B4155F0F2F00AD11A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9769170155F0F2E00AD11A6 /* Project object */;
+}
