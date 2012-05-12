@@ -122,6 +122,7 @@
 		90FC0682155EFD23002C3BAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0681155EFD23002C3BAE /* AppDelegate.m */; };
 		90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0684155EFD23002C3BAE /* RootViewController.m */; };
 		90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */; };
+		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -360,6 +361,8 @@
 		90FC0686155EFD23002C3BAE /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		90FC0689155EFD23002C3BAE /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		90FC06A8155F01F7002C3BAE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
+		90FC06A9155F01F7002C3BAE /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +429,8 @@
 				90FC052F155EFD21002C3BAE /* Resources */,
 				90FC0543155EFD21002C3BAE /* libs */,
 				90FC067C155EFD23002C3BAE /* Supporting Files */,
+				90FC06A8155F01F7002C3BAE /* Monster.h */,
+				90FC06A9155F01F7002C3BAE /* Monster.m */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				90FC0682155EFD23002C3BAE /* AppDelegate.m in Sources */,
 				90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */,
 				90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */,
+				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
