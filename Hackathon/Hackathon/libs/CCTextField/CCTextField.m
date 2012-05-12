@@ -224,13 +224,16 @@
 
 - (NSString *)text {
 	
+    return realString;
+    // (erand): original code assumed the carret was part of the string. Turns out it's not.
+    /*
 	if (showingTicker) {
 		return [realString substringToIndex:realString.length - 1];
 	}
 	else {
 		return realString;
 	}
-	
+	*/
 }
 
 - (void)setTextColor:(ccColor3B)color {
