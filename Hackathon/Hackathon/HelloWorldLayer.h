@@ -10,6 +10,7 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 #import "Constants.h"
+#import "CCTextField.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -21,6 +22,10 @@
 }
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
+
+@property (nonatomic, retain) UITextField *textEntryFieldUI;
+@property (nonatomic, retain) CCLabelTTF *textEntryLabel;
+@property (nonatomic, retain) CCTextField *textEntryFieldCC;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

@@ -15,6 +15,9 @@
 
 @synthesize timerLabel = _timerLabel;
 @synthesize scoreLabel = _scoreLabel;
+@synthesize textEntryLabel = _textEntryLabel;
+@synthesize textEntryFieldCC = _textEntryFieldCC;
+@synthesize textEntryFieldUI = _textEntryFieldUI;
 
 +(CCScene *) scene
 {
@@ -84,6 +87,30 @@
         self.scoreLabel.position = ccp(screenSize.width, screenSize.height);
         [self addChild:self.scoreLabel z:1];
         
+        // Set up text entry fields. See documentation for CCTextField for the why
+  
+/*
+        // Create the CCTextField from some UITextField and a CCLabelTTF (several CCTextFields can share the same UITextField this way)
+        self.textEntryFieldUI = [[[UITextField alloc] initWithFrame:CGRectMake(2000, 200, 150, 50)] autorelease ]; // Make sure it's not visible
+        // Set any attributes to your field
+        self.textEntryFieldUI.keyboardType = UIKeyboardTypeDefault;
+        
+        self.textEntryLabel = [CCLabelTTF labelWithString:@"XXXX" fontName:@"Arial-BoldMT" fontSize:30];
+        
+        // Finally
+        self.textEntryFieldCC = [CCTextField textFieldWithLabel:self.textEntryLabel andTextField:self.textEntryFieldUI];
+        self.textEntryFieldCC.position = ccp(200, 200);
+        [self addChild:self.textEntryFieldCC];
+        //[self.textEntryFieldUI becomeFirstResponder];
+        
+*/        
+        self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(100, 100) fontName:@"Arial-BoldMT" andFontSize:20];
+        self.textEntryFieldCC.position = ccp(200,200);
+        [self addChild:self.textEntryFieldCC];
+        self.textEntryFieldCC.label.color = ccWHITE;
+        [self.textEntryFieldCC setText:@"Hello world"];
+        
+        
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
@@ -121,7 +148,13 @@
 
 	self.timerLabel = nil;
     self.scoreLabel = nil;
-    
+    self.textEntryLabel = nil;
+    self.textEntryFieldUI = nil;
+    self.textEntryFieldCC = nil;
+
+
+
+
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
