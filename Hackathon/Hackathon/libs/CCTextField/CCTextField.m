@@ -163,6 +163,25 @@
 	return YES;
 }
 
+-(void) setFocus {
+    BOOL reset = NO;
+    
+    if ([self.textField delegate] != self) {
+        reset = YES;
+    }
+    
+    [self.textField setDelegate:self];
+    
+    if (reset) {
+        [realString release];
+        realString = [self.label.string retain];
+        [self.textField setText:realString];
+    }
+    
+    [self.textField becomeFirstResponder];
+
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	
 	CGPoint p = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:[touch locationInView:touch.view]]];
@@ -172,21 +191,7 @@
 	
 	if (CGRectContainsPoint(r, p)) {
 		
-		BOOL reset = NO;
-		
-		if ([self.textField delegate] != self) {
-			reset = YES;
-		}
-		
-		[self.textField setDelegate:self];
-		
-		if (reset) {
-			[realString release];
-			realString = [self.label.string retain];
-			[self.textField setText:realString];
-		}
-		
-		[self.textField becomeFirstResponder];
+        [self setFocus];
 		return YES;
 	}
 	
