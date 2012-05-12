@@ -41,7 +41,16 @@ NSString* const MONSTER_IMAGE = @"icon.png";
 }
 
 - (void)die {
-    
+    [self runAction:[CCSequence actions:
+                     [CCScaleTo actionWithDuration:1 scale:0.1],
+                     [CCCallBlock actionWithBlock:^{
+        [self removeFromParentAndCleanup:YES];
+    }],
+                     nil]];
+}
+
+-(BOOL) attackWithWord:(NSString *)attackWord {
+    return [attackWord isEqualToString:self.word];
 }
 
 @end

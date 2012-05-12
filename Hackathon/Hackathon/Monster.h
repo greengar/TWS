@@ -21,4 +21,6 @@
 - (CGPoint)move:(int)x:(int)y;
 - (void)die;
 
+-(BOOL) attackWithWord:(NSString *)word; // returns YES if monster dead
+
 @end
