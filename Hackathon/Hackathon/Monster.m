@@ -173,6 +173,14 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
 }
 
+// return score based on death at time of call
+-(int) getKillScore {
+    float ratio = (self.moveAction.duration - self.moveAction.elapsed) / self.moveAction.duration; // this is how much time is left
+    int score = ((float)self.points) * ratio;
+    NSLog(@"Monster score: %i out of %i", score, self.points);
+    return score;
+}
+
 - (void)dealloc
 {
     self.word = nil;

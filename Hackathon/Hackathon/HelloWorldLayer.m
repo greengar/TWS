@@ -325,9 +325,9 @@ static MNCenter *mnCenter = nil;
         
         [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
         
-        for (Monster* monster in self.monsters) {
-            [monster decreasePointValue];
-        }
+        //for (Monster* monster in self.monsters) {
+        //    [monster decreasePointValue];
+        //}
     }
 }
 
@@ -439,9 +439,9 @@ static MNCenter *mnCenter = nil;
             }
             if (sec % 3) {
                 [self.boss throwFireballAt:self.myPlayer];
-                NSLog(@"throw fireball");
+                //NSLog(@"throw fireball");
             }
-            NSLog(@"10 sec left");
+            //NSLog(@"10 sec left");
         }
     }        
     // check if a new word was entered (very inefficient) and then check against all monsters
@@ -456,8 +456,8 @@ static MNCenter *mnCenter = nil;
             }
         }
         for (Monster *monster in deadMonsters) {
+            score+=[monster getKillScore];
             [self.myPlayer throwWeaponAt:monster];
-            score+=monster.points;
             [self notifyScore:score];
         }
         if ([deadMonsters count] > 0) {
