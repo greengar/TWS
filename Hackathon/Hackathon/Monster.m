@@ -14,7 +14,7 @@
 @synthesize word = _word;
 @synthesize points = _points;
 
-NSString* const MINION_MONSTER_IMAGE = @"icon.png";
+NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
 - (NSString*)description {
      NSString* description = [NSString stringWithFormat:@"xPos: %@, yPos: %@, word: %@",[NSNumber numberWithFloat:self.position.x],[NSNumber numberWithFloat:self.position.y],self.word];
@@ -48,7 +48,10 @@ NSString* const MINION_MONSTER_IMAGE = @"icon.png";
 
 -(void) marchTo:(CGPoint)destination {
     CCFiniteTimeAction *marchAction = [CCMoveTo actionWithDuration:MONSTER_MOVE_DURATION_SECONDS position:destination];
-    [self runAction:marchAction];
+    CCFiniteTimeAction *marchCompleteAction = [CCCallBlock actionWithBlock:^{
+        self.reachedPlayer = YES;
+    }];
+    [self runAction:[CCSequence actions:marchAction, marchCompleteAction, nil]];
 }
 
 -(BOOL) attackWithWord:(NSString *)attackWord {
