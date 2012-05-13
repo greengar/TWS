@@ -13,8 +13,6 @@
 
 @implementation BossDragon
 
-@synthesize words = _words;
-
 -(MonsterType) monsterType {
     return kMonsterTypeBoss;
 }
@@ -25,5 +23,23 @@
     }
     return self;
 }
+
+//-(void) throwFireballAt:(Player *)player {
+//    CCFiniteTimeAction *fireballAction = [CCCallBlock actionWithBlock:^{
+//        CCSprite *fireball = [CCSprite spriteWithFile:@"ninja-star-1.png"];
+//        fireball.position = self.position;
+//        [self.parent addChild:fireball];
+//
+//        CCFiniteTimeAction *playerIsHit = [CCCallBlock actionWithBlock:^{
+//            
+//        }];
+//        
+//        CCMoveTo *fireballMove = [CCMoveTo actionWithDuration:STAR_THROW_TIME position:player.position];
+//        [fireball runAction:[CCSequence actions:fireballMove, playerIsHit, nil]];
+//    }];
+//    [self runAction:[CCSequence actions:
+//                     fireballAction,
+//                     nil]];
+//}
 
 @end

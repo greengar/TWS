@@ -10,14 +10,15 @@
 #import "cocos2d.h"
 #import "Monster.h"
 #import "Constants.h"
+#import "Player.h"
 
 
 @interface BossDragon : Monster {
     
 }
 
-@property (nonatomic, retain) NSSet* words;
-
 -(BossDragon *) createWithWord:(NSString *)word;
+
+//-(void) throwFireballAt:(Player *)player;
 
 @end

@@ -18,6 +18,7 @@
 #define STAR_THROW_TIME 0.5
 #define BLOOD_MOVE_DURATION_SECONDS 1.5
 #define BOSS_INITIAL_POINTS 200
+#define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
 
 typedef enum {
     kGameOverTimeOut=1,
