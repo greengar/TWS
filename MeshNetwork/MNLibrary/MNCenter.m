@@ -100,4 +100,8 @@
     return [[UIDevice currentDevice] name];
 }
 
+- (NSString *)peerID {
+    return sessionManager.meshSession.peerID;
+}
+
 @end

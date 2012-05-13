@@ -31,5 +31,6 @@ typedef void(^DataBlock)(NSData *, Device *);
 - (BOOL)sendData:(NSData *)data toPeerID:(NSString *)peerID;
 - (NSArray *)sortedDevices;
 - (NSString *)deviceName;
+- (NSString *)peerID;
 
 @end
