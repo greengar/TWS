@@ -28,10 +28,15 @@
     return self;
 }
 
-// for debugging purposes
--(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
-    [super setOwnerMe:isMine uniqueID:theUniqueId peerID:thePeerID];
-    fireParticle.scale = 2;
+-(void) markAsRemote {
+    return;
+    fireParticle.startColor = ccc4FFromccc3B(ccBLACK);
+    fireParticle.endColor = ccc4FFromccc3B(ccBLACK);;
+}
+
+-(void) specialPeerHandling:(Player *)player {
+    // we're from the boss. need to align with the player:
+    self.position = ccp(player.eventualPosition.x, self.position.y);
 }
 
 @end

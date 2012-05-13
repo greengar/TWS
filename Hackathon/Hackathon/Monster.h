@@ -19,6 +19,7 @@
 #define KEY_TIME_LEFT_TO_REACH_PLAYER @"timeleft"
 #define KEY_MONSTER_TYPE @"monstertype"
 
+@class Player; // forward reference
 
 typedef enum {
     kMonsterTypeMinion=1,
@@ -55,7 +56,10 @@ typedef enum {
 -(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
 
 -(NSMutableDictionary *) serialize; // dump the state into a dictionary
-+(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID;
++(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID player:(Player *)player;
 -(void) walkOffScreen; // player walked offscreen, so follow them
 -(int) getKillScore; // calculates score if monster was just killed
+-(void) markAsRemote; // remote monsters can show differently if they so wish
+-(void) specialPeerHandling:(Player *)player; // called by the deserialization process to see if any special handling is needed. Player might be nil
+
 @end

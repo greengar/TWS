@@ -12,6 +12,7 @@
 #import "MinionDragon.h"
 #import "BossDragon.h"
 #import "Fireball.h"
+#import "Player.h"
 
 
 @implementation Monster
@@ -157,6 +158,11 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 }
 
 
+// called after deserialization for any special treatment that might be needed
+-(void) specialPeerHandling:(Player *)player {
+    return;
+}
+
 -(NSMutableDictionary *) serialize {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:self.word forKey:KEY_WORD];
@@ -170,7 +176,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return dict;
 }
 
-+(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID {
++(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID player:(Player *)player {
     MonsterType mt = [[dict objectForKey:KEY_MONSTER_TYPE] intValue];
     NSString *word = [dict objectForKey:KEY_WORD];
     Monster *monster = nil;
@@ -198,7 +204,10 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         monster.points = [[dict objectForKey:KEY_POINTS] intValue];
         monster.isSlatedToDie = [[dict objectForKey:KEY_IS_SLATED_TO_DIE] boolValue];
         monster->timeLeftToReachPlayer = [[dict objectForKey:KEY_TIME_LEFT_TO_REACH_PLAYER] doubleValue];
-        monster.color = ccBLACK; // debugging to mark remote monsters
+        [monster markAsRemote];
+        if (player != nil) {
+            [monster specialPeerHandling:player];
+        }
     }
     return monster;
 
@@ -211,6 +220,9 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return score;
 }
 
+-(void) markAsRemote {
+    return;
+}
 - (void)dealloc
 {
     self.word = nil;

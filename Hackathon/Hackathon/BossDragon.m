@@ -8,6 +8,7 @@
 
 #import "BossDragon.h"
 #import "Fireball.h"
+#import "Player.h"
 
 #define TEMPLATE_NAME @"boss-dragon-%@.png"
 #define FRAME_ORDER @"1,2,3,4,5,6,5,4,3,2,1"
@@ -35,6 +36,14 @@
     return; // no movement for boss dragon
 }
 
+-(void) markAsRemote {
+    self.color = ccBLACK;
+}
+
+-(void) specialPeerHandling:(Player *)player {
+    // we're the boss. need to align with the player:
+    self.position = ccp(player.eventualPosition.x, self.position.y);
+}
 
 //-(void) throwFireballAt:(Player *)player {
 //    CCFiniteTimeAction *fireballAction = [CCCallBlock actionWithBlock:^{

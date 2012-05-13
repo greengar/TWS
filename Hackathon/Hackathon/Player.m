@@ -6,9 +6,11 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "Constants.h"
 #import "Player.h"
 #import "Monster.h"
-#import "Constants.h"
+#import "MinionDragon.h"
+#import "Fireball.h"
 
 #define TEMPLATE_NAME @"ninja-sway-%@.png"
 #define FRAME_ORDER @"2,1,2,3"
@@ -66,17 +68,22 @@
     }];
     
     CCFiniteTimeAction *starAction = [CCCallBlock actionWithBlock:^{
-        CCSprite *star = [CCSprite spriteWithFile:@"ninja-star-1.png"];
-        [self.parent addChild:star];
-        star.position = self.position;
+        CCNode *projectile;
+        if ([monster isKindOfClass:[Fireball class]]) {
+            projectile = [CCParticleSystemQuad particleWithFile:@"WaterStrike.plist"];
+        } else {
+            projectile = [CCSprite spriteWithFile:@"ninja-star-1.png"];
+        }
+        [self.parent addChild:projectile];
+        projectile.position = self.position;
         // tell monster it's dead
         CCFiniteTimeAction *monsterIsDead = [CCCallBlock actionWithBlock:^{
             [monster die];
-            [star removeFromParentAndCleanup:YES];
+            [projectile removeFromParentAndCleanup:YES];
             
         }];
         CCMoveTo *starMove = [CCMoveTo actionWithDuration:STAR_THROW_TIME position:monster.position];
-        [star runAction:[CCSequence actions:starMove, monsterIsDead, nil]];
+        [projectile runAction:[CCSequence actions:starMove, monsterIsDead, nil]];
     }];
     
     
