@@ -24,6 +24,13 @@ NSString* const MINION_MONSTER_IMAGE = @"icon.png";
     if (self = [super initWithFile:MINION_MONSTER_IMAGE]) {
         self.position = ccp(x,y);
         self.word = word;
+        
+        CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
+        [name setAnchorPoint:ccp(0.5, 1)];
+        [self addChild:name];
+        name.position = ccp(self.boundingBox.size.width / 2,0 );
+        
+        
     }
     
     return self;
