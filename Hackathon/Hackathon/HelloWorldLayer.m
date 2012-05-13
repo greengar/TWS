@@ -112,6 +112,14 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
         self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
+//        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
+        
+        NSString* word = [self.dictionary objectAtIndex:0];
+        NSString* lastChar = [word substringFromIndex:[word length]-1];
+        NSLog(@"lastChar is %@",lastChar);
+        NSLog(@"the file contents are %@",fileContents);
+        NSLog(@"the dictionary is : %@",self.dictionary);
         
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
@@ -125,11 +133,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
-        
-        //        int randomNumber = arc4random() % 
-        //        NSString* newWord = self.dictionary
-        //        Monster* newMonster = [[Monster alloc] create:100 :100 :newWord];
-        
 	}
 	return self;
 }
