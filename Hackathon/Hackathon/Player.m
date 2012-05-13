@@ -52,8 +52,9 @@
 }
 
 -(void) throwWeaponAt:(Monster *)monster {
-    if (self.isLeaving) {
+    if (self.isLeaving || !self.throwAction.isDone) {
         // player is leaving so we're not adding animation
+        // OR throw action still running, so don't double-run
         [monster die];
         return;
     }
