@@ -410,14 +410,14 @@
     // ...
 }
 
-- (void)dataPrepared {
-	[self showProcess:NSLocalizedString(@"CONNECTION_PROCESS", @"Connecting dialog")];
-	
-	if (![currentStateRelatedDevice isConnected])
-		[currentStateRelatedDevice connectAndReplyTo:self selector:@selector(deviceConnected) errorSelector:@selector(deviceConnectionFailed)];
-	else
-		[self deviceConnected];
-}
+//- (void)dataPrepared {
+//	[self showProcess:NSLocalizedString(@"CONNECTION_PROCESS", @"Connecting dialog")];
+//	
+//	if (![currentStateRelatedDevice isConnected])
+//		[currentStateRelatedDevice connectAndReplyTo:self selector:@selector(deviceConnected) errorSelector:@selector(deviceConnectionFailed)];
+//	else
+//		[self deviceConnected];
+//}
 
 - (void)deviceConnected {
 	[self sendRequestData];

@@ -32,7 +32,6 @@
 		901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8099155F7C480019E2F9 /* SessionManager.m */; };
 		901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F809D155F7C480019E2F9 /* DataHandler.m */; };
 		901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A0155F7C480019E2F9 /* MNCenter.m */; };
-		901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A5155F7C480019E2F9 /* DeviceCell.m */; };
 		901F80B2155F81510019E2F9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901F80B1155F81510019E2F9 /* GameKit.framework */; };
 		901F80CD155F82520019E2F9 /* grass-background-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C5155F82520019E2F9 /* grass-background-1-hd.png */; };
 		901F80CE155F82520019E2F9 /* grass-background-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C6155F82520019E2F9 /* grass-background-1.png */; };
@@ -223,8 +222,6 @@
 		901F809E155F7C480019E2F9 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
 		901F809F155F7C480019E2F9 /* MNCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCenter.h; sourceTree = "<group>"; };
 		901F80A0155F7C480019E2F9 /* MNCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCenter.m; sourceTree = "<group>"; };
-		901F80A4155F7C480019E2F9 /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
-		901F80A5155F7C480019E2F9 /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
 		901F80B1155F81510019E2F9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		901F80C5155F82520019E2F9 /* grass-background-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-1-hd.png"; sourceTree = "<group>"; };
 		901F80C6155F82520019E2F9 /* grass-background-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-1.png"; sourceTree = "<group>"; };
@@ -596,7 +593,6 @@
 				901F809A155F7C480019E2F9 /* Data */,
 				901F809F155F7C480019E2F9 /* MNCenter.h */,
 				901F80A0155F7C480019E2F9 /* MNCenter.m */,
-				901F80A1155F7C480019E2F9 /* Utilities */,
 			);
 			name = MNLibrary;
 			path = ../../MeshNetwork/MNLibrary;
@@ -631,15 +627,6 @@
 				901F809E155F7C480019E2F9 /* DataProvider.h */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		901F80A1155F7C480019E2F9 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				901F80A4155F7C480019E2F9 /* DeviceCell.h */,
-				901F80A5155F7C480019E2F9 /* DeviceCell.m */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		90FC050F155EFD21002C3BAE = {

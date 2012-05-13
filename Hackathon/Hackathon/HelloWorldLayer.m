@@ -413,9 +413,7 @@ static MNCenter *mnCenter = nil;
 
 -(void) sendMessage:(NSDictionary *)dict{
     NSData *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
-    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed callback:^(NSError *error) {
-        NSLog(@"COMM: Couldn't send data %@", [error localizedDescription]);
-    } ];
+    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed];
 }
 
 -(void) sendJoinRequest:(Device *)device {

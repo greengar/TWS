@@ -76,7 +76,7 @@
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nConnected devices:\n", [networkCenter deviceName]];
     
     for (Device *d in connectedDevices) {
-        connections.text = [connections.text stringByAppendingFormat:@"%@", d.deviceName];
+        connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
     }
 }
 
@@ -85,14 +85,22 @@
     //////////////////////////////////////
     // 4. send data to all connected peers
     
-    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding] callback:^(NSError *err) {
-        NSLog(@"callback");
-    }];
-    
+    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding]];
     
     // data sent is NOT received by myself, so add my own message to my own log
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
     textField.text = @"";
+    
+    ////////////////////////////////////
+    // 5. send data to one specific peer
+    
+    if ([connectedDevices count] > 0) {
+        BOOL success = [networkCenter sendData:[@"You're #0!" dataUsingEncoding:NSUTF8StringEncoding] toPeerID:[(Device *)[connectedDevices objectAtIndex:0] peerID]];
+        if (!success) {
+            NSLog(@"unable to queue data for sending");
+        }
+    }
+    
     return YES;
 }
 

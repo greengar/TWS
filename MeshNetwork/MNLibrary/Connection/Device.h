@@ -1,21 +1,13 @@
 /*
  
  File: Device.h
- Abstract: Represents a phisical device.
+ Abstract: Represents a physical device.
  Version: 1.0
  
  Copyright (C) 2009 ArcTouch Inc. All Rights Reserved.
  */
 
 #import <GameKit/GameKit.h>
-
-//typedef enum {
-//    GKPeerStateAvailable,
-//    GKPeerStateUnavailable,
-//    GKPeerStateConnected,
-//    GKPeerStateDisconnected,
-//    GKPeerStateConnecting
-//} GKPeerConnectionState;
 
 @interface Device : NSObject {
 	GKSession *session;
@@ -30,7 +22,8 @@
 
 - (id)initWithSession:(GKSession *)openSession peer:(NSString *)peerID;
 
-- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection;
+- (void)connect;
+//- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection;
 - (void)disconnect;
 - (void)cancelConnection;
 
