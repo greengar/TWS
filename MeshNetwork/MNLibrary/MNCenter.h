@@ -26,9 +26,12 @@ typedef void(^MessageBlock)(NSString *, Device *);
 @property (nonatomic, retain) SessionManager *sessionManager;
 @property (nonatomic, copy) DeviceBlock deviceAvailableBlock;
 @property (nonatomic, copy) DeviceBlock deviceUnavailableBlock;
+@property (nonatomic, copy) DeviceBlock deviceConnectedCallback;
+@property (nonatomic, copy) DeviceBlock deviceDisconnectedCallback;
 @property (nonatomic, copy) MessageBlock receiveMessageCallback;
 
 - (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub;
+- (void)start;
 - (NSArray *)sortedDevices;
 - (NSString *)deviceName;
 

@@ -24,21 +24,37 @@
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
     [self.view addSubview:connections];
     
-    [networkCenter startWithDeviceAvailable:^(Device *device) {
-        NSLog(@"device became available");
-        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-        for (Device *d in [networkCenter sortedDevices]) {
-            // no harm should come from attempting to connect to already-connected devices
-            [d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)];
-            connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
-        }
-    } deviceUnavailable:^(Device *device) {
-        NSLog(@"device became unavailable");
-        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-        for (Device *d in [networkCenter sortedDevices]) {
-            connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
-        }
-    }];
+    connectedDevices = [[NSMutableArray alloc] initWithCapacity:10];
+    
+    networkCenter.deviceConnectedCallback = ^(Device *device) {
+        [connectedDevices addObject:device];
+        
+        [self connected];
+    };
+    
+    networkCenter.deviceDisconnectedCallback = ^(Device *device) {
+        [connectedDevices removeObject:device];
+        
+        [self connected];
+    };
+    
+    [networkCenter start];
+    
+//    [networkCenter startWithDeviceAvailable:^(Device *device) {
+//        NSLog(@"device became available");
+//        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+//        for (Device *d in [networkCenter sortedDevices]) {
+//            // no harm should come from attempting to connect to already-connected devices
+//            //[d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)]; // now handled directly in SessionManager
+//            connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+//        }
+//    } deviceUnavailable:^(Device *device) {
+//        NSLog(@"device became unavailable");
+//        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+//        for (Device *d in [networkCenter sortedDevices]) {
+//            connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
+//        }
+//    }];
     
     [networkCenter.sessionManager setOnStateChange:^{
         [self connected];
@@ -68,9 +84,13 @@
 }
 
 - (void)connected {
-    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-    for (Device *d in [networkCenter sortedDevices]) {
-        connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nConnected devices:\n", [networkCenter deviceName]];
+//    for (Device *d in [networkCenter sortedDevices]) {
+//        connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+//    }
+    
+    for (Device *d in connectedDevices) {
+        connections.text = [connections.text stringByAppendingFormat:@"%@", d.deviceName];
     }
 }
 

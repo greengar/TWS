@@ -11,6 +11,7 @@
 
 @interface ViewController : UIViewController <UITextFieldDelegate> {
     MNCenter *networkCenter;
+    NSMutableArray *connectedDevices;
     IBOutlet UILabel *connections;
     IBOutlet UILabel *messages;
 }
