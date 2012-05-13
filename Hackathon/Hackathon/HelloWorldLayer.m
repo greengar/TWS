@@ -367,10 +367,18 @@ static MNCenter *mnCenter = nil;
     [self addChild:self.gameOverScreen z:3];
 }
 
+// remove leftover monsters. for some reason they're sticking around
+-(void) endOfGameCleanup {
+    for (Monster* monster in self.monsters) {
+        [monster removeFromParentAndCleanup:YES];
+    }
+    
+}
 
 -(void) hitByMonster:(Monster *) monster {
     self.isGameOver = YES;
     self.gameOverReason = kGameOverEaten;
+    [self endOfGameCleanup];
     [self sendPlayerLeftMessage];
     [self showBlood];
 }
@@ -421,6 +429,7 @@ static MNCenter *mnCenter = nil;
         // game over, timed out
         self.isGameOver = YES;
         self.gameOverReason = kGameOverTimeOut;
+        [self endOfGameCleanup];
         [self sendPlayerLeftMessage];
         [self showGameOverScreen];
         return; // nothing further to do
