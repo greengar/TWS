@@ -16,7 +16,8 @@
 
 @property (nonatomic, retain) NSString *name;
 @property BOOL isMe;
-@property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
+@property (nonatomic, retain) CCFiniteTimeAction *swayAction;
+@property (nonatomic, retain) CCAnimation *throwAnimation;
 @property BOOL isLeaving; // YES once player is leaving screen. no new actions on it
 @property CGPoint eventualPosition; // incoming messaged will be shuttled here in case monster is still moving
 @property (nonatomic, retain) CCLabelTTF *nameLabel; // starts with player name, gets updated as they type
