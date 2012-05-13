@@ -9,7 +9,7 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
-#import "Monster.h"
+#import "MinionDragon.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -173,7 +173,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         int randomWordGen = arc4random() % [self.dictionary count];
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
-        Monster* newMonster = [[Monster alloc] createWithX:randomXLoc y:screenSize.height word:newWord];
+        Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
+        newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
         [newMonster marchTo:playerPosition];

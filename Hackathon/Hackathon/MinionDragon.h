@@ -10,8 +10,13 @@
 #import "cocos2d.h"
 #import "Monster.h"
 
+
+
 @interface MinionDragon : Monster {
     
 }
+
+
+-(MinionDragon *) createWithWord:(NSString *)word;
 
 @end

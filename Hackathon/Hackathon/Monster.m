@@ -14,6 +14,7 @@
 @synthesize word = _word;
 @synthesize points = _points;
 @synthesize reachedPlayer;
+@synthesize walkAction = _walkAction;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -22,9 +23,35 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return description;
 }
 
-- (Monster*)createWithX:(int)x y:(int)y word:(NSString*)word {
-    if (self = [super initWithFile:MINION_MONSTER_IMAGE]) {
-        self.position = ccp(x,y);
++(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames {
+    // Look for animation. If doesn't exist, create it.
+    NSString *animationName = [NSString stringWithFormat:animationTemplate, @"animation"];
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
+    if (!animation) {
+        // prepare set of frame names
+        animation = [CCAnimation animation];
+        NSArray *frameNumbers = [frames componentsSeparatedByString:@","];
+        NSMutableArray *frameNames = [NSMutableArray arrayWithCapacity:[frameNumbers count]];
+        for (NSString *num in frameNumbers) {
+            [animation addFrameWithFilename:[NSString stringWithFormat:animationTemplate, num]];
+            //NSLog(@"Adding frame: %@", [frameNames lastObject]);
+            
+        }
+        [[CCAnimationCache sharedAnimationCache] addAnimation:animation name:animationName];
+    }
+    return animation;
+}
+
+
+- (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames {
+    
+    CCAnimation *animation = [Monster animationFromTemplate:animationTemplate andFrames:frames];
+    NSAssert2(animation, @"Could not create animation for template %@ and frames %@", animationTemplate, frames);
+    
+    
+    
+    
+    if (self = [super initWithSpriteFrame:[animation.frames lastObject] ]) {
         self.word = word;
         self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;
@@ -33,7 +60,8 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
-        
+        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
+        [self runAction:self.walkAction];
     }
     
     return self;
@@ -73,6 +101,13 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
 -(void) decreasePointValue {
     self.points = self.points - POINT_DECREASE_VALUE;
+}
+
+- (void)dealloc
+{
+    self.word = nil;
+    self.walkAction = nil;
+    [super dealloc];
 }
 
 @end
