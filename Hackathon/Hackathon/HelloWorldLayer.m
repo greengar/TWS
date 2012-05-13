@@ -17,6 +17,8 @@
 #import "Fireball.h"
 #import <objc/runtime.h>
 
+#define NETWORK_SESSION_ID @"ninjasvsdragons3"
+
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
@@ -92,7 +94,7 @@ static MNCenter *mnCenter = nil;
 +(MNCenter *) sharedMNCenter {
 
     if (!mnCenter) {
-        mnCenter = [[MNCenter alloc] initWithSessionID:@"ninjasvsdragons"];
+        mnCenter = [[MNCenter alloc] initWithSessionID:NETWORK_SESSION_ID];
     }
     return mnCenter;
 
@@ -315,6 +317,12 @@ static MNCenter *mnCenter = nil;
     if (self.isGameOver)
         return; // monsters don't bother us if we're not playing
     Player *player = [self.players objectForKey:device.peerID];
+    // make sure monster has not been created yet! (bosses get re-communicated in some cases)
+    int uid = [[dict objectForKey:KEY_UNIQUE_ID] intValue];
+    for (Monster *monster in self.monsters) {
+        if ((monster.uniqueID == uid) && ([monster.peerID isEqualToString:device.peerID]))
+            return; // duplicate monster.
+    }
     Monster *monster = [Monster deserialize:dict peerID:device.peerID player:player];
     [self.monsters addObject:monster];
     [self addChild:monster];
@@ -649,6 +657,11 @@ static MNCenter *mnCenter = nil;
         // position off screen. Player will be animated onto it
         player.position = ccp(-self.boundingBox.size.width, 215 + self.boundingBox.size.height / 2);
         [self repositionPlayers];
+        
+        // now, if we have a boss monster, resend it:
+        if (self.boss && !self.boss.isSlatedToDie) {
+            [self sendMonsterBornMessage:self.boss];
+        }
     } else {
         NSLog(@"COMM: Player joining game they're alreayd part of: %@", device.peerID);
     }

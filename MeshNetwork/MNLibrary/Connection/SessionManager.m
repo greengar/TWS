@@ -31,6 +31,7 @@
 
 		meshSession = [[GKSession alloc] initWithSessionID:sid displayName:nil sessionMode:GKSessionModePeer];
 		meshSession.delegate = self;
+        meshSession.disconnectTimeout = 30; // 30 sec timeout
 		[meshSession setDataReceiveHandler:handler withContext:nil];
 	}
 	
@@ -42,7 +43,9 @@
 }
 
 - (void)stop {
+    NSLog(@"-[SessionManager stop]");
     meshSession.available = NO;
+    [meshSession disconnectFromAllPeers];
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
