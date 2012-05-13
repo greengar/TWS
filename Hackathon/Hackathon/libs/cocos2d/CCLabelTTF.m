@@ -37,6 +37,8 @@
 
 @implementation CCLabelTTF
 
+@synthesize dimensions = dimensions_;
+
 - (id) init
 {
 	NSAssert(NO, @"CCLabelTTF: Init not supported. Use initWithString");

@@ -42,6 +42,7 @@
 		9030F5631560576A0099340B /* halo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9030F5611560576A0099340B /* halo-hd.png */; };
 		9030F5641560576A0099340B /* halo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9030F5621560576A0099340B /* halo.png */; };
 		9030F567156061240099340B /* WaterStrike.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9030F566156061240099340B /* WaterStrike.plist */; };
+		9030F56D156067380099340B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9030F56C156067380099340B /* Default@2x.png */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -256,6 +257,7 @@
 		9030F5611560576A0099340B /* halo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "halo-hd.png"; sourceTree = "<group>"; };
 		9030F5621560576A0099340B /* halo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halo.png; sourceTree = "<group>"; };
 		9030F566156061240099340B /* WaterStrike.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WaterStrike.plist; sourceTree = "<group>"; };
+		9030F56C156067380099340B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -751,6 +753,7 @@
 		90FC052F155EFD21002C3BAE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9030F56C156067380099340B /* Default@2x.png */,
 				F921238C156057D100706C5D /* winner-screen-hd.png */,
 				F921238D156057D100706C5D /* winner-screen.png */,
 				901F8070155F6F2B0019E2F9 /* ninja */,

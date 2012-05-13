@@ -25,6 +25,8 @@
 @synthesize peerID;
 @synthesize uniqueID;
 @synthesize moveAction = _moveAction;
+@synthesize name;
+@synthesize completedLabel;
 @synthesize isMine;
 @synthesize animation = _animation;
 
@@ -54,26 +56,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return animation;
 }
 
-// init for monsters without animation
-- (Monster*)createWithWord:(NSString*)word {
-    NSLog(@"hi im in monster constructor");
-    if ((self = [super initWithFile:@"blank.png"])) {
-        timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
-        self.isSlatedToDie = NO;
-        self.word = word;
-        self.points = INITIAL_POINTS;
-        self.reachedPlayer = NO;
-        
-        CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
-        [name setAnchorPoint:ccp(0.5, 1)];
-        [self addChild:name];
-        [name setColor:ccBLACK];
-        name.position = ccp(self.boundingBox.size.width / 2,-10);
-    }
-    return self;
-}
-
-// init for monsters with animation
+// init for monsters with animation (e.g. minions/boss)
 - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames {
     
     CCAnimation *animation = [Monster animationFromTemplate:animationTemplate andFrames:frames];
@@ -84,13 +67,21 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
         self.isSlatedToDie = NO;
         self.word = word;
+        lettersRemaining = word.length;
         self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;
         
-        CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
+        name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
+        
+        self.completedLabel = [CCLabelTTF labelWithString:@"" dimensions:name.dimensions alignment:UITextAlignmentLeft fontName:@"Arial-BoldMT" fontSize:15];
+        self.completedLabel.color = ccc3(150, 150, 150);
+        [self.completedLabel setAnchorPoint:ccp(0, 1)];
+        [self addChild:self.completedLabel];
+        self.completedLabel.position = ccp(CGRectGetMinX(name.boundingBox),0 );
+        
 //        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
 //        [self runAction:self.walkAction];
     }
@@ -124,11 +115,22 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [self runAction:self.moveAction];
 }
 
--(BOOL) attackWithWord:(NSString *)attackWord {
-    BOOL equal = [attackWord isEqualToString:self.word];
-    //NSLog(@"Equal: %i  %@ <-> %@", self.word, attackWord);
-    //NSLog(@"Length: %i <-> %i", [self.word length], [attackWord length]);
-    return equal;
+-(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit
+{
+    NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
+    if ([stringRemaining hasPrefix:string]) {
+        
+        if (*monsterWasHit == NO) *monsterWasHit = YES;
+        
+        if (string.length >= lettersRemaining) {
+            return YES;
+        }
+        lettersRemaining -= string.length;
+    }
+    uint completedLength = self.word.length-lettersRemaining;
+    NSString *completedString = [self.word substringToIndex:completedLength];
+    self.completedLabel.string = completedString;
+    return NO;
 }
 
 -(void) decreasePointValue {

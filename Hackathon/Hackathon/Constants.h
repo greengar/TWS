@@ -22,6 +22,8 @@
 #define FIREBALL_EVERY_X_SECONDS 6.0 // for now
 #define FIREBALL_MOVE_DURATION_SECONDS 3.0 // seconds
 #define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
+#define BOSS_INITIAL_POINTS 200
+#define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
 
 typedef enum {
     kGameOverTimeOut=1,

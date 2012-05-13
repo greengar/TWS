@@ -22,9 +22,7 @@
 
 @synthesize timerLabel = _timerLabel;
 @synthesize scoreLabel = _scoreLabel;
-@synthesize textEntryLabel = _textEntryLabel;
 @synthesize textEntryFieldCC = _textEntryFieldCC;
-@synthesize textEntryFieldUI = _textEntryFieldUI;
 @synthesize dictionary = _dictionary;
 @synthesize monsters = _monsters;
 @synthesize lastWord = _lastWord;
@@ -134,6 +132,9 @@ static MNCenter *mnCenter = nil;
     
     // clear text field
     self.textEntryFieldCC.text = @"";
+    
+    self.boss = nil;
+    bossAppeared = NO;
     
     // remove existing monsters
     for (Monster* monster in self.monsters) {
@@ -281,7 +282,7 @@ static MNCenter *mnCenter = nil;
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
-        self.textEntryFieldCC.position = ccp(0,210);
+        self.textEntryFieldCC.position = ccp(0,110); // intentionally hidden now (was 210)
         self.textEntryFieldCC.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [self addChild:self.textEntryFieldCC];
         [self.textEntryFieldCC setTextColor:ccWHITE];
@@ -520,89 +521,68 @@ static MNCenter *mnCenter = nil;
                 bossAppeared = YES;
                 [self generateBoss];
             }
-            [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
         }
     }        
-    // check if a new word was entered (very inefficient) and then check against all monsters
-    NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
-    NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
-    if (![newWord isEqualToString:self.lastWord]) {
-        for (Monster *monster in self.monsters) {
-            if ([monster attackWithWord:newWord]) {
-                monster.isSlatedToDie = YES;
-                [deadMonsters addObject:monster];
-                [self sendMonsterDiedMessage:monster];
-            }
-        }
-        for (Monster *monster in deadMonsters) {
-            score+=[monster getKillScore];
-            [self.myPlayer throwWeaponAt:monster];
-            [self notifyScore:score];
-        }
-        if ([deadMonsters count] > 0) {
-            // we killed a monster, so clear field  
-            self.textEntryFieldCC.text = @"";
-        }
-        [self.monsters minusSet:deadMonsters]; // this same code appears again later ... ???
-        [self.localMonsters minusSet:deadMonsters];
-        self.lastWord = [NSString stringWithString:newWord];
-        [self sendPlayerTypedMessage:self.lastWord];
+    // generate fireballs until boss is beat
+    if (self.boss && !self.boss.isSlatedToDie) {
+        [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
     }
+
+    
+    
+    // [monster killing moved to lower in this file]
     
     // Check for monsters that have reached the player
     for (Monster *monster in self.monsters) {
         if (monster.reachedPlayer && !monster.isSlatedToDie) {
-            [deadMonsters addObject:monster];
+//            [deadMonsters addObject:monster]; // not sure why we were doing this ???
             [self hitByMonster:monster];
         }
     }
-    [deadMonsters removeAllObjects];
-    [self.monsters minusSet:deadMonsters];
+//    [deadMonsters removeAllObjects]; // now done in -textField:shouldChangeCharactersInRange:replacementString:
+//    [self.monsters minusSet:deadMonsters];
 }
 
 - (BOOL)textField:(CCTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([string isEqualToString:@""]) {
-        return YES; // allow backspace
-    }
+    if ([string isEqualToString:@""] || string == nil) return YES; // backspace won't do anything anyway
     
-    NSString *result = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    // also make sure the current text works
-    for (int i = [result length]; i >= 0; i--) {
-        NSString *needle = [result substringToIndex:i];
-        for (Monster *monster in self.monsters) {
-            if ([monster.word hasPrefix:needle]) {
-                // see if it's still valid with the replacement string appended
-                NSString *extended = [needle stringByAppendingString:string];
-                if ([monster.word hasPrefix:extended]) {
-                    textField.text = extended;
-                } else {
-                    textField.text = needle;
-                }
-                return NO;
-            }
-        }
-    }
-    // check to see if the end of the text matches
-    // this is lower priority, so we intentionally do it AFTER checking the beginning of the text
-    for (int i = 0; i < [result length]; i++) {
-        NSString *needle = [result substringFromIndex:i];
-        for (Monster *monster in self.monsters) {
-            if ([monster.word hasPrefix:needle]) {
-                // see if it's still valid with the replacement string appended
-                NSString *extended = [needle stringByAppendingString:string];
-                if ([monster.word hasPrefix:extended]) {
-                    textField.text = extended;
-                } else {
-                    textField.text = needle;
-                }
-                return NO;
-            }
+    NSString *letter = string.lowercaseString;
+    NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:3];
+    BOOL monsterWasHit = NO;
+    BOOL monsterWasKilled = NO;
+    
+    // attack all monsters with letter
+    for (Monster *monster in self.monsters) {
+        if ([monster attackWithString:letter didHit:&monsterWasHit]) {
+            monster.isSlatedToDie = YES;
+            [deadMonsters addObject:monster];
+            [self sendMonsterDiedMessage:monster];
+            
+            monsterWasKilled = YES;
+            // clear field because I killed a monster
+            textField.text = @"";
         }
     }
     
-    // nothing matched. blank out the text field
-    textField.text = @"";
+    for (Monster *monster in deadMonsters) {
+        [self.myPlayer throwWeaponAt:monster]; // TODO: for animation, use fixed velocity instead of fixed time
+        
+        // Score now relative to monster position. Should work on remote monsters as well.
+        score+=[monster getKillScore];
+        
+        [self notifyScore:score];
+    }
+    
+    [self.monsters minusSet:deadMonsters];
+    [self.localMonsters minusSet:deadMonsters];
+    
+    [deadMonsters removeAllObjects];
+    
+    if (monsterWasHit == YES && monsterWasKilled == NO) {
+        [self sendPlayerTypedMessage:textField.text];
+        return YES; // allow textField to change if this letter was successful
+    }
     return NO;
 }
 
@@ -803,8 +783,6 @@ static MNCenter *mnCenter = nil;
 
 	self.timerLabel = nil;
     self.scoreLabel = nil;
-    self.textEntryLabel = nil;
-    self.textEntryFieldUI = nil;
     self.textEntryFieldCC = nil;
     self.lastWord = nil;
     self.myPlayer = nil;
