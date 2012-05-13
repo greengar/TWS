@@ -10,9 +10,11 @@
 #import "cocos2d.h"
 
 @interface EndScreen : CCLayerColor {
-    
+    CGSize screenSize;
 }
 
 @property (nonatomic, retain) CCLabelTTF *gameOverLabel, *finalScoreLabel, *highScoreLabel;
+
+- (void)createWithFinalScore:(double)finalScore;
 
 @end
