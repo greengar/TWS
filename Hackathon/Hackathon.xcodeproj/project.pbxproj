@@ -654,7 +654,6 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
-				901F80B1155F81510019E2F9 /* GameKit.framework */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
@@ -672,6 +671,7 @@
 		90FC051D155EFD21002C3BAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				901F80B1155F81510019E2F9 /* GameKit.framework */,
 				90FC051E155EFD21002C3BAE /* QuartzCore.framework */,
 				90FC0520155EFD21002C3BAE /* OpenGLES.framework */,
 				90FC0522155EFD21002C3BAE /* OpenAL.framework */,
