@@ -141,6 +141,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
+        self.textEntryFieldCC.delegate = self;
         self.textEntryFieldCC.position = ccp(0,210);
         self.textEntryFieldCC.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         [self addChild:self.textEntryFieldCC];
@@ -248,6 +249,18 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self showGameOverScreen];
     }
     
+}
+
+-(BOOL) textFieldShouldReturn:(CCTextField *)textField {
+    // if we know this text field, allow it to return if game is over, otherwise no returns.
+    if (textField == self.textEntryFieldCC) {
+        if (self.isGameOver)
+            return YES;
+        else
+            return NO;
+    }
+    // which text field coudl it be?
+    return YES; 
 }
 
 // on "dealloc" you need to release all your retained objects

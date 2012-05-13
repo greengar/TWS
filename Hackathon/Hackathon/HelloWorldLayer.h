@@ -14,7 +14,7 @@
 #import "Player.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
 {
     double timeLeft; // how long till game is over
     double nextMonsterTimer; // next monster shows up in x seconds
