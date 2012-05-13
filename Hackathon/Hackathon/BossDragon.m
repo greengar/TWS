@@ -20,8 +20,8 @@
 -(BossDragon *) createWithWord:(NSString *)word {
     if ((self = (BossDragon *) [super createWithWord:word animationTemplate:TEMPLATE_NAME frames:FRAME_ORDER])) {
         self.points = BOSS_INITIAL_POINTS;
-        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:self.animation restoreOriginalFrame:NO]];
-        [self runAction:self.walkAction];
+        self.movementAnimationAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:self.animation restoreOriginalFrame:NO]];
+        [self runAction:self.movementAnimationAction];
     }
     return self;
 }

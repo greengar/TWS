@@ -34,7 +34,7 @@ typedef enum {
 @property (nonatomic, retain) NSString* word;
 @property int points;
 @property BOOL reachedPlayer;
-@property (nonatomic, retain) CCFiniteTimeAction *walkAction; // movement animation
+@property (nonatomic, retain) CCFiniteTimeAction *movementAnimationAction; // movement animation
 @property (nonatomic, retain) CCActionInterval *moveAction; // actual movement towards player
 @property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
 @property int uniqueID;
