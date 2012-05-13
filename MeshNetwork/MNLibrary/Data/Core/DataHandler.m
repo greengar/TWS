@@ -137,7 +137,8 @@
         NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         NSLog(@"%@: %@", device.deviceName, str);
         
-        [dataProvider receiveString:str fromDevice:device];
+//        [dataProvider receiveString:str fromDevice:device];
+        [dataProvider receiveData:data fromDevice:device];
         
         // bail early!!!
         return;

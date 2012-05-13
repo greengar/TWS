@@ -56,6 +56,18 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 }
 
 
+static MNCenter *mnCenter = nil;
++(MNCenter *) sharedMNCenter {
+
+    if (!mnCenter) {
+        mnCenter = [[MNCenter alloc] init];
+    }
+    return mnCenter;
+
+}
+
+
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -109,6 +121,38 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self removeChild:self.gameOverScreen cleanup:YES];
         [self.textEntryFieldCC setFocus];
     }
+    [self sendJoinRequest:nil]; // broadcast request for monster info
+}
+
+-(void) initCommChannel {
+    self.devices = [NSMutableSet setWithCapacity:5];
+    MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
+    networkCenter.deviceConnectedCallback = ^(Device *device) {
+        [self.devices addObject:device];
+        NSLog(@"Connected: %@", [device deviceName]);
+        [self sendJoinRequest:device];
+        //[self connected];
+    };
+    
+    networkCenter.deviceDisconnectedCallback = ^(Device *device) {
+        [self.devices removeObject:device];
+        NSLog(@"Disconnected: %@", [device deviceName]);
+        
+        //[self connected];
+    };
+    
+    [networkCenter start];
+        
+    [networkCenter.sessionManager setOnStateChange:^{
+        //[self connected];
+    }];
+    
+    networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
+        NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        [self handleIncomingMessage:data fromDevice:d];
+        NSLog(@"Received msg from %@: %@", d.deviceName, msg);
+    };
+    
 }
 
 // on "init" you need to initialize your instance
@@ -118,16 +162,20 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        [self initCommChannel];
+        
         self.lastWord = @"";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
 
         // background
-        CCSprite *background = [CCSprite spriteWithFile:@"grass-background.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"grass-background-1.png"];
         background.position = ccpMult(ccpFromSize(screenSize), 0.5);
         [self addChild:background z:-1];
-        
+        CCAnimation *bgAnimation = [Monster animationFromTemplate:@"grass-background-%@.png" andFrames:@"1,2,3,2"];
+        [background runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:0.5 animation:bgAnimation restoreOriginalFrame:NO]]];
+         
         // Timer label
         self.timerLabel = [CCLabelTTF labelWithString:@"HELLO" fontName:@"Arial-BoldMT" fontSize:20];
         [self.timerLabel setAnchorPoint:ccp(0, 1)];
@@ -171,8 +219,26 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
+        
+/*
+        // Data encoding test
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+        [dict setObject:@"abc" forKey:@"123"];
+        NSKeyedArchiver *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
+        NSMutableDictionary *newDict = [NSKeyedUnarchiver unarchiveObjectWithData:keyed];
+        NSLog(@"!!!!!!Unarchived value for 123: %@", [newDict valueForKey:@"123"]);
+*/        
 	}
 	return self;
+}
+
+-(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
+
+    Monster *monster = [Monster deserialize:dict peerID:device.peerID];
+    [self.monsters addObject:monster];
+    [self addChild:monster];
+    [monster marchTo:playerPosition]; // will take into account time left
+
 }
 
 -(void)randomMonsterGenerator:(ccTime) dt {
@@ -185,6 +251,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
         Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
+        [newMonster setOwnerMe:YES uniqueID:0 peerID:nil]; // set me as owner
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
@@ -302,6 +369,59 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     return YES; 
 }
 
+
+
+/************* Communication **************/
+
+-(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device {
+    NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    PeerMessageType peerMessageType = [[dict objectForKey:MESSAGE_TYPE] intValue];
+    NSLog(@"Got message of type: %i", peerMessageType);
+    switch (peerMessageType) {
+        case kMessageJoinRequest: {
+            NSLog(@"New peer wants to join the game. Send them a dump of all current (local) monsters");
+            for (Monster *monster in self.monsters) {
+                if (monster.isMine) {
+                    [self sendMonsterBornMessage:monster];
+                }
+            }
+        }
+            break;
+            
+        case kMessageMonsterBorn:
+            [self peerMonsterGenerator:dict device:device];
+            break;
+            
+        default:
+            NSLog(@"unknown message type received!");
+            break;
+    }
+}
+
+
+-(void) sendMessage:(NSDictionary *)dict{
+    NSData *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
+    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed callback:^(NSError *error) {
+        NSLog(@"COMM: Couldn't send data %@", [error localizedDescription]);
+    } ];
+}
+
+-(void) sendJoinRequest:(Device *)device {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageJoinRequest]  forKey:MESSAGE_TYPE];
+    [self sendMessage:dict];
+}
+
+-(void) sendMonsterBornMessage:(Monster *)monster {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageMonsterBorn] forKey:MESSAGE_TYPE];
+    [dict addEntriesFromDictionary:[monster serialize]];
+    [self sendMessage:dict];
+}
+
+
+
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
@@ -316,7 +436,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.textEntryFieldCC = nil;
     self.lastWord = nil;
     self.myPlayer = nil;
-
+    self.devices = nil;
 
 	// don't forget to call "super dealloc"
 	[super dealloc];

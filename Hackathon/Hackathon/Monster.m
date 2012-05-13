@@ -7,6 +7,7 @@
 //
 
 #import "Monster.h"
+#import "MinionDragon.h"
 #import "Constants.h"
 
 @implementation Monster
@@ -16,6 +17,9 @@
 @synthesize reachedPlayer;
 @synthesize walkAction = _walkAction;
 @synthesize isSlatedToDie;
+@synthesize peerID;
+@synthesize uniqueID;
+@synthesize moveAction = _moveAction;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -53,6 +57,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     
     
     if (self = [super initWithSpriteFrame:[animation.frames lastObject] ]) {
+        timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
         self.isSlatedToDie = NO;
         self.word = word;
         self.points = INITIAL_POINTS;
@@ -87,11 +92,12 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 }
 
 -(void) marchTo:(CGPoint)destination {
-    CCFiniteTimeAction *marchAction = [CCMoveTo actionWithDuration:MONSTER_MOVE_DURATION_SECONDS position:destination];
+    CCFiniteTimeAction *marchAction = [CCMoveTo actionWithDuration:timeLeftToReachPlayer position:destination];
     CCFiniteTimeAction *marchCompleteAction = [CCCallBlock actionWithBlock:^{
         self.reachedPlayer = YES;
     }];
-    [self runAction:[CCSequence actions:marchAction, marchCompleteAction, nil]];
+    self.moveAction = [CCSequence actions:marchAction, marchCompleteAction, nil];
+    [self runAction:self.moveAction];
 }
 
 -(BOOL) attackWithWord:(NSString *)attackWord {
@@ -105,10 +111,72 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     self.points = self.points - POINT_DECREASE_VALUE;
 }
 
+-(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
+    if (isMine) {
+        self.peerID = nil;
+        self.uniqueID = arc4random();
+    } else {
+        self.peerID = thePeerID;
+        self.uniqueID = theUniqueId;
+    }
+    NSLog(@"Peer: %@ ID: %i", self.peerID, self.uniqueID);
+}
+
+-(BOOL) isMine {
+    return (peerID == nil);
+}
+
+#define KEY_WORD @"word"
+#define KEY_POINTS @"points"
+#define KEY_IS_SLATED_TO_DIE @"slated"
+#define KEY_UNIQUE_ID @"unique"
+#define KEY_POSITION @"position"
+#define KEY_TIME_LEFT_TO_REACH_PLAYER @"timeleft"
+#define KEY_MONSTER_TYPE @"monstertype"
+
+-(NSMutableDictionary *) serialize {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:self.word forKey:KEY_WORD];
+    [dict setObject:[NSNumber numberWithInt:self.points] forKey:KEY_POINTS];
+    [dict setObject:[NSNumber numberWithBool:self.isSlatedToDie] forKey:KEY_IS_SLATED_TO_DIE];
+    [dict setObject:[NSNumber numberWithInt:uniqueID] forKey:KEY_UNIQUE_ID];
+    [dict setObject:[NSValue valueWithCGPoint:self.position] forKey:KEY_POSITION];
+    [dict setObject:[NSNumber numberWithDouble:(self.moveAction.duration - self.moveAction.elapsed)] forKey:KEY_TIME_LEFT_TO_REACH_PLAYER];
+    [dict setObject:[NSNumber numberWithInt:self.monsterType] forKey:KEY_MONSTER_TYPE];
+    return dict;
+}
+
++(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID {
+    MonsterType mt = [[dict objectForKey:KEY_MONSTER_TYPE] intValue];
+    NSString *word = [dict objectForKey:KEY_WORD];
+    Monster *monster = nil;
+    switch (mt) {
+        case kMonsterTypeMinion:
+            monster = [[MinionDragon alloc] createWithWord:[@"PEER:" stringByAppendingString:  word]];
+            break;
+            
+        default:
+            NSLog(@"Unknown monster type: %i - can't deserialize", mt);
+            break;
+    }
+    if (monster) {
+        int uid = [[dict objectForKey:KEY_UNIQUE_ID] intValue];
+        [monster setOwnerMe:NO uniqueID:uid peerID:thePeerID];
+        monster.position = [[dict objectForKey:KEY_POSITION] CGPointValue];
+        monster.points = [[dict objectForKey:KEY_POINTS] intValue];
+        monster.isSlatedToDie = [[dict objectForKey:KEY_IS_SLATED_TO_DIE] boolValue];
+        monster->timeLeftToReachPlayer = [[dict objectForKey:KEY_TIME_LEFT_TO_REACH_PLAYER] doubleValue];
+    }
+    return monster;
+
+}
+
 - (void)dealloc
 {
     self.word = nil;
     self.walkAction = nil;
+    self.peerID = nil;
+    self.moveAction = nil;
     [super dealloc];
 }
 

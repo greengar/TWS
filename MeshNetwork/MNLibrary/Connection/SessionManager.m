@@ -20,7 +20,7 @@
 
 @implementation SessionManager
 
-@synthesize onStateChange;
+@synthesize meshSession, onStateChange;
 
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager {
 	self = [super init];
@@ -85,6 +85,9 @@
 			if (!currentDevice) {
 				currentDevice = [self addDevice:peerID];
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_AVAILABLE object:nil userInfo:[self getDeviceInfo:currentDevice]];
+                
+                // automatically connect to all available peers!
+                [currentDevice connectAndReplyTo:nil selector:NULL errorSelector:NULL];
 			}
             
             // set all connecting = NO, available = NO

@@ -13,6 +13,10 @@
 
 @implementation MinionDragon
 
+-(MonsterType) monsterType {
+    return kMonsterTypeMinion;
+}
+
 -(MinionDragon *) createWithWord:(NSString *)word {
     if ((self = (MinionDragon *) [super createWithWord:word animationTemplate:TEMPLATE_NAME frames:FRAME_ORDER])) {
     }
