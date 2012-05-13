@@ -182,6 +182,10 @@
 
 }
 
+-(void) hideKeyboard {
+    [self.textField resignFirstResponder];
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 	
 	CGPoint p = [self convertToNodeSpace:[[CCDirector sharedDirector] convertToGL:[touch locationInView:touch.view]]];
