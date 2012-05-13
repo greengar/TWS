@@ -11,6 +11,7 @@
 #import "HelloWorldLayer.h"
 #import "Monster.h"
 #import "MinionDragon.h"
+#import "BloodDrip.h"
 #import "MNCenter.h"
 #import "Messages.h"
 #import <objc/runtime.h>
@@ -30,6 +31,7 @@
 @synthesize isGameOver;
 @synthesize myPlayer = _myPlayer;
 @synthesize gameOverScreen = _gameOverScreen;
+@synthesize blood = _blood;
 @synthesize devices = _devices;
 
 
@@ -101,15 +103,7 @@ static MNCenter *mnCenter = nil;
 
 // reset all re-playable game elements
 -(void) resetGame {
-    NSLog(@"reset game called");
     gameCount++;
-    self.isGameOver = NO;
-    self.gameOverReason = 0; // no reason
-    timeLeft = GAME_LENGTH_SECONDS;
-    nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
-    score = 0;
-    [self notifyTime:timeLeft];
-    [self notifyScore:score];
     
     // remove existing monsters
     for (Monster* monster in self.monsters) {
@@ -117,6 +111,16 @@ static MNCenter *mnCenter = nil;
     }
     
     [self.monsters removeAllObjects];
+    [self removeChild:self.blood cleanup:YES];
+    
+    self.isGameOver = NO;
+    self.gameOverReason = 0; // no reason
+    timeLeft = GAME_LENGTH_SECONDS;
+    nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
+    score = 0;
+    bossAppeared = NO;
+    [self notifyTime:timeLeft];
+    [self notifyScore:score];
     
     if (gameCount > 1) {
         NSLog(@"game over screen is %@",self.gameOverScreen);
@@ -211,7 +215,6 @@ static MNCenter *mnCenter = nil;
         //NSLog(@"the file contents are %@",fileContents);
         //NSLog(@"the dictionary is : %@",self.dictionary);
         
-        
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
         self.textEntryFieldCC.position = ccp(0,210);
@@ -278,19 +281,34 @@ static MNCenter *mnCenter = nil;
     }
 }
 
--(void) showGameOverScreen {
-    // Kim - call the game over layer from here 
+-(void)showBlood {
     [self.textEntryFieldCC hideKeyboard];
-    self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+
+    self.blood = [[BloodDrip alloc] initWithFile:@"blood-screen.png"];
+    [self.blood setAnchorPoint:ccp(0.5,0)];
+    self.blood.position = ccp(screenSize.width/2,screenSize.height);
+    [self addChild:self.blood z:2];
+    
+    [self.blood bloodDrip];
+}
+
+-(void) showGameOverScreen {
+    [self.textEntryFieldCC hideKeyboard];
+    
+    if(self.gameOverReason == kGameOverEaten) {
+        self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(163, 3, 0, 255) width:screenSize.width height:screenSize.height];
+    } else {
+        self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+    }
     [self.gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
-    [self addChild:self.gameOverScreen z:2];
+    [self addChild:self.gameOverScreen z:3];
 }
 
 
 -(void) hitByMonster:(Monster *) monster {
     self.isGameOver = YES;
     self.gameOverReason = kGameOverEaten;
-    [self showGameOverScreen];
+    [self showBlood];
 }
 
 -(void) remoteKillMonster:(NSDictionary *)dict device:(Device *)device {
@@ -323,11 +341,29 @@ static MNCenter *mnCenter = nil;
     if (self.isGameOver)
         return;
     
-    if (timeLeft > 0) { // game not over yet so:
+    int min = timeLeft / 60;
+    int sec = ((int) timeLeft) % 60;
+    
+    // game is over, time is up and all monsters created are killed
+    if (timeLeft <= 0 && [self.monsters count] == 0) {
+        // game over, timed out
+        self.isGameOver = YES;
+        self.gameOverReason = kGameOverTimeOut;
+        [self showGameOverScreen];
+    } 
+    
+    // game not over yet either bc time is not up yet or there are still monsters
+    else {
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
 
+        // add boss at 10 seconds remaining
+        if (min == 0 && sec <= 10 && bossAppeared == NO) {
+            bossAppeared = YES;
+            NSLog(@"10 sec left");
+        }
+        
         // check if a new word was entered (very inefficient) and then check against all monsters
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
@@ -345,7 +381,7 @@ static MNCenter *mnCenter = nil;
                 [self notifyScore:score];
             }
             if ([deadMonsters count] > 0) {
-                // we killed a monster, so clear field
+                // we killed a monster, so clear field  
                 self.textEntryFieldCC.text = @"";
             }
             [self.monsters minusSet:deadMonsters];
@@ -353,23 +389,15 @@ static MNCenter *mnCenter = nil;
         }
         
         // Check for monsters that have reached the player
-        [deadMonsters removeAllObjects];
         for (Monster *monster in self.monsters) {
             if (monster.reachedPlayer && !monster.isSlatedToDie) {
                 [deadMonsters addObject:monster];
                 [self hitByMonster:monster];
             }
         }
+        [deadMonsters removeAllObjects];
         [self.monsters minusSet:deadMonsters];
-    } else {
-        // game over, timed out
-        if ([self.monsters count] == 0) {
-            self.isGameOver = YES;
-            self.gameOverReason = kGameOverTimeOut;
-            [self showGameOverScreen];
-        }
     }
-    
 }
 
 -(BOOL) textFieldShouldReturn:(CCTextField *)textField {
@@ -421,9 +449,7 @@ static MNCenter *mnCenter = nil;
 
 -(void) sendMessage:(NSDictionary *)dict{
     NSData *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
-    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed callback:^(NSError *error) {
-        NSLog(@"COMM: Couldn't send data %@", [error localizedDescription]);
-    } ];
+    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed];
 }
 
 -(void) sendJoinRequest:(Device *)device {

@@ -63,10 +63,14 @@
         CCFiniteTimeAction *monsterIsDead = [CCCallBlock actionWithBlock:^{
             [monster die];
             [star removeFromParentAndCleanup:YES];
+            
         }];
         CCMoveTo *starMove = [CCMoveTo actionWithDuration:STAR_THROW_TIME position:monster.position];
         [star runAction:[CCSequence actions:starMove, monsterIsDead, nil]];
     }];
+    
+    
+    
     
     [self runAction:[CCSequence actions:
                      self.throwAction,
