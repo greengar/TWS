@@ -85,6 +85,14 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 -(void) resetGame {
     NSLog(@"reset game called");
     gameCount++;
+    
+    // remove existing monsters
+    for (Monster* monster in self.monsters) {
+        [self removeChild:monster cleanup:YES];
+    }
+    
+    [self.monsters removeAllObjects];
+    
     self.isGameOver = NO;
     self.gameOverReason = 0; // no reason
     timeLeft = GAME_LENGTH_SECONDS;
@@ -199,13 +207,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
     [self.gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
     [self addChild:self.gameOverScreen z:2];
-    
-    // remove existing monsters
-    for (Monster* monster in self.monsters) {
-        [self removeChild:monster cleanup:YES];
-    }
-    
-    [self.monsters removeAllObjects];
 }
 
 
@@ -258,13 +259,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         }
         
         // Check for monsters that have reached the player
-        [deadMonsters removeAllObjects];
         for (Monster *monster in self.monsters) {
             if (monster.reachedPlayer && !monster.isSlatedToDie) {
                 [deadMonsters addObject:monster];
                 [self hitByMonster:monster];
             }
         }
+        [deadMonsters removeAllObjects];
         [self.monsters minusSet:deadMonsters];
     }
 }
