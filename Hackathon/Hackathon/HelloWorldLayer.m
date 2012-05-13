@@ -192,10 +192,6 @@ static MNCenter *mnCenter = nil;
     };
     
     [networkCenter start];
-        
-    [networkCenter.sessionManager setOnStateChange:^{
-        //[self connected];
-    }];
     
     networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
         NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
@@ -454,7 +450,9 @@ static MNCenter *mnCenter = nil;
     for (Monster* monster in self.monsters) {
         [monster removeFromParentAndCleanup:YES];
     }
-    
+    // clear field because game ended
+    self.textEntryFieldCC.text = @"";
+    [self sendPlayerTypedMessage:@""];
 }
 
 -(void) hitByMonster:(Monster *) monster {
@@ -568,6 +566,7 @@ static MNCenter *mnCenter = nil;
             monsterWasKilled = YES;
             // clear field because I killed a monster
             textField.text = @"";
+            [self sendPlayerTypedMessage:@""];
         }
     }
     
@@ -586,7 +585,7 @@ static MNCenter *mnCenter = nil;
     [deadMonsters removeAllObjects];
     
     if (monsterWasHit == YES && monsterWasKilled == NO) {
-        [self sendPlayerTypedMessage:textField.text];
+        [self sendPlayerTypedMessage:[textField.text stringByReplacingCharactersInRange:range withString:string]];
         return YES; // allow textField to change if this letter was successful
     }
     return NO;

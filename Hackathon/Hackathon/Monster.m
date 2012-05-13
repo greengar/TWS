@@ -77,7 +77,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         name.position = ccp(self.boundingBox.size.width / 2,0 );
         
         self.completedLabel = [CCLabelTTF labelWithString:@"" dimensions:name.dimensions alignment:UITextAlignmentLeft fontName:@"Arial-BoldMT" fontSize:15];
-        self.completedLabel.color = ccc3(150, 150, 150);
+        self.completedLabel.color = ccc3(0, 0, 255);
         [self.completedLabel setAnchorPoint:ccp(0, 1)];
         [self addChild:self.completedLabel];
         self.completedLabel.position = ccp(CGRectGetMinX(name.boundingBox),0 );

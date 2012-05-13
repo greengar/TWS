@@ -29,7 +29,6 @@ ha
 he
 hi
 ho
-I
 i
 id
 if
@@ -50,9 +49,7 @@ my
 n
 no
 nu
-O
 o
-o'
 of
 oh
 om
