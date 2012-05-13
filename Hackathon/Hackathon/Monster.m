@@ -12,6 +12,7 @@
 @implementation Monster
 
 @synthesize word = _word;
+@synthesize reachedPlayer;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -24,6 +25,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     if (self = [super initWithFile:MINION_MONSTER_IMAGE]) {
         self.position = ccp(x,y);
         self.word = word;
+        self.reachedPlayer = NO;
         
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
@@ -47,7 +49,10 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
 -(void) marchTo:(CGPoint)destination {
     CCFiniteTimeAction *marchAction = [CCMoveTo actionWithDuration:MONSTER_MOVE_DURATION_SECONDS position:destination];
-    [self runAction:marchAction];
+    CCFiniteTimeAction *marchCompleteAction = [CCCallBlock actionWithBlock:^{
+        self.reachedPlayer = YES;
+    }];
+    [self runAction:[CCSequence actions:marchAction, marchCompleteAction, nil]];
 }
 
 -(BOOL) attackWithWord:(NSString *)attackWord {

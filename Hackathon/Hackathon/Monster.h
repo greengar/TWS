@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, retain) NSString* word;
+@property BOOL reachedPlayer;
 
 - (Monster*)createWithX:(int)x y:(int)y word:(NSString*)word;
 - (void)die;

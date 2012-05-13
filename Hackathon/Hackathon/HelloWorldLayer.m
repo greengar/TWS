@@ -172,6 +172,10 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 }
 
 
+-(void) hitByMonster:(Monster *) monster {
+    
+}
+
 // main update loop
 -(void) tick: (ccTime) dt {
     if (timeLeft > 0) { // game not over yet so:
@@ -181,9 +185,9 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
         // check if a new word was entered (very inefficient) and then check against all monsters
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
+        NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
         if (![newWord isEqualToString:self.lastWord]) {
             NSLog(@"New word: %@", newWord);
-            NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
                     NSLog(@"Found one!!!!");
@@ -202,6 +206,16 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
             [self.monsters minusSet:deadMonsters];
             self.lastWord = [NSString stringWithString:newWord];
         }
+        
+        // Check for monsters that have reached the player
+        [deadMonsters removeAllObjects];
+        for (Monster *monster in self.monsters) {
+            if (monster.reachedPlayer) {
+                [deadMonsters addObject:monster];
+                [self hitByMonster:monster];
+            }
+        }
+        [self.monsters minusSet:deadMonsters];
     }
     
 }
