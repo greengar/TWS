@@ -66,6 +66,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
+        [name setColor:ccBLACK];
         name.position = ccp(self.boundingBox.size.width / 2,-10);
     }
     return self;

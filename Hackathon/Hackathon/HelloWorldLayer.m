@@ -488,15 +488,14 @@ static MNCenter *mnCenter = nil;
     if (timeLeft > 0) { // game not over yet since timer still ticking
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
-        [self randomMonsterGenerator:dt];
-
-        // add boss at 10 seconds remaining
-        if (min == 0 && sec <= BOSS_APPEARS_AT_TIME_LEFT) {
+        if (timeLeft > BOSS_APPEARS_AT_TIME_LEFT) {
+            [self randomMonsterGenerator:dt monsterType:kMonsterTypeMinion];
+        } else {
             if (bossAppeared == NO) {
                 bossAppeared = YES;
                 [self generateBoss];
-                [self fireballGenerator:dt];
             }
+            [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
         }
     }        
     // check if a new word was entered (very inefficient) and then check against all monsters

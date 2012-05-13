@@ -173,6 +173,8 @@
 		F9212382156040C800706C5D /* Fireball.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9212381156040C800706C5D /* Fireball.plist */; };
 		F92123851560410500706C5D /* Fireball.m in Sources */ = {isa = PBXBuildFile; fileRef = F92123841560410400706C5D /* Fireball.m */; };
 		F92123871560425300706C5D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = F92123861560425300706C5D /* blank.png */; };
+		F921238E156057D200706C5D /* winner-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921238C156057D100706C5D /* winner-screen-hd.png */; };
+		F921238F156057D200706C5D /* winner-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F921238D156057D100706C5D /* winner-screen.png */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -505,6 +507,8 @@
 		F92123831560410400706C5D /* Fireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fireball.h; sourceTree = "<group>"; };
 		F92123841560410400706C5D /* Fireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fireball.m; sourceTree = "<group>"; };
 		F92123861560425300706C5D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		F921238C156057D100706C5D /* winner-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-screen-hd.png"; sourceTree = "<group>"; };
+		F921238D156057D100706C5D /* winner-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-screen.png"; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -736,6 +740,8 @@
 		90FC052F155EFD21002C3BAE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F921238C156057D100706C5D /* winner-screen-hd.png */,
+				F921238D156057D100706C5D /* winner-screen.png */,
 				901F8070155F6F2B0019E2F9 /* ninja */,
 				901F8067155F68F10019E2F9 /* backgrounds */,
 				901F802C155F56140019E2F9 /* Emitters */,
@@ -1258,6 +1264,8 @@
 				F921238015603E5700706C5D /* boss-dragon-6.png in Resources */,
 				F9212382156040C800706C5D /* Fireball.plist in Resources */,
 				F92123871560425300706C5D /* blank.png in Resources */,
+				F921238E156057D200706C5D /* winner-screen-hd.png in Resources */,
+				F921238F156057D200706C5D /* winner-screen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
