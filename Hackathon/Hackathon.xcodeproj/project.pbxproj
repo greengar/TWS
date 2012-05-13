@@ -175,6 +175,7 @@
 		F92123871560425300706C5D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = F92123861560425300706C5D /* blank.png */; };
 		F921238E156057D200706C5D /* winner-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921238C156057D100706C5D /* winner-screen-hd.png */; };
 		F921238F156057D200706C5D /* winner-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F921238D156057D100706C5D /* winner-screen.png */; };
+		F92123911560620000706C5D /* CommonWords-TwoOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F92123901560620000706C5D /* CommonWords-TwoOrLess.txt */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -509,6 +510,7 @@
 		F92123861560425300706C5D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 		F921238C156057D100706C5D /* winner-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-screen-hd.png"; sourceTree = "<group>"; };
 		F921238D156057D100706C5D /* winner-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-screen.png"; sourceTree = "<group>"; };
+		F92123901560620000706C5D /* CommonWords-TwoOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-TwoOrLess.txt"; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 		90FC067C155EFD23002C3BAE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F92123901560620000706C5D /* CommonWords-TwoOrLess.txt */,
 				F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */,
 				F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */,
 				90FC067D155EFD23002C3BAE /* Prefix.pch */,
@@ -1266,6 +1269,7 @@
 				F92123871560425300706C5D /* blank.png in Resources */,
 				F921238E156057D200706C5D /* winner-screen-hd.png in Resources */,
 				F921238F156057D200706C5D /* winner-screen.png in Resources */,
+				F92123911560620000706C5D /* CommonWords-TwoOrLess.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

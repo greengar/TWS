@@ -44,11 +44,11 @@
     
     // game over label and image
     if (reason == kGameOverEaten) {
-        self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Arial-BoldMT" fontSize:45];
+        self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"MarkerFelt-Thin" fontSize:45];
         [self.gameOverImage initWithFile:@"small-dragon.png"];
         
     } else if (reason == kGameOverTimeOut) {
-        self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Arial-BoldMT" fontSize:45];
+        self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Helvetica" fontSize:45];
         [self.gameOverImage initWithFile:@"winner-screen.png"];
     }
     
@@ -62,7 +62,7 @@
     
     // final score label
     NSString* finalScoreLabel = [NSString stringWithFormat:@"Final Score: %i",(int)finalScore];
-    self.finalScoreLabel = [CCLabelTTF labelWithString:finalScoreLabel fontName:@"Arial-BoldMT" fontSize:25];
+    self.finalScoreLabel = [CCLabelTTF labelWithString:finalScoreLabel fontName:@"Helvetica" fontSize:25];
     [self.finalScoreLabel setAnchorPoint:ccp(0.5,0.5)];
     self.finalScoreLabel.position = ccp(screenSize.width/2,375);
     [self addChild:self.finalScoreLabel z:3];
@@ -78,7 +78,7 @@
     }
     
     NSString* highScoreLabel = [NSString stringWithFormat:@"High Score: %i",(int)currentHighScore];
-    self.highScoreLabel = [CCLabelTTF labelWithString:highScoreLabel fontName:@"Arial-BoldMT" fontSize:25];
+    self.highScoreLabel = [CCLabelTTF labelWithString:highScoreLabel fontName:@"Helvetica" fontSize:25];
     [self.highScoreLabel setAnchorPoint:ccp(0.5,0.5)];
     self.highScoreLabel.position = ccp(screenSize.width/2,350);
     [self addChild:self.highScoreLabel z:3];
