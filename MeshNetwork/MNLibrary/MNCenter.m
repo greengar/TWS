@@ -21,8 +21,8 @@
     return self;
 }
 
-- (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub {
-    
+- (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub
+{
     self.deviceAvailableBlock = ab;
     self.deviceUnavailableBlock = ub;
     
@@ -34,9 +34,7 @@
 }
 
 - (NSArray *)sortedDevices {
-    NSArray *a = devicesManager.sortedDevices;
-    NSLog(@"%@", [(Device *)[a objectAtIndex:0] deviceName]);
-    return a;
+    return devicesManager.sortedDevices;
 }
 
 - (NSObject<DataProvider> *)createSpecificDataProvider {
