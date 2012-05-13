@@ -8,6 +8,7 @@
 
 #import "Fireball.h"
 #import "Constants.h"
+#import "Player.h"
 
 @implementation Fireball
 
