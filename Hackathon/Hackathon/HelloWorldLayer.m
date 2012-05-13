@@ -11,6 +11,7 @@
 #import "HelloWorldLayer.h"
 #import "Monster.h"
 #import "EndScreen.h"
+#import "MinionDragon.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer

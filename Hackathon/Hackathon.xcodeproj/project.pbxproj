@@ -1132,6 +1132,7 @@
 				F96BD874155F075400CF399A /* MinionDragon.m in Sources */,
 				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
 				F96BD892155F4FC900CF399A /* EndScreen.m in Sources */,
+				901F8031155F58BD0019E2F9 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
