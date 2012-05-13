@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "Constants.h"
 #import "CCTextField.h"
+#import "Player.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) CCTextField *textEntryFieldCC;
 @property GameOverReasonType gameOverReason;
 @property BOOL isGameOver;
+@property (nonatomic, retain) Player *myPlayer;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

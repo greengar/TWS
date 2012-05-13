@@ -24,6 +24,7 @@
 @synthesize lastWord = _lastWord;
 @synthesize gameOverReason;
 @synthesize isGameOver;
+@synthesize myPlayer = _myPlayer;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -150,7 +151,11 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self.textEntryFieldCC setText:@""];
         [self.textEntryFieldCC setFocus];
         
-        playerPosition = ccp(screenSize.width / 2, 210);
+        self.myPlayer = [[Player alloc] initWithName:[[UIDevice currentDevice] name]];
+        playerPosition = ccp(screenSize.width / 2, 215 + self.myPlayer.boundingBox.size.height / 2);
+        self.myPlayer.position = playerPosition;
+        self.myPlayer.isMe = YES;
+        [self addChild:self.myPlayer];
         
         [self resetGame]; // reset all counters, labels, etc.
         
@@ -256,7 +261,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.textEntryFieldUI = nil;
     self.textEntryFieldCC = nil;
     self.lastWord = nil;
-
+    self.myPlayer = nil;
 
 
 	// don't forget to call "super dealloc"

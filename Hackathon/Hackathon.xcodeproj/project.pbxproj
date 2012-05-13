@@ -10,6 +10,7 @@
 		901F802A155F45C20019E2F9 /* small-dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8028155F45C20019E2F9 /* small-dragon.png */; };
 		901F802B155F45C20019E2F9 /* small-dragon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8029155F45C20019E2F9 /* small-dragon-hd.png */; };
 		901F802E155F56140019E2F9 /* MonsterPlosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901F802D155F56140019E2F9 /* MonsterPlosion.plist */; };
+		901F8031155F58BD0019E2F9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8030155F58BD0019E2F9 /* Player.m */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -136,6 +137,8 @@
 		901F8028155F45C20019E2F9 /* small-dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon.png"; sourceTree = "<group>"; };
 		901F8029155F45C20019E2F9 /* small-dragon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-hd.png"; sourceTree = "<group>"; };
 		901F802D155F56140019E2F9 /* MonsterPlosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonsterPlosion.plist; sourceTree = "<group>"; };
+		901F802F155F58BD0019E2F9 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		901F8030155F58BD0019E2F9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -455,6 +458,8 @@
 		90FC052E155EFD21002C3BAE /* Hackathon */ = {
 			isa = PBXGroup;
 			children = (
+				901F802F155F58BD0019E2F9 /* Player.h */,
+				901F8030155F58BD0019E2F9 /* Player.m */,
 				90FC0680155EFD23002C3BAE /* AppDelegate.h */,
 				90FC0681155EFD23002C3BAE /* AppDelegate.m */,
 				90FC0683155EFD23002C3BAE /* RootViewController.h */,
@@ -992,6 +997,7 @@
 				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
 				F96BD874155F075400CF399A /* MinionDragon.m in Sources */,
 				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
+				901F8031155F58BD0019E2F9 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
