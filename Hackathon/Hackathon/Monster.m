@@ -13,6 +13,7 @@
 
 @synthesize word = _word;
 @synthesize points = _points;
+@synthesize reachedPlayer;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -26,6 +27,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         self.position = ccp(x,y);
         self.word = word;
         self.points = INITIAL_POINTS;
+        self.reachedPlayer = NO;
         
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
