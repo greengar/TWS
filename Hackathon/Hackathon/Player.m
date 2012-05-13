@@ -32,12 +32,12 @@
     if (self = [super initWithSpriteFrame:[animation.frames lastObject]]) {
         screenSize = [[CCDirector sharedDirector] winSize];
         self.isLeaving = NO;
-        self.name = playerName;
+        self.name = [[playerName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" .,"]] objectAtIndex:0];
         self.color = ccRED;
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.name fontName:@"Arial-BoldMT" fontSize:15];
-        [name setAnchorPoint:ccp(0, 0)];
+        [name setAnchorPoint:ccp(0.5, 0)];
         [self addChild:name];
-        name.position = ccp(self.boundingBox.size.width,0 );
+        name.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height );
         self.swayAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:animation restoreOriginalFrame:NO]];
         CCAnimation *throwAnim = [Monster animationFromTemplate:THROW_TEMPLATE_NAME andFrames:THROW_FRAME_ORDER];
         self.throwAction = [CCAnimate actionWithDuration:0.2 animation:throwAnim restoreOriginalFrame:YES];
