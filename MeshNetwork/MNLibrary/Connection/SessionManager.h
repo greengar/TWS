@@ -25,10 +25,10 @@
 typedef void(^BasicBlock)(void);
 
 @interface SessionManager : NSObject<GKSessionDelegate> {
-	GKSession *meshSession;
 	DevicesManager *devicesManager;
 }
 
+@property (nonatomic, readonly) GKSession *meshSession;
 @property (nonatomic, copy) BasicBlock onStateChange;
 
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager;
