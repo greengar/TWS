@@ -15,7 +15,7 @@
 @synthesize word = _word;
 @synthesize points = _points;
 @synthesize reachedPlayer;
-@synthesize walkAction = _walkAction;
+@synthesize movementAnimationAction = _walkAction;
 @synthesize isSlatedToDie;
 @synthesize peerID;
 @synthesize uniqueID;
@@ -193,7 +193,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 - (void)dealloc
 {
     self.word = nil;
-    self.walkAction = nil;
+    self.movementAnimationAction = nil;
     self.peerID = nil;
     self.moveAction = nil;
     [super dealloc];
