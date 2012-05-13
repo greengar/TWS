@@ -31,9 +31,11 @@ typedef void(^DataBlock)(NSData *, Device *);
 @property (nonatomic, copy) DeviceBlock deviceDisconnectedCallback;
 @property (nonatomic, copy) DataBlock dataReceivedCallback;
 
+- (id)initWithSessionID:(NSString *)sessionID;
 - (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub;
 - (void)start;
 - (void)sendDataToAllPeers:(NSData *)data callback:(ErrorBlock)callback;
+- (BOOL)sendData:(NSData *)data toPeerID:(NSString *)peerID;
 - (NSArray *)sortedDevices;
 - (NSString *)deviceName;
 

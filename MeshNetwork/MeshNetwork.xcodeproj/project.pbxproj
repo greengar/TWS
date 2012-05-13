@@ -26,7 +26,6 @@
 		A9B636F9155F136600BC9EAB /* DevicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636E8155F136600BC9EAB /* DevicesManager.m */; };
 		A9B636FA155F136600BC9EAB /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636EA155F136600BC9EAB /* SessionManager.m */; };
 		A9B636FC155F136600BC9EAB /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636F1155F136600BC9EAB /* DataHandler.m */; };
-		A9B636FE155F136600BC9EAB /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636F7155F136600BC9EAB /* DeviceCell.m */; };
 		A9B6370D155F145D00BC9EAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */; };
 		A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B6370F155F17D100BC9EAB /* MNCenter.m */; };
 		A9B63714155F3C1300BC9EAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9B63712155F3C1300BC9EAB /* Localizable.strings */; };
@@ -74,8 +73,6 @@
 		A9B636F0155F136600BC9EAB /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
 		A9B636F1155F136600BC9EAB /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
 		A9B636F2155F136600BC9EAB /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
-		A9B636F6155F136600BC9EAB /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
-		A9B636F7155F136600BC9EAB /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
 		A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A9B6370E155F17D100BC9EAB /* MNCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNCenter.h; path = MNLibrary/MNCenter.h; sourceTree = SOURCE_ROOT; };
 		A9B6370F155F17D100BC9EAB /* MNCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNCenter.m; path = MNLibrary/MNCenter.m; sourceTree = SOURCE_ROOT; };
@@ -197,7 +194,6 @@
 				A9B6370F155F17D100BC9EAB /* MNCenter.m */,
 				A9B636E4155F136600BC9EAB /* Connection */,
 				A9B636EB155F136600BC9EAB /* Data */,
-				A9B636F3155F136600BC9EAB /* Utilities */,
 			);
 			path = MNLibrary;
 			sourceTree = "<group>";
@@ -231,15 +227,6 @@
 				A9B636F2155F136600BC9EAB /* DataProvider.h */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		A9B636F3155F136600BC9EAB /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				A9B636F6155F136600BC9EAB /* DeviceCell.h */,
-				A9B636F7155F136600BC9EAB /* DeviceCell.m */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		A9B63700155F141200BC9EAB /* BeamIt */ = {
@@ -365,7 +352,6 @@
 				A9B636F9155F136600BC9EAB /* DevicesManager.m in Sources */,
 				A9B636FA155F136600BC9EAB /* SessionManager.m in Sources */,
 				A9B636FC155F136600BC9EAB /* DataHandler.m in Sources */,
-				A9B636FE155F136600BC9EAB /* DeviceCell.m in Sources */,
 				A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */,
 				A9B63717155F5C8100BC9EAB /* MNLabel.m in Sources */,
 			);

@@ -22,13 +22,14 @@
 
 @synthesize meshSession, onStateChange;
 
-- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager {
+- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager sessionID:(NSString *)sid
+{
 	self = [super init];
 	
 	if (self) {
 		devicesManager = manager;
 
-		meshSession = [[GKSession alloc] initWithSessionID:MESH_NETWORK_GLOBAL_SESSION_ID displayName:nil sessionMode:GKSessionModePeer];
+		meshSession = [[GKSession alloc] initWithSessionID:sid displayName:nil sessionMode:GKSessionModePeer];
 		meshSession.delegate = self;
 		[meshSession setDataReceiveHandler:handler withContext:nil];
 	}

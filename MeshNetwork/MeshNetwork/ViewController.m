@@ -89,10 +89,20 @@
         NSLog(@"callback");
     }];
     
-    
     // data sent is NOT received by myself, so add my own message to my own log
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
     textField.text = @"";
+    
+    ////////////////////////////////////
+    // 5. send data to one specific peer
+    
+    if ([connectedDevices count] > 0) {
+        BOOL success = [networkCenter sendData:[@"You're #0!" dataUsingEncoding:NSUTF8StringEncoding] toPeerID:[(Device *)[connectedDevices objectAtIndex:0] peerID]];
+        if (!success) {
+            NSLog(@"unable to queue data for sending");
+        }
+    }
+    
     return YES;
 }
 

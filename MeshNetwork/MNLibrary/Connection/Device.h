@@ -9,14 +9,6 @@
 
 #import <GameKit/GameKit.h>
 
-//typedef enum {
-//    GKPeerStateAvailable,
-//    GKPeerStateUnavailable,
-//    GKPeerStateConnected,
-//    GKPeerStateDisconnected,
-//    GKPeerStateConnecting
-//} GKPeerConnectionState;
-
 @interface Device : NSObject {
 	GKSession *session;
 	

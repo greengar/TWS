@@ -13,10 +13,15 @@
 @synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock, deviceConnectedCallback, deviceDisconnectedCallback, dataReceivedCallback;
 
 - (id)init {
+    NSLog(@"warning: using SessionID: mesh-network");
+    return [self initWithSessionID:@"mesh-network"];
+}
+
+- (id)initWithSessionID:(NSString *)sessionID {
     if ((self = [super init])) {
         devicesManager = [[DevicesManager alloc] init];
         dataHandler = [[DataHandler alloc] initWithDataProvider:self devicesManager:devicesManager];
-        sessionManager = [[SessionManager alloc] initWithDataHandler:dataHandler devicesManager:devicesManager];
+        sessionManager = [[SessionManager alloc] initWithDataHandler:dataHandler devicesManager:devicesManager sessionID:sessionID];
     }
     return self;
 }
@@ -70,6 +75,19 @@
         callback(error);
     }
     // TODO: provide real async callback
+}
+
+- (BOOL)sendData:(NSData *)data toPeerID:(NSString *)peerID
+{
+    NSError *error = nil;
+    BOOL success = [sessionManager.meshSession sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&error];
+    if (!success) {
+        NSLog(@"failed to queue data for sending");
+    }
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
+    return success;
 }
 
 - (NSArray *)sortedDevices {
