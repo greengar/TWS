@@ -1285,6 +1285,7 @@
 				F921239E15606E0D00706C5D /* CommonWords-SixOrLess.txt in Resources */,
 				F921239F15606E0D00706C5D /* CommonWords-TwelveOrMore.txt in Resources */,
 				F92123A015606E0D00706C5D /* CommonWords-TwoOrLess.txt in Resources */,
+				9030F56D156067380099340B /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
