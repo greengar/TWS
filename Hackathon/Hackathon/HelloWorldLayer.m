@@ -11,6 +11,7 @@
 #import "HelloWorldLayer.h"
 #import "Monster.h"
 #import "MinionDragon.h"
+#import "MNCenter.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -52,6 +53,18 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 - (void)setDictionary:(NSMutableArray *)dictionary {
     _dictionary = dictionary;
 }
+
+
+static MNCenter *mnCenter = nil;
++(MNCenter *) sharedMNCenter {
+
+    if (!mnCenter) {
+        mnCenter = [[MNCenter alloc] init];
+    }
+    return mnCenter;
+
+}
+
 
 
 +(CCScene *) scene
@@ -107,6 +120,32 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     }
 }
 
+-(void) initCommChannel {
+    MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
+    [networkCenter startWithDeviceAvailable:^(Device *device) {
+        NSLog(@"device became available");
+        for (Device *d in [networkCenter sortedDevices]) {
+            // no harm should come from attempting to connect to already-connected devices
+            [d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)];
+            NSLog(@"Device available: %@ - %@\n", d.deviceName, [d statusString]);
+        }
+    } deviceUnavailable:^(Device *device) {
+        NSLog(@"device became unavailable");
+        for (Device *d in [networkCenter sortedDevices]) {
+            NSLog(@"%@\n", d.deviceName);
+        }
+    }];
+    
+    [networkCenter.sessionManager setOnStateChange:^{
+        //[self connected];
+    }];
+    
+    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
+        NSLog(@"Received message from %@: %@", d.deviceName, msg);
+    };
+    
+}
+
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -114,6 +153,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        [self initCommChannel];
+        
         self.lastWord = @"";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
@@ -153,8 +194,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 //        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 //        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
 
-        NSLog(@"the file contents are %@",fileContents);
-        NSLog(@"the dictionary is : %@",self.dictionary);
+        //NSLog(@"the file contents are %@",fileContents);
+        //NSLog(@"the dictionary is : %@",self.dictionary);
         
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
