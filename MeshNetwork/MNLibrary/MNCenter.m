@@ -39,7 +39,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDisconnectedNotification:) name:NOTIFICATION_DEVICE_DISCONNECTED object:nil];
     
+    ////////////////////////////////////////
+    //// START APP TERMINATION HANDLING ////
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification:) name:UIApplicationWillTerminateNotification object:nil];
+    
+    //// END APP TERMINATION HANDLING ////
+    //////////////////////////////////////
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
@@ -85,7 +94,10 @@
     return devicesManager.sortedDevices;
 }
 
+//UIApplicationDidEnterBackgroundNotification
+//UIApplicationWillTerminateNotification
 - (void)applicationWillResignActiveNotification:(NSNotification *)n {
+    NSLog(@"-applicationWillResignActiveNotification:");
     [sessionManager stop];
 }
 
