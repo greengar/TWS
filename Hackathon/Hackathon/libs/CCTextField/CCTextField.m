@@ -104,13 +104,20 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
-	[self.textField resignFirstResponder];
-	
-	if ([delegate_ respondsToSelector:@selector(textFieldDidReturn:)]) {
-		[delegate_ textFieldDidReturn:self];
-	}
-	
-	return YES;
+	BOOL returning = NO;
+	if ([delegate_ respondsToSelector:@selector(textFieldShouldReturn:)]) {
+		returning = [delegate_ textFieldShouldReturn:self];
+	} else {
+        returning = YES;
+    }
+
+    if (returning) {
+        [self.textField resignFirstResponder];
+        if ([delegate_ respondsToSelector:@selector(textFieldDidReturn:)]) {
+            [delegate_ textFieldDidReturn:self];
+        }
+    }	
+	return returning;
 	
 }
 
