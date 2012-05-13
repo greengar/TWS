@@ -120,10 +120,12 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         
 
         // background
-        CCSprite *background = [CCSprite spriteWithFile:@"grass-background.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"grass-background-1.png"];
         background.position = ccpMult(ccpFromSize(screenSize), 0.5);
         [self addChild:background z:-1];
-        
+        CCAnimation *bgAnimation = [Monster animationFromTemplate:@"grass-background-%@.png" andFrames:@"1,2,3,2"];
+        [background runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:0.5 animation:bgAnimation restoreOriginalFrame:NO]]];
+         
         // Timer label
         self.timerLabel = [CCLabelTTF labelWithString:@"HELLO" fontName:@"Arial-BoldMT" fontSize:20];
         [self.timerLabel setAnchorPoint:ccp(0, 1)];
