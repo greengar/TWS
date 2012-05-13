@@ -67,7 +67,7 @@ static MNCenter *mnCenter = nil;
 +(MNCenter *) sharedMNCenter {
 
     if (!mnCenter) {
-        mnCenter = [[MNCenter alloc] init];
+        mnCenter = [[MNCenter alloc] initWithSessionID:@"ninjasvsdragons"];
     }
     return mnCenter;
 
@@ -411,11 +411,11 @@ static MNCenter *mnCenter = nil;
             score+=monster.points;
             [self notifyScore:score];
         }
-        if ([deadMonsters count] > 0) {
-            // we killed a monster, so clear field  
-            self.textEntryFieldCC.text = @"";
-        }
-        [self.monsters minusSet:deadMonsters];
+//        if ([deadMonsters count] > 0) {
+//            // we killed a monster, so clear field  
+//            self.textEntryFieldCC.text = @"";
+//        }
+        [self.monsters minusSet:deadMonsters]; // this same code appears again later ... ???
         [self.localMonsters minusSet:deadMonsters];
         self.lastWord = [NSString stringWithString:newWord];
     }
@@ -431,6 +431,52 @@ static MNCenter *mnCenter = nil;
     [self.monsters minusSet:deadMonsters];
 }
 
+- (BOOL)textField:(CCTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@""]) {
+        return YES; // allow backspace
+    }
+    
+    NSString *result = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    // also make sure the current text works
+    for (int i = [result length]; i >= 0; i--) {
+        NSString *needle = [result substringToIndex:i];
+        for (Monster *monster in self.monsters) {
+            if ([monster.word hasPrefix:needle]) {
+                // see if it's still valid with the replacement string appended
+                NSString *extended = [needle stringByAppendingString:string];
+                if ([monster.word hasPrefix:extended]) {
+                    textField.text = extended;
+                } else {
+                    textField.text = needle;
+                }
+                return NO;
+            }
+        }
+    }
+    // check to see if the end of the text matches
+    // this is lower priority, so we intentionally do it AFTER checking the beginning of the text
+    for (int i = 0; i < [result length]; i++) {
+        NSString *needle = [result substringFromIndex:i];
+        for (Monster *monster in self.monsters) {
+            if ([monster.word hasPrefix:needle]) {
+                // see if it's still valid with the replacement string appended
+                NSString *extended = [needle stringByAppendingString:string];
+                if ([monster.word hasPrefix:extended]) {
+                    textField.text = extended;
+                } else {
+                    textField.text = needle;
+                }
+                return NO;
+            }
+        }
+    }
+    
+    // nothing matched. blank out the text field
+    textField.text = @"";
+    return NO;
+}
+
 -(BOOL) textFieldShouldReturn:(CCTextField *)textField {
     // if we know this text field, allow it to return if game is over, otherwise no returns.
     if (textField == self.textEntryFieldCC) {
@@ -439,7 +485,7 @@ static MNCenter *mnCenter = nil;
         else
             return NO;
     }
-    // which text field coudl it be?
+    // which text field could it be?
     return YES; 
 }
 
