@@ -19,6 +19,7 @@
     double nextMonsterTimer; // next monster shows up in x seconds
     double score;
     CGSize screenSize;
+    CGPoint playerPosition;
 }
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;

@@ -26,18 +26,7 @@ NSString* const MINION_MONSTER_IMAGE = @"icon.png";
         self.word = word;
     }
     
-    [self moveRandomly];
     return self;
-}
-
-- (CGPoint)moveX:(int)x y:(int)y {
-    CGPoint newPosition = CGPointMake(self.position.x - x, self.position.y - y);
-    self.position = newPosition;
-    return self.position;
-}
-
-- (void)moveRandomly {
-
 }
 
 - (void)die {
@@ -47,6 +36,11 @@ NSString* const MINION_MONSTER_IMAGE = @"icon.png";
         [self removeFromParentAndCleanup:YES];
     }],
                      nil]];
+}
+
+-(void) marchTo:(CGPoint)destination {
+    CCFiniteTimeAction *marchAction = [CCMoveTo actionWithDuration:MONSTER_MOVE_DURATION_SECONDS position:destination];
+    [self runAction:marchAction];
 }
 
 -(BOOL) attackWithWord:(NSString *)attackWord {

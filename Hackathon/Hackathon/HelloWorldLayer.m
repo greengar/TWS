@@ -145,6 +145,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self.textEntryFieldCC setText:@""];
         [self.textEntryFieldCC setFocus];
         
+        playerPosition = ccp(screenSize.width / 2, 210);
+        
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
@@ -164,6 +166,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         Monster* newMonster = [[Monster alloc] createWithX:randomXLoc y:screenSize.height word:newWord];
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
+        [newMonster marchTo:playerPosition];
         NSLog(@"new monster is %@",newMonster);
     }
 }
