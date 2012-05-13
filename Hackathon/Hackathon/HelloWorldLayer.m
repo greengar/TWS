@@ -71,7 +71,9 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 }
 
 -(void) notifyScore:(int) theScore {
-    [self.scoreLabel setString:[NSString stringWithFormat:@"Score: %i", score]];
+    NSLog(@"in score!");
+    [self.scoreLabel setString:[NSString stringWithFormat:@"Score: %i", theScore]];
+
 }
 
 // reset all re-playable game elements
@@ -124,7 +126,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
         NSArray* wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         for (NSString* word in wordsWithBlanks) {
-//            NSLog(@"the word is %@",word);
             if (![[word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
                 [self.dictionary addObject:word];
             }
@@ -168,6 +169,10 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self addChild:newMonster];
         [newMonster marchTo:playerPosition];
         NSLog(@"new monster is %@",newMonster);
+        
+        for (Monster* monster in self.monsters) {
+            [monster decreasePointValue];
+        }
     }
 }
 
@@ -192,7 +197,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
             }
             for (Monster *monster in deadMonsters) {
                 [monster die];
-                score+=1;
+                score+=monster.points;
                 [self notifyScore:score];
             }
             if ([deadMonsters count] > 0) {
