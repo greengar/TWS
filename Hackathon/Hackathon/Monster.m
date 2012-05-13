@@ -125,6 +125,16 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     }
 }
 
+-(void) walkOffScreen {
+    CGPoint newPosition = ccp(-self.boundingBox.size.width, self.position.y);
+    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:0.5 position:newPosition];
+    CCFiniteTimeAction *cleanupAction = [CCCallBlock actionWithBlock:^{
+        [self removeFromParentAndCleanup:YES];
+    }];
+    [self runAction:[CCSequence actions:moveAction, cleanupAction, nil ]];
+}
+
+
 -(NSMutableDictionary *) serialize {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:self.word forKey:KEY_WORD];

@@ -53,5 +53,5 @@ typedef enum {
 
 -(NSMutableDictionary *) serialize; // dump the state into a dictionary
 +(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID;
-
+-(void) walkOffScreen; // player walked offscreen, so follow them
 @end

@@ -11,7 +11,7 @@
 #import "Monster.h"
 
 @interface Player : CCSprite {
-    
+    CGSize screenSize;
 }
 
 @property (nonatomic, retain) NSString *name;
@@ -20,4 +20,6 @@
 
 -(Player *) initWithName:(NSString *) playerName;
 -(void) throwWeaponAt:(Monster *)monster;
+-(void) walkOntoScreen; // remote player joining
+-(void) walkOffScreen; // and going away
 @end
