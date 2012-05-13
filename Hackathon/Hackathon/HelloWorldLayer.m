@@ -135,6 +135,9 @@ static MNCenter *mnCenter = nil;
     // clear text field
     self.textEntryFieldCC.text = @"";
     
+    self.boss = nil;
+    bossAppeared = NO;
+    
     // remove existing monsters
     for (Monster* monster in self.monsters) {
         [self removeChild:monster cleanup:YES];
@@ -520,9 +523,14 @@ static MNCenter *mnCenter = nil;
                 bossAppeared = YES;
                 [self generateBoss];
             }
-            [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
         }
     }        
+    // generate fireballs until boss is beat
+    if (self.boss && !self.boss.isSlatedToDie) {
+        [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
+    }
+
+    
     // check if a new word was entered (very inefficient) and then check against all monsters
     NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
     NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
