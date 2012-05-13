@@ -113,7 +113,13 @@
 }
 
 -(void) notifyTypedMessage:(NSString *)text {
-    [self.nameLabel setString:text];
+    NSString *msg;
+    if ((text == nil) || ([text isEqualToString:@""]))
+        msg = self.name;
+    else {
+        msg = text;
+    }
+    [self.nameLabel setString:msg];
 }
 
 - (void)dealloc
