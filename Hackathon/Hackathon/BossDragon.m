@@ -37,7 +37,7 @@
 }
 
 -(void) markAsRemote {
-    self.color = ccBLACK;
+    //self.color = ccBLACK;
 }
 
 -(void) specialPeerHandling:(Player *)player {
