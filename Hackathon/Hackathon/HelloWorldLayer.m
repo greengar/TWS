@@ -673,19 +673,19 @@ static MNCenter *mnCenter = nil;
     if (player) {
         if (!self.isGameOver) {
             [player walkOffScreen];
+            [self.players removeObjectForKey:device.peerID];
             [self repositionPlayers];
-        }
-        [self.players removeObjectForKey:device.peerID];
-        NSMutableSet *goneMonsters = [NSMutableSet setWithCapacity:5];
-        for (Monster *monster in self.monsters) {
-            if ((!monster.isMine) && [monster.peerID isEqualToString:device.peerID]) {
-                if (!self.isGameOver) {
-                    [monster walkOffScreen];
+            NSMutableSet *goneMonsters = [NSMutableSet setWithCapacity:5];
+            for (Monster *monster in self.monsters) {
+                if ((!monster.isMine) && [monster.peerID isEqualToString:device.peerID]) {
+                    if (!self.isGameOver) {
+                        [monster walkOffScreen];
+                    }
+                    [goneMonsters addObject:monster];
                 }
-                [goneMonsters addObject:monster];
             }
+            [self.monsters minusSet:goneMonsters];
         }
-        [self.monsters minusSet:goneMonsters];
     } else {
         NSLog(@"COMM: Unknown player leaving the game. what to do what to do?: %@",device.peerID);
     }
