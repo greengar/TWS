@@ -76,7 +76,7 @@
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nConnected devices:\n", [networkCenter deviceName]];
     
     for (Device *d in connectedDevices) {
-        connections.text = [connections.text stringByAppendingFormat:@"%@", d.deviceName];
+        connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
     }
 }
 

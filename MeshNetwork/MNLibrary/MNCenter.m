@@ -63,7 +63,7 @@
         NSLog(@"failed to queue data for sending to all peers");
     }
     if (error) {
-        NSLog(@"error: %@", error);
+        NSLog(@"error: %@", [error localizedDescription]);
     }
     return success;
 }
@@ -76,7 +76,7 @@
         NSLog(@"failed to queue data for sending to one peer");
     }
     if (error) {
-        NSLog(@"error: %@", error);
+        NSLog(@"error: %@", [error localizedDescription]);
     }
     return success;
 }
