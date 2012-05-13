@@ -381,10 +381,10 @@ static MNCenter *mnCenter = nil;
         self.gameOverReason = kGameOverTimeOut;
         [self sendPlayerLeftMessage];
         [self showGameOverScreen];
+        return; // nothing further to do
     } 
     
-    // game not over yet either bc time is not up yet or there are still monsters
-    else {
+    if (timeLeft > 0) { // game not over yet since timer still ticking
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
@@ -394,42 +394,41 @@ static MNCenter *mnCenter = nil;
             bossAppeared = YES;
             NSLog(@"10 sec left");
         }
-        
-        // check if a new word was entered (very inefficient) and then check against all monsters
-        NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
-        NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
-        if (![newWord isEqualToString:self.lastWord]) {
-            for (Monster *monster in self.monsters) {
-                if ([monster attackWithWord:newWord]) {
-                    monster.isSlatedToDie = YES;
-                    [deadMonsters addObject:monster];
-                    [self sendMonsterDiedMessage:monster];
-                }
-            }
-            for (Monster *monster in deadMonsters) {
-                [self.myPlayer throwWeaponAt:monster];
-                score+=monster.points;
-                [self notifyScore:score];
-            }
-            if ([deadMonsters count] > 0) {
-                // we killed a monster, so clear field  
-                self.textEntryFieldCC.text = @"";
-            }
-            [self.monsters minusSet:deadMonsters];
-            [self.localMonsters minusSet:deadMonsters];
-            self.lastWord = [NSString stringWithString:newWord];
-        }
-        
-        // Check for monsters that have reached the player
+    }        
+    // check if a new word was entered (very inefficient) and then check against all monsters
+    NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
+    NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
+    if (![newWord isEqualToString:self.lastWord]) {
         for (Monster *monster in self.monsters) {
-            if (monster.reachedPlayer && !monster.isSlatedToDie) {
+            if ([monster attackWithWord:newWord]) {
+                monster.isSlatedToDie = YES;
                 [deadMonsters addObject:monster];
-                [self hitByMonster:monster];
+                [self sendMonsterDiedMessage:monster];
             }
         }
-        [deadMonsters removeAllObjects];
+        for (Monster *monster in deadMonsters) {
+            [self.myPlayer throwWeaponAt:monster];
+            score+=monster.points;
+            [self notifyScore:score];
+        }
+        if ([deadMonsters count] > 0) {
+            // we killed a monster, so clear field  
+            self.textEntryFieldCC.text = @"";
+        }
         [self.monsters minusSet:deadMonsters];
+        [self.localMonsters minusSet:deadMonsters];
+        self.lastWord = [NSString stringWithString:newWord];
     }
+    
+    // Check for monsters that have reached the player
+    for (Monster *monster in self.monsters) {
+        if (monster.reachedPlayer && !monster.isSlatedToDie) {
+            [deadMonsters addObject:monster];
+            [self hitByMonster:monster];
+        }
+    }
+    [deadMonsters removeAllObjects];
+    [self.monsters minusSet:deadMonsters];
 }
 
 -(BOOL) textFieldShouldReturn:(CCTextField *)textField {
