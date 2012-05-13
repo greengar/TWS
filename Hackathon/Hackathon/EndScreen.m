@@ -45,7 +45,7 @@
     // game over label and image
     if (reason == kGameOverEaten) {
         self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Papyrus" fontSize:45];
-        [self.gameOverImage initWithFile:@"small-dragon.png"];
+        [self.gameOverImage initWithFile:@"game-over-screen.png"];
         
     } else if (reason == kGameOverTimeOut) {
         self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Papyrus" fontSize:45];
@@ -84,20 +84,26 @@
     [self addChild:self.highScoreLabel z:3];
     
     // play again button
-    CCMenuItemFont *playAgainButton = [CCMenuItemFont itemFromString:@"Play Again!" target:self selector:@selector(resetGame:)];
-    [CCMenuItemFont setFontSize:25];
-    [CCMenuItemFont setFontName:@"Papyrus"];
+//    CCMenuItemFont *playAgainButton = [CCMenuItemFont itemFromString:@"Play Again!" target:self selector:@selector(resetGame:)];
+    CCMenuItemImage *playAgainButton = [CCMenuItemImage itemFromNormalImage:@"play-again-button.png" selectedImage:@"play-again-button.png" target:self selector:@selector(resetGame:)];
+//    [CCMenuItemFont setFontSize:25];
+//    [CCMenuItemFont setFontName:@"Papyrus"];
     CCMenu* myMenu = [CCMenu menuWithItems:playAgainButton, nil];
     [myMenu setAnchorPoint:ccp(0.5,0.5)];
     myMenu.position = ccp(screenSize.width/2,280);
     [self addChild:myMenu z:3];
     
-    if (reason == kGameOverTimeOut) {
+//    if (reason == kGameOverTimeOut) {
         [self.gameOverLabel setColor:ccc3(163, 3, 0)];
         [self.finalScoreLabel setColor:ccc3(163, 3, 0)];
         [self.highScoreLabel setColor:ccc3(163, 3, 0)];
         [playAgainButton setColor:ccc3(163, 3, 0)];
-    }
+//    } else if (reason == kGameOverEaten {
+//        [self.gameOverLabel setColor:ccc3(0, 0, 0)];
+//        [self.finalScoreLabel setColor:ccc3(0, 3, 0)];
+//        [self.highScoreLabel setColor:ccc3(0, 3, 0)];
+//        [playAgainButton setColor:ccc3(, 3, 0)];
+//    }
 }
 
 -(void)resetGame:(CCMenuItem *)item {
