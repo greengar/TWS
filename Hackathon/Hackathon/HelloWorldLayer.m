@@ -295,10 +295,10 @@ static MNCenter *mnCenter = nil;
 -(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
     if (self.isGameOver)
         return; // monsters don't bother us if we're not playing
-    Monster *monster = [Monster deserialize:dict peerID:device.peerID];
+    Player *player = [self.players objectForKey:device.peerID];
+    Monster *monster = [Monster deserialize:dict peerID:device.peerID player:player];
     [self.monsters addObject:monster];
     [self addChild:monster];
-    Player *player = [self.players objectForKey:device.peerID];
     NSLog(@"COMM: Creating monster for which there's no peer on file: %@", device.peerID);
     
     [monster marchTo:player.eventualPosition];

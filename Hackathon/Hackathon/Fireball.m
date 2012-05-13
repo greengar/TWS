@@ -7,6 +7,7 @@
 //
 
 #import "Fireball.h"
+#import "Player.h"
 
 @implementation Fireball
 
@@ -29,6 +30,11 @@
     return;
     fireParticle.startColor = ccc4FFromccc3B(ccBLACK);
     fireParticle.endColor = ccc4FFromccc3B(ccBLACK);;
+}
+
+-(void) specialPeerHandling:(Player *)player {
+    // we're from the boss. need to align with the player:
+    self.position = ccp(player.eventualPosition.x, self.position.y);
 }
 
 @end
