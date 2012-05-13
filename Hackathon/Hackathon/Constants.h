@@ -15,6 +15,7 @@
 #define MONSTER_MOVE_DURATION_SECONDS 10.0 // seconds
 #define INITIAL_POINTS 50.0; // how much a monster kill is worth initially
 #define POINT_DECREASE_VALUE 5.0;
+#define STAR_THROW_TIME 0.5
 
 typedef enum {
     kGameOverTimeOut=1,

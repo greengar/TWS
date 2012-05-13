@@ -17,6 +17,7 @@
 @property int points;
 @property BOOL reachedPlayer;
 @property (nonatomic, retain) CCFiniteTimeAction *walkAction;
+@property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
 

@@ -49,6 +49,10 @@
 		901F8082155F6F2B0019E2F9 /* ninja-throw-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8078155F6F2B0019E2F9 /* ninja-throw-1.png */; };
 		901F8083155F6F2B0019E2F9 /* ninja-throw-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8079155F6F2B0019E2F9 /* ninja-throw-2-hd.png */; };
 		901F8084155F6F2B0019E2F9 /* ninja-throw-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F807A155F6F2B0019E2F9 /* ninja-throw-2.png */; };
+		901F808A155F76790019E2F9 /* ninja-star-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8086155F76790019E2F9 /* ninja-star-1-hd.png */; };
+		901F808B155F76790019E2F9 /* ninja-star-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8087155F76790019E2F9 /* ninja-star-1.png */; };
+		901F808C155F76790019E2F9 /* ninja-star-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8088155F76790019E2F9 /* ninja-star-2-hd.png */; };
+		901F808D155F76790019E2F9 /* ninja-star-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8089155F76790019E2F9 /* ninja-star-2.png */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -216,6 +220,10 @@
 		901F8078155F6F2B0019E2F9 /* ninja-throw-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-throw-1.png"; sourceTree = "<group>"; };
 		901F8079155F6F2B0019E2F9 /* ninja-throw-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-throw-2-hd.png"; sourceTree = "<group>"; };
 		901F807A155F6F2B0019E2F9 /* ninja-throw-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-throw-2.png"; sourceTree = "<group>"; };
+		901F8086155F76790019E2F9 /* ninja-star-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-1-hd.png"; sourceTree = "<group>"; };
+		901F8087155F76790019E2F9 /* ninja-star-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-1.png"; sourceTree = "<group>"; };
+		901F8088155F76790019E2F9 /* ninja-star-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-2-hd.png"; sourceTree = "<group>"; };
+		901F8089155F76790019E2F9 /* ninja-star-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-2.png"; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -549,6 +557,10 @@
 		901F8070155F6F2B0019E2F9 /* ninja */ = {
 			isa = PBXGroup;
 			children = (
+				901F8086155F76790019E2F9 /* ninja-star-1-hd.png */,
+				901F8087155F76790019E2F9 /* ninja-star-1.png */,
+				901F8088155F76790019E2F9 /* ninja-star-2-hd.png */,
+				901F8089155F76790019E2F9 /* ninja-star-2.png */,
 				901F8071155F6F2B0019E2F9 /* ninja-sway-1-hd.png */,
 				901F8072155F6F2B0019E2F9 /* ninja-sway-1.png */,
 				901F8073155F6F2B0019E2F9 /* ninja-sway-2-hd.png */,
@@ -1069,6 +1081,10 @@
 				901F8082155F6F2B0019E2F9 /* ninja-throw-1.png in Resources */,
 				901F8083155F6F2B0019E2F9 /* ninja-throw-2-hd.png in Resources */,
 				901F8084155F6F2B0019E2F9 /* ninja-throw-2.png in Resources */,
+				901F808A155F76790019E2F9 /* ninja-star-1-hd.png in Resources */,
+				901F808B155F76790019E2F9 /* ninja-star-1.png in Resources */,
+				901F808C155F76790019E2F9 /* ninja-star-2-hd.png in Resources */,
+				901F808D155F76790019E2F9 /* ninja-star-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

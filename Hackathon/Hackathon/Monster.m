@@ -15,6 +15,7 @@
 @synthesize points = _points;
 @synthesize reachedPlayer;
 @synthesize walkAction = _walkAction;
+@synthesize isSlatedToDie;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -52,6 +53,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     
     
     if (self = [super initWithSpriteFrame:[animation.frames lastObject] ]) {
+        self.isSlatedToDie = NO;
         self.word = word;
         self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;

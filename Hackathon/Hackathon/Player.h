@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Monster.h"
 
 @interface Player : CCSprite {
     
@@ -18,5 +19,5 @@
 @property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
 
 -(Player *) initWithName:(NSString *) playerName;
-
+-(void) throwWeaponAt:(Monster *)monster;
 @end

@@ -8,12 +8,13 @@
 
 #import "Player.h"
 #import "Monster.h"
+#import "Constants.h"
 
 #define TEMPLATE_NAME @"ninja-sway-%@.png"
 #define FRAME_ORDER @"2,1,2,3"
 
 #define THROW_TEMPLATE_NAME @"ninja-throw-%@.png"
-#define THROW_FRAME_ORDER @"1,2,1"
+#define THROW_FRAME_ORDER @"1,2"
 
 @implementation Player
 
@@ -35,13 +36,45 @@
         name.position = ccp(self.boundingBox.size.width,0 );
         self.swayAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:animation restoreOriginalFrame:NO]];
         CCAnimation *throwAnim = [Monster animationFromTemplate:THROW_TEMPLATE_NAME andFrames:THROW_FRAME_ORDER];
-        self.throwAction = [CCAnimate actionWithAnimation:throwAnim];
+        self.throwAction = [CCAnimate actionWithDuration:0.2 animation:throwAnim restoreOriginalFrame:YES];
         
         [self runAction:self.swayAction];
     
     }
     return self;
 }
+
+-(void) throwWeaponAt:(Monster *)monster {
+    if (!self.swayAction.isDone) {
+        [self stopAction:self.swayAction];
+    }
+
+    // basically we do some animation on the ninja, then after that's done we add a star to the screen and do animation on it. It's responsible for killing the monster and cleaning up after itself.
+    
+    CCFiniteTimeAction *revertToSwaying = [CCCallBlock actionWithBlock:^{
+        [self runAction:self.swayAction];
+    }];
+    
+    CCFiniteTimeAction *starAction = [CCCallBlock actionWithBlock:^{
+        CCSprite *star = [CCSprite spriteWithFile:@"ninja-star-1.png"];
+        [self.parent addChild:star];
+        star.position = self.position;
+        // tell monster it's dead
+        CCFiniteTimeAction *monsterIsDead = [CCCallBlock actionWithBlock:^{
+            [monster die];
+            [star removeFromParentAndCleanup:YES];
+        }];
+        CCMoveTo *starMove = [CCMoveTo actionWithDuration:STAR_THROW_TIME position:monster.position];
+        [star runAction:[CCSequence actions:starMove, monsterIsDead, nil]];
+    }];
+    
+    [self runAction:[CCSequence actions:
+                     self.throwAction,
+                     revertToSwaying,
+                     starAction,
+                     nil]];
+}
+
 
 - (void)dealloc
 {

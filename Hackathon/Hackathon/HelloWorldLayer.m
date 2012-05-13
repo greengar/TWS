@@ -217,11 +217,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
                     //NSLog(@"Found one!!!!");
+                    monster.isSlatedToDie = YES;
                     [deadMonsters addObject:monster];
                 }
             }
             for (Monster *monster in deadMonsters) {
-                [monster die];
+                //[monster die];
+                [self.myPlayer throwWeaponAt:monster];
                 score+=monster.points;
                 [self notifyScore:score];
             }
@@ -236,7 +238,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         // Check for monsters that have reached the player
         [deadMonsters removeAllObjects];
         for (Monster *monster in self.monsters) {
-            if (monster.reachedPlayer) {
+            if (monster.reachedPlayer && !monster.isSlatedToDie) {
                 [deadMonsters addObject:monster];
                 [self hitByMonster:monster];
             }
