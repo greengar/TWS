@@ -500,7 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F96BD8A6155F815500CF399A /* GameKit.framework in Frameworks */,
+				901F80B2155F81510019E2F9 /* GameKit.framework in Frameworks */,
 				90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */,
 				90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */,
 				90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */,
@@ -656,7 +656,7 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
-				F96BD8A5155F815500CF399A /* GameKit.framework */,
+				901F80B1155F81510019E2F9 /* GameKit.framework */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
