@@ -70,7 +70,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 -(void) notifyTime:(double) time {
     int min = time / 60;
     int sec = ((int) time) % 60;
-    [self.timerLabel setString:[NSString stringWithFormat:@"%i:%i", min, sec]];
+    [self.timerLabel setString:[NSString stringWithFormat:@"%i:%02i", min, sec]];
 }
 
 -(void) notifyScore:(int) theScore {
