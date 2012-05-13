@@ -17,7 +17,7 @@
 #import "Fireball.h"
 #import <objc/runtime.h>
 
-#define NETWORK_SESSION_ID @"ninjasvsdragons3"
+#define NETWORK_SESSION_ID @"ninjasvsdragons4"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
