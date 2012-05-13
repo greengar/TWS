@@ -11,6 +11,7 @@
 #import "HelloWorldLayer.h"
 #import "Monster.h"
 #import "MinionDragon.h"
+#import "BloodDrip.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -27,6 +28,7 @@
 @synthesize isGameOver;
 @synthesize myPlayer = _myPlayer;
 @synthesize gameOverScreen = _gameOverScreen;
+@synthesize blood = _blood;
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 #pragma mark - setters and getters 
@@ -83,7 +85,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 // reset all re-playable game elements
 -(void) resetGame {
-    NSLog(@"reset game called");
     gameCount++;
     
     // remove existing monsters
@@ -92,12 +93,14 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     }
     
     [self.monsters removeAllObjects];
+    [self removeChild:self.blood cleanup:YES];
     
     self.isGameOver = NO;
     self.gameOverReason = 0; // no reason
     timeLeft = GAME_LENGTH_SECONDS;
     nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
     score = 0;
+    bossAppeared = NO;
     [self notifyTime:timeLeft];
     [self notifyScore:score];
     
@@ -148,13 +151,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
                 [self.dictionary addObject:word];
             }
         }
-
-//        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
-//        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
-
-        NSLog(@"the file contents are %@",fileContents);
-        NSLog(@"the dictionary is : %@",self.dictionary);
-        
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
@@ -201,25 +197,43 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     }
 }
 
--(void) showGameOverScreen {
-    // Kim - call the game over layer from here 
+-(void)showBlood {
     [self.textEntryFieldCC hideKeyboard];
-    self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+
+    self.blood = [[BloodDrip alloc] initWithFile:@"blood-screen.png"];
+    [self.blood setAnchorPoint:ccp(0.5,0)];
+    self.blood.position = ccp(screenSize.width/2,screenSize.height);
+    [self addChild:self.blood z:2];
+    
+    [self.blood bloodDrip];
+}
+
+-(void) showGameOverScreen {
+    [self.textEntryFieldCC hideKeyboard];
+    
+    if(self.gameOverReason == kGameOverEaten) {
+        self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(163, 3, 0, 255) width:screenSize.width height:screenSize.height];
+    } else {
+        self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+    }
     [self.gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
-    [self addChild:self.gameOverScreen z:2];
+    [self addChild:self.gameOverScreen z:3];
 }
 
 
 -(void) hitByMonster:(Monster *) monster {
     self.isGameOver = YES;
     self.gameOverReason = kGameOverEaten;
-    [self showGameOverScreen];
+    [self showBlood];
 }
 
 // main update loop
 -(void) tick: (ccTime) dt {
     if (self.isGameOver)
         return;
+    
+    int min = timeLeft / 60;
+    int sec = ((int) timeLeft) % 60;
     
     // game is over, time is up and all monsters created are killed
     if (timeLeft <= 0 && [self.monsters count] == 0) {
@@ -235,6 +249,12 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
 
+        // add boss at 10 seconds remaining
+        if (min == 0 && sec <= 10 && bossAppeared == NO) {
+            bossAppeared = YES;
+            NSLog(@"10 sec left");
+        }
+        
         // check if a new word was entered (very inefficient) and then check against all monsters
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];

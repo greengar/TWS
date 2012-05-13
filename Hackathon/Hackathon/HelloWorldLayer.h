@@ -13,6 +13,7 @@
 #import "CCTextField.h"
 #import "Player.h"
 #import "EndScreen.h"
+#import "BloodDrip.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
@@ -23,6 +24,7 @@
     CGSize screenSize;
     CGPoint playerPosition;
     int gameCount;
+    BOOL bossAppeared;
 }
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
@@ -36,8 +38,10 @@
 @property BOOL isGameOver;
 @property (nonatomic, retain) Player *myPlayer;
 @property (nonatomic, retain) EndScreen* gameOverScreen;
+@property (nonatomic, retain) BloodDrip* blood;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
-
+-(void)showGameOverScreen;
+-(void)showBlood;
 @end
