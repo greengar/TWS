@@ -25,18 +25,15 @@
 		A9B636F8155F136600BC9EAB /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636E6155F136600BC9EAB /* Device.m */; };
 		A9B636F9155F136600BC9EAB /* DevicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636E8155F136600BC9EAB /* DevicesManager.m */; };
 		A9B636FA155F136600BC9EAB /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636EA155F136600BC9EAB /* SessionManager.m */; };
-		A9B636FB155F136600BC9EAB /* ContactDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636EE155F136600BC9EAB /* ContactDataProvider.m */; };
 		A9B636FC155F136600BC9EAB /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636F1155F136600BC9EAB /* DataHandler.m */; };
 		A9B636FD155F136600BC9EAB /* ABRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636F5155F136600BC9EAB /* ABRecordSerializer.m */; };
 		A9B636FE155F136600BC9EAB /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B636F7155F136600BC9EAB /* DeviceCell.m */; };
-		A9B63703155F141200BC9EAB /* BeamItViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B63702155F141200BC9EAB /* BeamItViewController.m */; };
 		A9B6370A155F143200BC9EAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B63708155F143200BC9EAB /* AddressBook.framework */; };
 		A9B6370B155F143200BC9EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B63709155F143200BC9EAB /* AddressBookUI.framework */; };
 		A9B6370D155F145D00BC9EAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */; };
 		A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B6370F155F17D100BC9EAB /* MNCenter.m */; };
 		A9B63714155F3C1300BC9EAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9B63712155F3C1300BC9EAB /* Localizable.strings */; };
 		A9B63717155F5C8100BC9EAB /* MNLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B63716155F5C8100BC9EAB /* MNLabel.m */; };
-		A9D097A9155F677300D03638 /* MessageDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D097A8155F677300D03638 /* MessageDataProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +74,6 @@
 		A9B636E8155F136600BC9EAB /* DevicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesManager.m; sourceTree = "<group>"; };
 		A9B636E9155F136600BC9EAB /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SessionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A9B636EA155F136600BC9EAB /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SessionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A9B636ED155F136600BC9EAB /* ContactDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDataProvider.h; sourceTree = "<group>"; };
-		A9B636EE155F136600BC9EAB /* ContactDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDataProvider.m; sourceTree = "<group>"; };
 		A9B636F0155F136600BC9EAB /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
 		A9B636F1155F136600BC9EAB /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
 		A9B636F2155F136600BC9EAB /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
@@ -86,8 +81,6 @@
 		A9B636F5155F136600BC9EAB /* ABRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ABRecordSerializer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A9B636F6155F136600BC9EAB /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
 		A9B636F7155F136600BC9EAB /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
-		A9B63701155F141200BC9EAB /* BeamItViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeamItViewController.h; sourceTree = "<group>"; };
-		A9B63702155F141200BC9EAB /* BeamItViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeamItViewController.m; sourceTree = "<group>"; };
 		A9B63708155F143200BC9EAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A9B63709155F143200BC9EAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -96,8 +89,6 @@
 		A9B63713155F3C1300BC9EAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9B63715155F5C8100BC9EAB /* MNLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLabel.h; sourceTree = "<group>"; };
 		A9B63716155F5C8100BC9EAB /* MNLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLabel.m; sourceTree = "<group>"; };
-		A9D097A7155F677300D03638 /* MessageDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataProvider.h; sourceTree = "<group>"; };
-		A9D097A8155F677300D03638 /* MessageDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,20 +227,9 @@
 		A9B636EB155F136600BC9EAB /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				A9D097A6155F677300D03638 /* Message */,
-				A9B636EC155F136600BC9EAB /* Contact */,
 				A9B636EF155F136600BC9EAB /* Core */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		A9B636EC155F136600BC9EAB /* Contact */ = {
-			isa = PBXGroup;
-			children = (
-				A9B636ED155F136600BC9EAB /* ContactDataProvider.h */,
-				A9B636EE155F136600BC9EAB /* ContactDataProvider.m */,
-			);
-			path = Contact;
 			sourceTree = "<group>";
 		};
 		A9B636EF155F136600BC9EAB /* Core */ = {
@@ -279,19 +259,8 @@
 				A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */,
 				A9B63708155F143200BC9EAB /* AddressBook.framework */,
 				A9B63709155F143200BC9EAB /* AddressBookUI.framework */,
-				A9B63701155F141200BC9EAB /* BeamItViewController.h */,
-				A9B63702155F141200BC9EAB /* BeamItViewController.m */,
 			);
 			path = BeamIt;
-			sourceTree = "<group>";
-		};
-		A9D097A6155F677300D03638 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				A9D097A7155F677300D03638 /* MessageDataProvider.h */,
-				A9D097A8155F677300D03638 /* MessageDataProvider.m */,
-			);
-			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,14 +377,11 @@
 				A9B636F8155F136600BC9EAB /* Device.m in Sources */,
 				A9B636F9155F136600BC9EAB /* DevicesManager.m in Sources */,
 				A9B636FA155F136600BC9EAB /* SessionManager.m in Sources */,
-				A9B636FB155F136600BC9EAB /* ContactDataProvider.m in Sources */,
 				A9B636FC155F136600BC9EAB /* DataHandler.m in Sources */,
 				A9B636FD155F136600BC9EAB /* ABRecordSerializer.m in Sources */,
 				A9B636FE155F136600BC9EAB /* DeviceCell.m in Sources */,
-				A9B63703155F141200BC9EAB /* BeamItViewController.m in Sources */,
 				A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */,
 				A9B63717155F5C8100BC9EAB /* MNLabel.m in Sources */,
-				A9D097A9155F677300D03638 /* MessageDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

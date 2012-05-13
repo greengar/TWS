@@ -52,10 +52,19 @@
 }
 
 - (NSString *)appendMessage:(NSString *)msg toText:(NSString *)txt {
-    if (txt == nil || [txt isEqualToString:@""]) {
-        return msg;
+    NSMutableArray *components = [[[txt componentsSeparatedByString:@"\n"] mutableCopy] autorelease];
+    [components addObject:msg];
+    
+    // limit to 5 lines
+    NSString *result = @"";
+    int start = components.count-5;
+    if (start < 0) start = 0;
+    for (int i=start; i<components.count; i++) {
+        if ([[components objectAtIndex:i] isEqualToString:@""] == NO) {
+            result = [result stringByAppendingFormat:@"%@\n", [components objectAtIndex:i]];
+        }
     }
-    return [txt stringByAppendingFormat:@"%@\n", msg];
+    return result;
 }
 
 - (void)connected {
@@ -74,6 +83,10 @@
     [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
         NSLog(@"callback");
     }];
+    
+    messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
+    
+    textField.text = @"";
     return YES;
 }
 

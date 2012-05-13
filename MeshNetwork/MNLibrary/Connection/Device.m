@@ -163,7 +163,10 @@
 	return [session sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:error];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 	[session release];
 	
 	[peerID release];

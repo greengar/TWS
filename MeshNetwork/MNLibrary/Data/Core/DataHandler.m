@@ -230,17 +230,19 @@
 			// Check whether the data has the expected size
 			if (bytesToReceive == [data length]) {
 				// Receive the real data (eg. contact) and tell the provider to store it
-				BOOL dataCanBeStored = [dataProvider storeData:data andReplyTo:self selector:@selector(dataStored)];
-				
-				if (dataCanBeStored) {
-					[self sendSuccessData];
-					[self closeCurrentPopup];
-					AudioServicesPlaySystemSound(receivedSound);
-				} else {
-					[self sendErrorData];
-					[self throwError:[NSString stringWithFormat:NSLocalizedString(@"RECEPTION_ERROR", @"Error receiving data"), 
-									  currentStateRelatedDevice.deviceName]];
-				}
+//				BOOL dataCanBeStored = [dataProvider storeData:data andReplyTo:self selector:@selector(dataStored)];
+//				
+//				if (dataCanBeStored) {
+//					[self sendSuccessData];
+//					[self closeCurrentPopup];
+//					AudioServicesPlaySystemSound(receivedSound);
+//				} else {
+//					[self sendErrorData];
+//					[self throwError:[NSString stringWithFormat:NSLocalizedString(@"RECEPTION_ERROR", @"Error receiving data"), 
+//									  currentStateRelatedDevice.deviceName]];
+//				}
+                
+                // ...
 				
 			} else {
 				[self sendErrorData];
@@ -280,10 +282,13 @@
 				[self updateLastCommandReceived:command];
 			} else if ([command isEqual:BEAM_IT_REJECT_CONTACT]) {
 				// Prompt the user whether to retry to send or not
-				[self promptConfirmationWithTag:CONFIRMATION_RETRY_TAG 
-										  title:NSLocalizedString(@"RETRY_VIEW_TITLE", @"Transfer refused dialog title")
-										message:[NSString stringWithFormat:NSLocalizedString(@"RETRY_VIEW_PROMPT", @"Transfer refused dialog text"),
-												 currentStateRelatedDevice.deviceName, [dataProvider getLabelOfDataToSend]]];
+//				[self promptConfirmationWithTag:CONFIRMATION_RETRY_TAG 
+//										  title:NSLocalizedString(@"RETRY_VIEW_TITLE", @"Transfer refused dialog title")
+//										message:[NSString stringWithFormat:NSLocalizedString(@"RETRY_VIEW_PROMPT", @"Transfer refused dialog text"),
+//												 currentStateRelatedDevice.deviceName, [dataProvider getLabelOfDataToSend]]];
+                
+                // ...
+                
 			} else {
 				[self sendErrorData];
 				[self throwUnexpectedCommandError];
@@ -302,10 +307,13 @@
 				[self sendErrorData];
 				[self throwUnexpectedCommandError];
 			} else {
-				AudioServicesPlaySystemSound(sendSound);
-				[self showMessageWithTitle:NSLocalizedString(@"SUCCESS_VIEW_TITLE", @"Transfer completed dialog title.")
-								   message:[NSString stringWithFormat:NSLocalizedString(@"SEND_SUCCESS_MESSAGE", @"Transfer completed dialog text."),
-											[dataProvider getLabelOfDataToSend], currentStateRelatedDevice.deviceName]];
+//				AudioServicesPlaySystemSound(sendSound);
+//				[self showMessageWithTitle:NSLocalizedString(@"SUCCESS_VIEW_TITLE", @"Transfer completed dialog title.")
+//								   message:[NSString stringWithFormat:NSLocalizedString(@"SEND_SUCCESS_MESSAGE", @"Transfer completed dialog text."),
+//											[dataProvider getLabelOfDataToSend], currentStateRelatedDevice.deviceName]];
+                
+                // ...
+                
 				[self cleanCurrentState];
 			}
 		} else {
@@ -361,16 +369,20 @@
 }
 
 - (void)sendRequestData {
-	[self showProcess:[NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_ACCEPTANCE_PROCESS", @"Waiting for acceptance"), 
-					   currentStateRelatedDevice.deviceName]];
-	NSString *strToSend = [NSString stringWithFormat:@"%@%@", BEAM_IT_REQUESTING_PERMISSION_TO_SEND, [dataProvider getLabelOfDataToSend]];
-	[currentStateRelatedDevice sendData:[self dataFromString:strToSend] error:nil];
+//	[self showProcess:[NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_ACCEPTANCE_PROCESS", @"Waiting for acceptance"), 
+//					   currentStateRelatedDevice.deviceName]];
+//	NSString *strToSend = [NSString stringWithFormat:@"%@%@", BEAM_IT_REQUESTING_PERMISSION_TO_SEND, [dataProvider getLabelOfDataToSend]];
+//	[currentStateRelatedDevice sendData:[self dataFromString:strToSend] error:nil];
+    
+    // ...
 }
 
 - (void)sendSizeData {
-	[self showProcess:NSLocalizedString(@"SENDING_PROCESS", @"Sending data dialog")];
-	NSString *strToSend = [NSString stringWithFormat:@"%@%d", BEAM_IT_INFO_SIZE, [[dataProvider getDataToSend] length]];
-	[currentStateRelatedDevice sendData:[self dataFromString:strToSend] error:nil];
+//	[self showProcess:NSLocalizedString(@"SENDING_PROCESS", @"Sending data dialog")];
+//	NSString *strToSend = [NSString stringWithFormat:@"%@%d", BEAM_IT_INFO_SIZE, [[dataProvider getDataToSend] length]];
+//	[currentStateRelatedDevice sendData:[self dataFromString:strToSend] error:nil];
+    
+    // ...
 }
 
 - (void)sendAcceptData {
@@ -391,8 +403,10 @@
 }
 
 - (void)sendRealData {
-	[self showProcess:NSLocalizedString(@"SENDING_PROCESS", @"Sending data dialog")];
-	[currentStateRelatedDevice sendData:[dataProvider getDataToSend] error:nil];
+//	[self showProcess:NSLocalizedString(@"SENDING_PROCESS", @"Sending data dialog")];
+//	[currentStateRelatedDevice sendData:[dataProvider getDataToSend] error:nil];
+    
+    // ...
 }
 
 - (void)dataPrepared {
