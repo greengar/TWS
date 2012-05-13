@@ -6,9 +6,13 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "Constants.h"
+
 #import "Monster.h"
 #import "MinionDragon.h"
-#import "Constants.h"
+#import "BossDragon.h"
+#import "Fireball.h"
+
 
 @implementation Monster
 
@@ -172,6 +176,14 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     switch (mt) {
         case kMonsterTypeMinion:
             monster = [[MinionDragon alloc] createWithWord:word];
+            break;
+            
+        case kMonsterTypeBoss:
+            monster = [[BossDragon alloc] createWithWord:word];
+            break;
+            
+        case kMonsterTypeFireball:
+            monster = [[Fireball alloc] createWithWord:word];
             break;
             
         default:

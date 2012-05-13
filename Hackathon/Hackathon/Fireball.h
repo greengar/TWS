@@ -8,6 +8,10 @@
 
 #import "Monster.h"
 
-@interface Fireball : Monster
+@interface Fireball : Monster {
+    CCParticleSystemQuad *fireParticle; // debugging
+}
+
+
 
 @end
