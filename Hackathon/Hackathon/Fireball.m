@@ -27,6 +27,7 @@
         timeLeftToReachPlayer = FIREBALL_MOVE_DURATION_SECONDS;
         
         [self.name setColor:ccBLACK];
+        [self.name setPosition:ccp(0,-10)];
     }
     return self;
 }

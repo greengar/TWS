@@ -9,7 +9,7 @@
 #ifndef Hackathon_Constants_h
 #define Hackathon_Constants_h
 
-#define GAME_LENGTH_SECONDS 20 // number of seconds for a game play
+#define GAME_LENGTH_SECONDS 60 // number of seconds for a game play
 #define MONSTER_EVERY_X_SECONDS 5 // for now
 #define MONSTER_MOVE_EVERY_X_SECONDS 3.0 // for now
 #define MONSTER_MOVE_DURATION_SECONDS 30.0 // seconds
@@ -17,7 +17,7 @@
 #define POINT_DECREASE_VALUE 5.0;
 #define STAR_THROW_TIME 0.5
 #define BLOOD_MOVE_DURATION_SECONDS 1.5
-#define BOSS_APPEARS_AT_TIME_LEFT 10.0
+#define BOSS_APPEARS_AT_TIME_LEFT 3.0
 #define BOSS_INITIAL_POINTS 200
 #define FIREBALL_EVERY_X_SECONDS 6.0 // for now
 #define FIREBALL_MOVE_DURATION_SECONDS 3.0 // seconds
