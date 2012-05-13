@@ -38,6 +38,17 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     _monsters = monsters;
 }
 
+- (NSMutableArray*)dictionary { 
+    if (_dictionary == nil) {
+        _dictionary = [[NSMutableArray alloc] init];
+    }
+    return _dictionary;
+}
+
+- (void)setDictionary:(NSMutableArray *)dictionary {
+    _dictionary = dictionary;
+}
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -111,13 +122,17 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSError* error;
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
-        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n\r"]];
+        NSArray* wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for (NSString* word in wordsWithBlanks) {
+//            NSLog(@"the word is %@",word);
+            if (![[word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
+                [self.dictionary addObject:word];
+            }
+        }
+
+//        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 //        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
-        
-        NSString* word = [self.dictionary objectAtIndex:0];
-        NSString* lastChar = [word substringFromIndex:[word length]-1];
-        NSLog(@"lastChar is %@",lastChar);
+
         NSLog(@"the file contents are %@",fileContents);
         NSLog(@"the dictionary is : %@",self.dictionary);
         
