@@ -45,7 +45,7 @@
     // game over label and image
     if (reason == kGameOverEaten) {
         self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Arial-BoldMT" fontSize:45];
-        [self.gameOverImage initWithFile:@"small-dragon.png"];
+        [self.gameOverImage initWithFile:@"small-dragon-1.png"];
         
     } else if (reason == kGameOverTimeOut) {
         self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Arial-BoldMT" fontSize:45];
