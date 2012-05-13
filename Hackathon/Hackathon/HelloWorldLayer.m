@@ -165,10 +165,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     while (nextMonsterTimer < 0) {
         nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
         
-        if (score > 50) {
-            [self showGameOverScreen];
-        }
-        
         // create new monster with random word and random location at the top
         int randomWordGen = arc4random() % [self.dictionary count];
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
@@ -188,7 +184,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 -(void) showGameOverScreen {
     // Kim - call the game over layer from here 
     EndScreen* gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
-    [gameOverScreen createWithFinalScore:score];
+    [gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
     [self addChild:gameOverScreen z:2];
 }
 

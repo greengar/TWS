@@ -459,11 +459,11 @@
 				90FC06A9155F01F7002C3BAE /* Monster.m */,
 				F96BD872155F075400CF399A /* MinionDragon.h */,
 				F96BD873155F075400CF399A /* MinionDragon.m */,
+				F96BD890155F4FC900CF399A /* EndScreen.h */,
+				F96BD891155F4FC900CF399A /* EndScreen.m */,
 				90FC052F155EFD21002C3BAE /* Resources */,
 				90FC0543155EFD21002C3BAE /* libs */,
 				90FC067C155EFD23002C3BAE /* Supporting Files */,
-				F96BD890155F4FC900CF399A /* EndScreen.h */,
-				F96BD891155F4FC900CF399A /* EndScreen.m */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";

@@ -14,6 +14,7 @@
 @synthesize gameOverLabel = _gameOverLabel;
 @synthesize finalScoreLabel = _finalScoreLabel;
 @synthesize highScoreLabel = _highScoreLabel;
+@synthesize gameOverImage = _gameOverImage;
 
 //- (id) initWithColor:(ccColor4B)color {
 //    if ((self = [super initWithColor:color])) {
@@ -27,14 +28,36 @@
 //    return self;
 //}
 
-- (void)createWithFinalScore:(double)finalScore {
+- (CCSprite*)gameOverImage {
+    if (_gameOverImage == nil) {
+        _gameOverImage = [[CCSprite alloc] init];
+    }
+    return _gameOverImage;
+}
+
+- (void)setGameOverImage:(CCSprite*)gameOverImage {
+    _gameOverImage = gameOverImage;
+}
+
+- (void)createWithFinalScore:(double)finalScore withReason:(GameOverReasonType)reason {
     screenSize = [[CCDirector sharedDirector] winSize];
     
-    // game over label
-    self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Arial-BoldMT" fontSize:45];
+    // game over label and image
+    if (reason == kGameOverEaten) {
+        self.gameOverLabel = [CCLabelTTF labelWithString:@"GAME OVER" fontName:@"Arial-BoldMT" fontSize:45];
+        [self.gameOverImage initWithFile:@"small-dragon.png"];
+        
+    } else if (reason == kGameOverTimeOut) {
+        self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Arial-BoldMT" fontSize:45];
+        [self.gameOverImage initWithFile:@"icon.png"];
+    }
+    
+    [self.gameOverImage setAnchorPoint:ccp(0.5,0.5)];
+    self.gameOverImage.position = ccp(screenSize.width/2,350);
+    [self addChild:self.gameOverImage z:3];
+    
     [self.gameOverLabel setAnchorPoint:ccp(0.5,0.5)];
-    self.gameOverLabel.position = ccp(screenSize.width/2,400);
-    NSLog(@"width is %f and height is %f",screenSize.width, screenSize.height);
+    self.gameOverLabel.position = ccp(screenSize.width/2,450);
     [self addChild:self.gameOverLabel z:3];
     
     // final score label

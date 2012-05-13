@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Constants.h"
 
 @interface EndScreen : CCLayerColor {
     CGSize screenSize;
 }
 
 @property (nonatomic, retain) CCLabelTTF *gameOverLabel, *finalScoreLabel, *highScoreLabel;
+@property (nonatomic, retain) CCSprite* gameOverImage;
 
-- (void)createWithFinalScore:(double)finalScore;
+- (void)createWithFinalScore:(double)finalScore withReason:(GameOverReasonType)reason;
 
 @end
