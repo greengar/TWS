@@ -44,5 +44,6 @@
 - (void)setTextColor:(ccColor3B)color;
 
 -(void) setFocus; // brings up the keyboard
+-(void)hideKeyboard;
 
 @end

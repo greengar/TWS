@@ -9,6 +9,8 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#import "Monster.h"
+#import "EndScreen.h"
 #import "MinionDragon.h"
 
 // HelloWorldLayer implementation
@@ -183,6 +185,10 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 -(void) showGameOverScreen {
     // Kim - call the game over layer from here 
+    [self.textEntryFieldCC hideKeyboard];
+    EndScreen* gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+    [gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
+    [self addChild:gameOverScreen z:2];
 }
 
 
