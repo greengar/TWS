@@ -62,6 +62,16 @@
     }
 }
 
+- (void)sendDataToAllPeers:(NSData *)data callback:(ErrorBlock)callback
+{
+    NSError *error = nil;
+    BOOL success = [sessionManager.meshSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:&error];
+    if (!success) {
+        callback(error);
+    }
+    // TODO: provide real async callback
+}
+
 - (NSArray *)sortedDevices {
     return devicesManager.sortedDevices;
 }

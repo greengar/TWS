@@ -20,7 +20,7 @@
 
 @implementation SessionManager
 
-@synthesize onStateChange;
+@synthesize meshSession, onStateChange;
 
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager {
 	self = [super init];

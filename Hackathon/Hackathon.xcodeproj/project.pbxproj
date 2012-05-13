@@ -243,7 +243,7 @@
 		901F8095155F7C480019E2F9 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		901F8096155F7C480019E2F9 /* DevicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesManager.h; sourceTree = "<group>"; };
 		901F8097155F7C480019E2F9 /* DevicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesManager.m; sourceTree = "<group>"; };
-		901F8098155F7C480019E2F9 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		901F8098155F7C480019E2F9 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		901F8099155F7C480019E2F9 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		901F809C155F7C480019E2F9 /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
 		901F809D155F7C480019E2F9 /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };

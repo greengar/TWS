@@ -32,6 +32,7 @@ typedef void(^MessageBlock)(NSString *, Device *);
 
 - (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub;
 - (void)start;
+- (void)sendDataToAllPeers:(NSData *)data callback:(ErrorBlock)callback;
 - (NSArray *)sortedDevices;
 - (NSString *)deviceName;
 

@@ -100,9 +100,13 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
+    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding] callback:^(NSError *err) {
         NSLog(@"callback");
     }];
+    
+//    [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
+//        NSLog(@"callback");
+//    }];
     
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
     
