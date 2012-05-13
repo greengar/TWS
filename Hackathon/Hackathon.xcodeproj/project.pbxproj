@@ -53,6 +53,13 @@
 		901F808B155F76790019E2F9 /* ninja-star-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8087155F76790019E2F9 /* ninja-star-1.png */; };
 		901F808C155F76790019E2F9 /* ninja-star-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8088155F76790019E2F9 /* ninja-star-2-hd.png */; };
 		901F808D155F76790019E2F9 /* ninja-star-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8089155F76790019E2F9 /* ninja-star-2.png */; };
+		901F80A6155F7C480019E2F9 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8095155F7C480019E2F9 /* Device.m */; };
+		901F80A7155F7C480019E2F9 /* DevicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8097155F7C480019E2F9 /* DevicesManager.m */; };
+		901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8099155F7C480019E2F9 /* SessionManager.m */; };
+		901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F809D155F7C480019E2F9 /* DataHandler.m */; };
+		901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A0155F7C480019E2F9 /* MNCenter.m */; };
+		901F80AB155F7C480019E2F9 /* ABRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */; };
+		901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A5155F7C480019E2F9 /* DeviceCell.m */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -224,6 +231,21 @@
 		901F8087155F76790019E2F9 /* ninja-star-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-1.png"; sourceTree = "<group>"; };
 		901F8088155F76790019E2F9 /* ninja-star-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-2-hd.png"; sourceTree = "<group>"; };
 		901F8089155F76790019E2F9 /* ninja-star-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-star-2.png"; sourceTree = "<group>"; };
+		901F8094155F7C480019E2F9 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		901F8095155F7C480019E2F9 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		901F8096155F7C480019E2F9 /* DevicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesManager.h; sourceTree = "<group>"; };
+		901F8097155F7C480019E2F9 /* DevicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesManager.m; sourceTree = "<group>"; };
+		901F8098155F7C480019E2F9 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		901F8099155F7C480019E2F9 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
+		901F809C155F7C480019E2F9 /* DataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHandler.h; sourceTree = "<group>"; };
+		901F809D155F7C480019E2F9 /* DataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHandler.m; sourceTree = "<group>"; };
+		901F809E155F7C480019E2F9 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
+		901F809F155F7C480019E2F9 /* MNCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCenter.h; sourceTree = "<group>"; };
+		901F80A0155F7C480019E2F9 /* MNCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCenter.m; sourceTree = "<group>"; };
+		901F80A2155F7C480019E2F9 /* ABRecordSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRecordSerializer.h; sourceTree = "<group>"; };
+		901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRecordSerializer.m; sourceTree = "<group>"; };
+		901F80A4155F7C480019E2F9 /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
+		901F80A5155F7C480019E2F9 /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -576,6 +598,61 @@
 			path = Resources/ninja;
 			sourceTree = "<group>";
 		};
+		901F8092155F7C480019E2F9 /* MNLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				901F8093155F7C480019E2F9 /* Connection */,
+				901F809A155F7C480019E2F9 /* Data */,
+				901F809F155F7C480019E2F9 /* MNCenter.h */,
+				901F80A0155F7C480019E2F9 /* MNCenter.m */,
+				901F80A1155F7C480019E2F9 /* Utilities */,
+			);
+			name = MNLibrary;
+			path = ../../MeshNetwork/MNLibrary;
+			sourceTree = "<group>";
+		};
+		901F8093155F7C480019E2F9 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				901F8094155F7C480019E2F9 /* Device.h */,
+				901F8095155F7C480019E2F9 /* Device.m */,
+				901F8096155F7C480019E2F9 /* DevicesManager.h */,
+				901F8097155F7C480019E2F9 /* DevicesManager.m */,
+				901F8098155F7C480019E2F9 /* SessionManager.h */,
+				901F8099155F7C480019E2F9 /* SessionManager.m */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		901F809A155F7C480019E2F9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				901F809B155F7C480019E2F9 /* Core */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		901F809B155F7C480019E2F9 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				901F809C155F7C480019E2F9 /* DataHandler.h */,
+				901F809D155F7C480019E2F9 /* DataHandler.m */,
+				901F809E155F7C480019E2F9 /* DataProvider.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		901F80A1155F7C480019E2F9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				901F80A2155F7C480019E2F9 /* ABRecordSerializer.h */,
+				901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */,
+				901F80A4155F7C480019E2F9 /* DeviceCell.h */,
+				901F80A5155F7C480019E2F9 /* DeviceCell.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +735,7 @@
 		90FC0543155EFD21002C3BAE /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				901F8092155F7C480019E2F9 /* MNLibrary */,
 				90FC06C8155F1872002C3BAE /* CCTextField */,
 				90FC0639155EFD23002C3BAE /* LICENSE_cocos2d.txt */,
 				90FC0648155EFD23002C3BAE /* LICENSE_CocosDenshion.txt */,
@@ -1198,6 +1276,13 @@
 				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
 				F96BD892155F4FC900CF399A /* EndScreen.m in Sources */,
 				901F8031155F58BD0019E2F9 /* Player.m in Sources */,
+				901F80A6155F7C480019E2F9 /* Device.m in Sources */,
+				901F80A7155F7C480019E2F9 /* DevicesManager.m in Sources */,
+				901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */,
+				901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */,
+				901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */,
+				901F80AB155F7C480019E2F9 /* ABRecordSerializer.m in Sources */,
+				901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
