@@ -9,6 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+// Keys for serialization
+#define KEY_WORD @"word"
+#define KEY_POINTS @"points"
+#define KEY_IS_SLATED_TO_DIE @"slated"
+#define KEY_UNIQUE_ID @"unique"
+#define KEY_PEER_ID @"peerid"
+#define KEY_POSITION @"position"
+#define KEY_TIME_LEFT_TO_REACH_PLAYER @"timeleft"
+#define KEY_MONSTER_TYPE @"monstertype"
+
+
 typedef enum {
     kMonsterTypeMinion=1,
 } MonsterType;
@@ -28,6 +39,7 @@ typedef enum {
 @property int uniqueID;
 @property (nonatomic, retain) NSString *peerID; // if a remote monster
 @property (readonly) MonsterType monsterType; // used in serialization
+@property BOOL isMine;
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
 
@@ -38,7 +50,6 @@ typedef enum {
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;
 -(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
--(BOOL) isMine; // YES if the monster is owned locally
 
 -(NSMutableDictionary *) serialize; // dump the state into a dictionary
 +(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID;

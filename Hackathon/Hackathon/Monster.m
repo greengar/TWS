@@ -20,6 +20,7 @@
 @synthesize peerID;
 @synthesize uniqueID;
 @synthesize moveAction = _moveAction;
+@synthesize isMine;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -111,28 +112,18 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     self.points = self.points - POINT_DECREASE_VALUE;
 }
 
--(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
+-(void) setOwnerMe:(BOOL)mine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
+    self.peerID = thePeerID;
+    self.isMine = mine;
     if (isMine) {
-        self.peerID = nil;
         self.uniqueID = arc4random();
     } else {
-        self.peerID = thePeerID;
         self.uniqueID = theUniqueId;
     }
-    NSLog(@"Peer: %@ ID: %i", self.peerID, self.uniqueID);
+    if (self.isMine) {
+        NSLog(@"WORD: %@ peer: %@ uid %i", self.word, self.peerID, self.uniqueID);
+    }
 }
-
--(BOOL) isMine {
-    return (peerID == nil);
-}
-
-#define KEY_WORD @"word"
-#define KEY_POINTS @"points"
-#define KEY_IS_SLATED_TO_DIE @"slated"
-#define KEY_UNIQUE_ID @"unique"
-#define KEY_POSITION @"position"
-#define KEY_TIME_LEFT_TO_REACH_PLAYER @"timeleft"
-#define KEY_MONSTER_TYPE @"monstertype"
 
 -(NSMutableDictionary *) serialize {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -140,6 +131,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [dict setObject:[NSNumber numberWithInt:self.points] forKey:KEY_POINTS];
     [dict setObject:[NSNumber numberWithBool:self.isSlatedToDie] forKey:KEY_IS_SLATED_TO_DIE];
     [dict setObject:[NSNumber numberWithInt:uniqueID] forKey:KEY_UNIQUE_ID];
+    [dict setObject:self.peerID forKey:KEY_PEER_ID];
     [dict setObject:[NSValue valueWithCGPoint:self.position] forKey:KEY_POSITION];
     [dict setObject:[NSNumber numberWithDouble:(self.moveAction.duration - self.moveAction.elapsed)] forKey:KEY_TIME_LEFT_TO_REACH_PLAYER];
     [dict setObject:[NSNumber numberWithInt:self.monsterType] forKey:KEY_MONSTER_TYPE];

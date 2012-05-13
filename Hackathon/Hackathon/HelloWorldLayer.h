@@ -47,5 +47,6 @@
 -(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device;
 -(void) sendJoinRequest:(Device *)device; // actually sends to all devices
 -(void) sendMonsterBornMessage:(Monster *)monster;
+-(void) sendMonsterDiedMessage:(Monster *)monster;
 
 @end

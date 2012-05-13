@@ -155,6 +155,9 @@ static MNCenter *mnCenter = nil;
         NSLog(@"Received msg from %@: %@", d.deviceName, msg);
     };
     
+    NSLog(@"MY PEER ID: %@", [HelloWorldLayer sharedMNCenter].sessionManager.meshSession.peerID);
+
+    
 }
 
 // on "init" you need to initialize your instance
@@ -260,7 +263,7 @@ static MNCenter *mnCenter = nil;
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
         Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
-        [newMonster setOwnerMe:YES uniqueID:0 peerID:nil]; // set me as owner
+        [newMonster setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].sessionManager.meshSession.peerID]; // set me as owner
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
@@ -290,6 +293,31 @@ static MNCenter *mnCenter = nil;
     [self showGameOverScreen];
 }
 
+-(void) remoteKillMonster:(NSDictionary *)dict device:(Device *)device {
+
+    NSString *word = [dict objectForKey:KEY_WORD];
+    //NSLog(@"REMOTE KILL WORD %@ PEER ID: %@ FOR UID %i", [dict objectForKey:KEY_WORD], [dict objectForKey:KEY_PEER_ID], [[dict objectForKey:KEY_UNIQUE_ID] intValue]);
+    int uid = [[dict objectForKey:KEY_UNIQUE_ID] intValue];
+    NSString *peerID = [dict objectForKey:KEY_PEER_ID];
+    // there will only be one such monster. Place it in a variable
+    Monster *theDead = nil;
+    
+    for (Monster *monster in self.monsters) {
+        if ((monster.uniqueID == uid)) {
+            if ([monster.peerID isEqualToString:peerID]) {
+                //NSLog(@"KILLING: %@", word);
+                theDead = monster;
+            }
+        }
+    }
+    
+    if (theDead) {
+        // For now, just kill the monster, since we don't yet have an associated player:
+        [theDead die];
+        [self.monsters removeObject:theDead];
+    }
+}
+
 // main update loop
 -(void) tick: (ccTime) dt {
     if (self.isGameOver)
@@ -308,6 +336,7 @@ static MNCenter *mnCenter = nil;
                 if ([monster attackWithWord:newWord]) {
                     monster.isSlatedToDie = YES;
                     [deadMonsters addObject:monster];
+                    [self sendMonsterDiedMessage:monster];
                 }
             }
             for (Monster *monster in deadMonsters) {
@@ -366,16 +395,21 @@ static MNCenter *mnCenter = nil;
     switch (peerMessageType) {
         case kMessageJoinRequest: {
             NSLog(@"New peer wants to join the game. Send them a dump of all current (local) monsters");
-            for (Monster *monster in self.monsters) {
-                if (monster.isMine) {
-                    [self sendMonsterBornMessage:monster];
-                }
-            }
+            // for now don't send any existing monsters:
+            //for (Monster *monster in self.monsters) {
+            //    if (monster.isMine) {
+            //        [self sendMonsterBornMessage:monster];
+            //    }
+            //}
         }
             break;
             
         case kMessageMonsterBorn:
             [self peerMonsterGenerator:dict device:device];
+            break;
+            
+        case kMessageMonsterDead:
+            [self remoteKillMonster:dict device:device];
             break;
             
         default:
@@ -402,6 +436,13 @@ static MNCenter *mnCenter = nil;
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
     [dict setObject:[NSNumber numberWithInt:kMessageMonsterBorn] forKey:MESSAGE_TYPE];
     [dict addEntriesFromDictionary:[monster serialize]];
+    [self sendMessage:dict];
+}
+
+-(void) sendMonsterDiedMessage:(Monster *)monster {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageMonsterDead] forKey:MESSAGE_TYPE];
+    [dict addEntriesFromDictionary:[monster serialize]]; // we can use the whole dictionary. The message type says it all so we won't parse the whole thing
     [self sendMessage:dict];
 }
 
