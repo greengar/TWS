@@ -38,6 +38,12 @@
         [self connected];
     };
     
+    networkCenter.dataReceivedCallback = ^(NSData *data, Device *device) {
+        NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        
+        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", device.deviceName, msg] toText:messages.text];
+    };
+    
     [networkCenter start];
     
 //    [networkCenter startWithDeviceAvailable:^(Device *device) {
@@ -56,13 +62,13 @@
 //        }
 //    }];
     
-    [networkCenter.sessionManager setOnStateChange:^{
-        [self connected];
-    }];
+//    [networkCenter.sessionManager setOnStateChange:^{
+//        [self connected];
+//    }];
     
-    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
-        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", d.deviceName, msg] toText:messages.text];
-    };
+//    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
+//        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", d.deviceName, msg] toText:messages.text];
+//    };
     
     //[connections release];
 }

@@ -10,7 +10,7 @@
 
 @implementation MNCenter
 
-@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock, deviceConnectedCallback, deviceDisconnectedCallback, receiveMessageCallback;
+@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock, deviceConnectedCallback, deviceDisconnectedCallback, dataReceivedCallback;
 
 - (id)init {
     if ((self = [super init])) {
@@ -21,9 +21,9 @@
     return self;
 }
 
-- (void)receiveString:(NSString *)str fromDevice:(Device *)d {
-    if (receiveMessageCallback) {
-        receiveMessageCallback(str, d);
+- (void)receiveData:(NSData *)data fromDevice:(Device *)d {
+    if (dataReceivedCallback) {
+        dataReceivedCallback(data, d);
     }
 }
 
