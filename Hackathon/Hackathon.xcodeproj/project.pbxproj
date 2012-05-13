@@ -158,6 +158,7 @@
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
 		F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */ = {isa = PBXBuildFile; fileRef = F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */; };
+		F92123501560344300706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921234F1560344300706C5D /* boss-dragon-1-hd.png */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -474,6 +475,7 @@
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-TwelveOrMore.txt"; sourceTree = "<group>"; };
+		F921234F1560344300706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 		901F8027155F45B70019E2F9 /* monsters */ = {
 			isa = PBXGroup;
 			children = (
+				F921234E1560343C00706C5D /* bossdragon */,
 				F95CBB60155FA4860008E77A /* redragon */,
 				901F8063155F67970019E2F9 /* ninja-standing-hd.png */,
 				901F8064155F67970019E2F9 /* ninja-standing.png */,
@@ -1045,6 +1048,14 @@
 			path = libs/CCTextField;
 			sourceTree = "<group>";
 		};
+		F921234E1560343C00706C5D /* bossdragon */ = {
+			isa = PBXGroup;
+			children = (
+				F921234F1560344300706C5D /* boss-dragon-1-hd.png */,
+			);
+			name = bossdragon;
+			sourceTree = "<group>";
+		};
 		F95CBB60155FA4860008E77A /* redragon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1189,6 +1200,7 @@
 				F95CBB5E155FA3030008E77A /* small-dragon-12-hd.png in Resources */,
 				F95CBB5F155FA3030008E77A /* small-dragon-12.png in Resources */,
 				F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */,
+				F92123501560344300706C5D /* boss-dragon-1-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
