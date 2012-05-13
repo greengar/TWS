@@ -15,7 +15,7 @@
 
 - (void)textFieldDidReturn:(CCTextField *)textField;
 - (BOOL)textField:(CCTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
-
+- (BOOL)textFieldShouldReturn:(CCTextField *)textField;
 @end
 
 @interface CCTextField : CCNode <UITextFieldDelegate, CCTargetedTouchDelegate> {

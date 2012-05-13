@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString *name;
 @property BOOL isMe;
-
+@property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
 
 -(Player *) initWithName:(NSString *) playerName;
 

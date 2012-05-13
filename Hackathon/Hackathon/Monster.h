@@ -18,7 +18,9 @@
 @property BOOL reachedPlayer;
 @property (nonatomic, retain) CCFiniteTimeAction *walkAction;
 
-- (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
++(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
+
+    - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
 -(BOOL) attackWithWord:(NSString *)word; // returns YES if monster dead
