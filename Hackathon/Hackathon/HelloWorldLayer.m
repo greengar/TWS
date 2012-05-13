@@ -267,6 +267,8 @@ static MNCenter *mnCenter = nil;
         [newMonster marchTo:playerPosition];
         NSLog(@"new monster is %@",newMonster);
         
+        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
+        
         for (Monster* monster in self.monsters) {
             [monster decreasePointValue];
         }

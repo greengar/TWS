@@ -152,7 +152,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     Monster *monster = nil;
     switch (mt) {
         case kMonsterTypeMinion:
-            monster = [[MinionDragon alloc] createWithWord:[@"PEER:" stringByAppendingString:  word]];
+            monster = [[MinionDragon alloc] createWithWord:word];
             break;
             
         default:
@@ -166,6 +166,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         monster.points = [[dict objectForKey:KEY_POINTS] intValue];
         monster.isSlatedToDie = [[dict objectForKey:KEY_IS_SLATED_TO_DIE] boolValue];
         monster->timeLeftToReachPlayer = [[dict objectForKey:KEY_TIME_LEFT_TO_REACH_PLAYER] doubleValue];
+        monster.color = ccBLACK; // debugging to mark remote monsters
     }
     return monster;
 
