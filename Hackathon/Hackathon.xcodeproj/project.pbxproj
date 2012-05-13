@@ -58,7 +58,6 @@
 		901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F8099155F7C480019E2F9 /* SessionManager.m */; };
 		901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F809D155F7C480019E2F9 /* DataHandler.m */; };
 		901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A0155F7C480019E2F9 /* MNCenter.m */; };
-		901F80AB155F7C480019E2F9 /* ABRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */; };
 		901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A5155F7C480019E2F9 /* DeviceCell.m */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
@@ -181,6 +180,7 @@
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
+		F96BD8A6155F815500CF399A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96BD8A5155F815500CF399A /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -242,8 +242,6 @@
 		901F809E155F7C480019E2F9 /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
 		901F809F155F7C480019E2F9 /* MNCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCenter.h; sourceTree = "<group>"; };
 		901F80A0155F7C480019E2F9 /* MNCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCenter.m; sourceTree = "<group>"; };
-		901F80A2155F7C480019E2F9 /* ABRecordSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRecordSerializer.h; sourceTree = "<group>"; };
-		901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRecordSerializer.m; sourceTree = "<group>"; };
 		901F80A4155F7C480019E2F9 /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
 		901F80A5155F7C480019E2F9 /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -492,6 +490,7 @@
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
+		F96BD8A5155F815500CF399A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +498,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96BD8A6155F815500CF399A /* GameKit.framework in Frameworks */,
 				90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */,
 				90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */,
 				90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */,
@@ -645,8 +645,6 @@
 		901F80A1155F7C480019E2F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				901F80A2155F7C480019E2F9 /* ABRecordSerializer.h */,
-				901F80A3155F7C480019E2F9 /* ABRecordSerializer.m */,
 				901F80A4155F7C480019E2F9 /* DeviceCell.h */,
 				901F80A5155F7C480019E2F9 /* DeviceCell.m */,
 			);
@@ -656,6 +654,7 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
+				F96BD8A5155F815500CF399A /* GameKit.framework */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
@@ -1281,7 +1280,6 @@
 				901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */,
 				901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */,
 				901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */,
-				901F80AB155F7C480019E2F9 /* ABRecordSerializer.m in Sources */,
 				901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
