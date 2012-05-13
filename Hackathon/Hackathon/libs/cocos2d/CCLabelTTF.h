@@ -47,6 +47,8 @@
 	NSString	*string_;
 }
 
+@property (nonatomic, readonly) CGSize dimensions;
+
 /** creates a CCLabel from a fontname, alignment, dimension in points, line break mode, and font size in points.
  Supported lineBreakModes:
  - iOS: all UILineBreakMode supported modes
@@ -58,7 +60,7 @@
 + (id) labelWithString:(NSString*)string dimensions:(CGSize)dimensions alignment:(CCTextAlignment)alignment fontName:(NSString*)name fontSize:(CGFloat)size;
 /** creates a CCLabel from a fontname and font size in points*/
 + (id) labelWithString:(NSString*)string fontName:(NSString*)name fontSize:(CGFloat)size;
-/** initializes the CCLabel with a font name, alignment, dimension in points, line brea mode and font size in points.
+/** initializes the CCLabel with a font name, alignment, dimension in points, line break mode and font size in points.
  Supported lineBreakModes:
  - iOS: all UILineBreakMode supported modes
  - Mac: Only NSLineBreakByWordWrapping is supported.

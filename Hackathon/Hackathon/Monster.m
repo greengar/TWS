@@ -20,6 +20,7 @@
 @synthesize peerID;
 @synthesize uniqueID;
 @synthesize moveAction = _moveAction;
+@synthesize completedLabel;
 @synthesize isMine;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
@@ -61,6 +62,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
         self.isSlatedToDie = NO;
         self.word = word;
+        lettersRemaining = word.length;
         self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;
         
@@ -68,6 +70,14 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
+        
+        self.completedLabel = [CCLabelTTF labelWithString:@"" dimensions:name.dimensions alignment:UITextAlignmentLeft fontName:@"Arial-BoldMT" fontSize:15];
+        self.completedLabel.color = ccc3(150, 150, 150);
+        [self.completedLabel setAnchorPoint:ccp(0, 1)];
+        [self addChild:self.completedLabel];
+        self.completedLabel.position = ccp(CGRectGetMinX(name.boundingBox),0 );
+        //name.position.x-(name.dimensions.width/2)
+        
         self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
         [self runAction:self.walkAction];
     }
@@ -101,11 +111,19 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [self runAction:self.moveAction];
 }
 
--(BOOL) attackWithWord:(NSString *)attackWord {
-    BOOL equal = [attackWord isEqualToString:self.word];
-    //NSLog(@"Equal: %i  %@ <-> %@", self.word, attackWord);
-    //NSLog(@"Length: %i <-> %i", [self.word length], [attackWord length]);
-    return equal;
+-(BOOL) attackWithString:(NSString *)string
+{
+    NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
+    if ([stringRemaining hasPrefix:string]) {
+        if (string.length >= lettersRemaining) {
+            return YES;
+        }
+        lettersRemaining -= string.length;
+    }
+    uint completedLength = self.word.length-lettersRemaining;
+    NSString *completedString = [self.word substringToIndex:completedLength];
+    self.completedLabel.string = completedString;
+    return NO;
 }
 
 -(void) decreasePointValue {

@@ -26,6 +26,7 @@ typedef enum {
 
 @interface Monster : CCSprite {
     double timeLeftToReachPlayer; // usually the full monster amount, but when deserializing monsters, might be less
+    uint lettersRemaining;
 }
 
 // IMPORTANT: If adding new fields that need to transfer between devices, make sure to update the serialize and deserialize methods!!!
@@ -35,6 +36,7 @@ typedef enum {
 @property BOOL reachedPlayer;
 @property (nonatomic, retain) CCFiniteTimeAction *walkAction; // movement animation
 @property (nonatomic, retain) CCActionInterval *moveAction; // actual movement towards player
+@property (nonatomic, retain) CCLabelTTF *completedLabel;
 @property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
 @property int uniqueID;
 @property (nonatomic, retain) NSString *peerID; // if a remote monster
@@ -46,7 +48,7 @@ typedef enum {
     - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
--(BOOL) attackWithWord:(NSString *)word; // returns YES if monster dead
+-(BOOL) attackWithString:(NSString *)string; // returns YES if monster dead
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;
 -(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
