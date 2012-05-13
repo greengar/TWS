@@ -205,10 +205,10 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
         if (![newWord isEqualToString:self.lastWord]) {
-            NSLog(@"New word: %@", newWord);
+            //NSLog(@"New word: %@", newWord);
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
-                    NSLog(@"Found one!!!!");
+                    //NSLog(@"Found one!!!!");
                     [deadMonsters addObject:monster];
                 }
             }
