@@ -16,8 +16,9 @@
 @property (nonatomic, retain) NSString* word;
 @property int points;
 @property BOOL reachedPlayer;
+@property (nonatomic, retain) CCFiniteTimeAction *walkAction;
 
-- (Monster*)createWithX:(int)x y:(int)y word:(NSString*)word;
+- (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
 -(BOOL) attackWithWord:(NSString *)word; // returns YES if monster dead

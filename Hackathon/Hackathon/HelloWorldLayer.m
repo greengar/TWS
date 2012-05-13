@@ -25,6 +25,7 @@
 @synthesize lastWord = _lastWord;
 @synthesize gameOverReason;
 @synthesize isGameOver;
+@synthesize myPlayer = _myPlayer;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -101,17 +102,12 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
-/*
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
 
-	
-		// position the label on the center of the screen
-		label.position =  ccp( screenSize.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-*/
+        // background
+        CCSprite *background = [CCSprite spriteWithFile:@"grass-background.png"];
+        background.position = ccpMult(ccpFromSize(screenSize), 0.5);
+        [self addChild:background z:-1];
+        
         // Timer label
         self.timerLabel = [CCLabelTTF labelWithString:@"HELLO" fontName:@"Arial-BoldMT" fontSize:20];
         [self.timerLabel setAnchorPoint:ccp(0, 1)];
@@ -151,7 +147,11 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self.textEntryFieldCC setText:@""];
         [self.textEntryFieldCC setFocus];
         
-        playerPosition = ccp(screenSize.width / 2, 210);
+        self.myPlayer = [[Player alloc] initWithName:[[UIDevice currentDevice] name]];
+        playerPosition = ccp(screenSize.width / 2, 215 + self.myPlayer.boundingBox.size.height / 2);
+        self.myPlayer.position = playerPosition;
+        self.myPlayer.isMe = YES;
+        [self addChild:self.myPlayer];
         
         [self resetGame]; // reset all counters, labels, etc.
         
@@ -169,7 +169,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         int randomWordGen = arc4random() % [self.dictionary count];
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
-        Monster* newMonster = [[Monster alloc] createWithX:randomXLoc y:screenSize.height word:newWord];
+        Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
+        newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
         [newMonster marchTo:playerPosition];
@@ -210,10 +211,10 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
         if (![newWord isEqualToString:self.lastWord]) {
-            NSLog(@"New word: %@", newWord);
+            //NSLog(@"New word: %@", newWord);
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
-                    NSLog(@"Found one!!!!");
+                    //NSLog(@"Found one!!!!");
                     [deadMonsters addObject:monster];
                 }
             }
@@ -261,7 +262,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.textEntryFieldUI = nil;
     self.textEntryFieldCC = nil;
     self.lastWord = nil;
-
+    self.myPlayer = nil;
 
 
 	// don't forget to call "super dealloc"
