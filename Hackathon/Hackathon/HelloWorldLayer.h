@@ -15,6 +15,7 @@
 #import "EndScreen.h"
 #import "BloodDrip.h"
 #import "MNCenter.h"
+#import "BossDragon.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
@@ -30,6 +31,7 @@
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
 @property (nonatomic, retain) NSMutableArray* dictionary;
+@property (nonatomic, retain) NSMutableArray* bossDictionary;
 @property (nonatomic, retain) NSMutableSet* monsters, *localMonsters;
 @property (nonatomic, retain) NSString *lastWord; // last word checked against the monsters
 @property (nonatomic, retain) UITextField *textEntryFieldUI;
@@ -42,6 +44,7 @@
 @property (nonatomic, retain) EndScreen* gameOverScreen;
 @property (nonatomic, retain) BloodDrip* blood;
 @property (nonatomic, retain) NSMutableSet *devices;
+@property (nonatomic, retain) BossDragon* boss;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

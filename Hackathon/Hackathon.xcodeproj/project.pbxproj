@@ -157,6 +157,19 @@
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
+		F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */ = {isa = PBXBuildFile; fileRef = F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */; };
+		F921237515603E5700706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236915603E5700706C5D /* boss-dragon-1-hd.png */; };
+		F921237615603E5700706C5D /* boss-dragon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236A15603E5700706C5D /* boss-dragon-1.png */; };
+		F921237715603E5700706C5D /* boss-dragon-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236B15603E5700706C5D /* boss-dragon-2-hd.png */; };
+		F921237815603E5700706C5D /* boss-dragon-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236C15603E5700706C5D /* boss-dragon-2.png */; };
+		F921237915603E5700706C5D /* boss-dragon-3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236D15603E5700706C5D /* boss-dragon-3-hd.png */; };
+		F921237A15603E5700706C5D /* boss-dragon-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236E15603E5700706C5D /* boss-dragon-3.png */; };
+		F921237B15603E5700706C5D /* boss-dragon-4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236F15603E5700706C5D /* boss-dragon-4-hd.png */; };
+		F921237C15603E5700706C5D /* boss-dragon-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237015603E5700706C5D /* boss-dragon-4.png */; };
+		F921237D15603E5700706C5D /* boss-dragon-5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237115603E5700706C5D /* boss-dragon-5-hd.png */; };
+		F921237E15603E5700706C5D /* boss-dragon-5.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237215603E5700706C5D /* boss-dragon-5.png */; };
+		F921237F15603E5700706C5D /* boss-dragon-6-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237315603E5700706C5D /* boss-dragon-6-hd.png */; };
+		F921238015603E5700706C5D /* boss-dragon-6.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237415603E5700706C5D /* boss-dragon-6.png */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -187,6 +200,7 @@
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
+		F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3ED06155FAA0E0096E10C /* BossDragon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -471,6 +485,19 @@
 		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-TwelveOrMore.txt"; sourceTree = "<group>"; };
+		F921236915603E5700706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
+		F921236A15603E5700706C5D /* boss-dragon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1.png"; sourceTree = "<group>"; };
+		F921236B15603E5700706C5D /* boss-dragon-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2-hd.png"; sourceTree = "<group>"; };
+		F921236C15603E5700706C5D /* boss-dragon-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2.png"; sourceTree = "<group>"; };
+		F921236D15603E5700706C5D /* boss-dragon-3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-3-hd.png"; sourceTree = "<group>"; };
+		F921236E15603E5700706C5D /* boss-dragon-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-3.png"; sourceTree = "<group>"; };
+		F921236F15603E5700706C5D /* boss-dragon-4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-4-hd.png"; sourceTree = "<group>"; };
+		F921237015603E5700706C5D /* boss-dragon-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-4.png"; sourceTree = "<group>"; };
+		F921237115603E5700706C5D /* boss-dragon-5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-5-hd.png"; sourceTree = "<group>"; };
+		F921237215603E5700706C5D /* boss-dragon-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-5.png"; sourceTree = "<group>"; };
+		F921237315603E5700706C5D /* boss-dragon-6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6-hd.png"; sourceTree = "<group>"; };
+		F921237415603E5700706C5D /* boss-dragon-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6.png"; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -504,6 +531,8 @@
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
+		F9E3ED05155FAA0E0096E10C /* BossDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDragon.h; sourceTree = "<group>"; };
+		F9E3ED06155FAA0E0096E10C /* BossDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDragon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +558,7 @@
 		901F8027155F45B70019E2F9 /* monsters */ = {
 			isa = PBXGroup;
 			children = (
+				F921234E1560343C00706C5D /* bossdragon */,
 				F95CBB60155FA4860008E77A /* redragon */,
 				901F8063155F67970019E2F9 /* ninja-standing-hd.png */,
 				901F8064155F67970019E2F9 /* ninja-standing.png */,
@@ -678,6 +708,8 @@
 				90FC0689155EFD23002C3BAE /* GameConfig.h */,
 				90FC06A8155F01F7002C3BAE /* Monster.h */,
 				90FC06A9155F01F7002C3BAE /* Monster.m */,
+				F9E3ED05155FAA0E0096E10C /* BossDragon.h */,
+				F9E3ED06155FAA0E0096E10C /* BossDragon.m */,
 				F96BD872155F075400CF399A /* MinionDragon.h */,
 				F96BD873155F075400CF399A /* MinionDragon.m */,
 				F95CBAF4155F90070008E77A /* BloodDrip.h */,
@@ -1019,6 +1051,7 @@
 		90FC067C155EFD23002C3BAE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */,
 				F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */,
 				90FC067D155EFD23002C3BAE /* Prefix.pch */,
 				90FC067E155EFD23002C3BAE /* main.m */,
@@ -1035,6 +1068,25 @@
 			);
 			name = CCTextField;
 			path = libs/CCTextField;
+			sourceTree = "<group>";
+		};
+		F921234E1560343C00706C5D /* bossdragon */ = {
+			isa = PBXGroup;
+			children = (
+				F921236915603E5700706C5D /* boss-dragon-1-hd.png */,
+				F921236A15603E5700706C5D /* boss-dragon-1.png */,
+				F921236B15603E5700706C5D /* boss-dragon-2-hd.png */,
+				F921236C15603E5700706C5D /* boss-dragon-2.png */,
+				F921236D15603E5700706C5D /* boss-dragon-3-hd.png */,
+				F921236E15603E5700706C5D /* boss-dragon-3.png */,
+				F921236F15603E5700706C5D /* boss-dragon-4-hd.png */,
+				F921237015603E5700706C5D /* boss-dragon-4.png */,
+				F921237115603E5700706C5D /* boss-dragon-5-hd.png */,
+				F921237215603E5700706C5D /* boss-dragon-5.png */,
+				F921237315603E5700706C5D /* boss-dragon-6-hd.png */,
+				F921237415603E5700706C5D /* boss-dragon-6.png */,
+			);
+			name = bossdragon;
 			sourceTree = "<group>";
 		};
 		F95CBB60155FA4860008E77A /* redragon */ = {
@@ -1180,6 +1232,19 @@
 				F95CBB5D155FA3030008E77A /* small-dragon-11.png in Resources */,
 				F95CBB5E155FA3030008E77A /* small-dragon-12-hd.png in Resources */,
 				F95CBB5F155FA3030008E77A /* small-dragon-12.png in Resources */,
+				F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */,
+				F921237515603E5700706C5D /* boss-dragon-1-hd.png in Resources */,
+				F921237615603E5700706C5D /* boss-dragon-1.png in Resources */,
+				F921237715603E5700706C5D /* boss-dragon-2-hd.png in Resources */,
+				F921237815603E5700706C5D /* boss-dragon-2.png in Resources */,
+				F921237915603E5700706C5D /* boss-dragon-3-hd.png in Resources */,
+				F921237A15603E5700706C5D /* boss-dragon-3.png in Resources */,
+				F921237B15603E5700706C5D /* boss-dragon-4-hd.png in Resources */,
+				F921237C15603E5700706C5D /* boss-dragon-4.png in Resources */,
+				F921237D15603E5700706C5D /* boss-dragon-5-hd.png in Resources */,
+				F921237E15603E5700706C5D /* boss-dragon-5.png in Resources */,
+				F921237F15603E5700706C5D /* boss-dragon-6-hd.png in Resources */,
+				F921238015603E5700706C5D /* boss-dragon-6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1298,8 +1363,8 @@
 				901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */,
 				901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */,
 				901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */,
-				901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */,
 				F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */,
+				F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

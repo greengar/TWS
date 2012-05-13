@@ -34,9 +34,13 @@
 @synthesize blood = _blood;
 @synthesize devices = _devices;
 @synthesize players = _players;
+@synthesize bossDictionary = _bossDictionary;
 @synthesize localMonsters = _localMonsters;
+@synthesize boss = _boss;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
+NSString* const BOSS_DICTIONARY_FILE = @"CommonWords-TwelveOrMore";
+
 
 #pragma mark - setters and getters 
 
@@ -60,6 +64,17 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 - (void)setDictionary:(NSMutableArray *)dictionary {
     _dictionary = dictionary;
+}
+
+- (NSMutableArray*)bossDictionary { 
+    if (_bossDictionary == nil) {
+        _bossDictionary = [[NSMutableArray alloc] init];
+    }
+    return _bossDictionary;
+}
+
+- (void)setBossDictionary:(NSMutableArray *)bossDictionary {
+    _bossDictionary = bossDictionary;
 }
 
 
@@ -106,6 +121,9 @@ static MNCenter *mnCenter = nil;
 -(void) resetGame {
     gameCount++;
     
+    // clear text field
+    self.textEntryFieldCC.text = @"";
+    
     // remove existing monsters
     for (Monster* monster in self.monsters) {
         [self removeChild:monster cleanup:YES];
@@ -122,6 +140,7 @@ static MNCenter *mnCenter = nil;
     nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
     score = 0;
     bossAppeared = NO;
+    self.textEntryFieldCC.text = @"";
     [self notifyTime:timeLeft];
     [self notifyScore:score];
     
@@ -221,12 +240,22 @@ static MNCenter *mnCenter = nil;
                 [self.dictionary addObject:word];
             }
         }
+        
+        filePath = [[NSBundle mainBundle] pathForResource:BOSS_DICTIONARY_FILE ofType:@"txt"];
+        fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
+        wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for (NSString* word in wordsWithBlanks) {
+            if (![[word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
+                [self.bossDictionary addObject:word];
+            }
+        }
+        
 
 //        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 //        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
-
-        //NSLog(@"the file contents are %@",fileContents);
-        //NSLog(@"the dictionary is : %@",self.dictionary);
+//        NSLog(@"the file contents are %@",fileContents);
+        
+        NSLog(@"the dictionary is : %@",self.bossDictionary);
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
@@ -300,6 +329,19 @@ static MNCenter *mnCenter = nil;
             [monster decreasePointValue];
         }
     }
+}
+
+-(void)generateBoss {
+    int randomBossWordGen = arc4random() % [self.bossDictionary count];
+    NSString* newWord = [self.bossDictionary objectAtIndex:MAX(0,(randomBossWordGen - 1))];
+    Monster* newBoss = [[BossDragon alloc] createWithWord:newWord];
+    [newBoss setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].peerID];
+    newBoss.position = ccp(screenSize.width/2,screenSize.height - newBoss.boundingBox.size.height/2);
+    self.boss = newBoss;
+    [self.monsters addObject:newBoss];
+    [self.localMonsters addObject:newBoss];
+    [self addChild:newBoss];
+    [self sendMonsterBornMessage:newBoss];
 }
 
 -(void)showBlood {
@@ -390,8 +432,15 @@ static MNCenter *mnCenter = nil;
         [self randomMonsterGenerator:dt];
 
         // add boss at 10 seconds remaining
-        if (min == 0 && sec <= 10 && bossAppeared == NO) {
-            bossAppeared = YES;
+        if (min == 0 && sec <= 10) {
+            if (bossAppeared == NO) {
+                bossAppeared = YES;
+                [self generateBoss];
+            }
+            if (sec % 3) {
+                [self.boss throwFireballAt:self.myPlayer];
+                NSLog(@"throw fireball");
+            }
             NSLog(@"10 sec left");
         }
     }        
@@ -411,10 +460,10 @@ static MNCenter *mnCenter = nil;
             score+=monster.points;
             [self notifyScore:score];
         }
-//        if ([deadMonsters count] > 0) {
-//            // we killed a monster, so clear field  
-//            self.textEntryFieldCC.text = @"";
-//        }
+        if ([deadMonsters count] > 0) {
+            // we killed a monster, so clear field  
+            self.textEntryFieldCC.text = @"";
+        }
         [self.monsters minusSet:deadMonsters]; // this same code appears again later ... ???
         [self.localMonsters minusSet:deadMonsters];
         self.lastWord = [NSString stringWithString:newWord];
@@ -486,7 +535,11 @@ static MNCenter *mnCenter = nil;
             return NO;
     }
     // which text field could it be?
-    return YES; 
+    return YES;
+}
+
+- (void)textFieldDidReturn:(CCTextField *)textField {
+    // intentionally do nothing
 }
 
 -(void) repositionPlayers {

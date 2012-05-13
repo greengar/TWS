@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Monster.h"
+#import "Constants.h"
+#import "Player.h"
 
 
-
-@interface MinionDragon : Monster {
+@interface BossDragon : Monster {
     
 }
 
--(MinionDragon *) createWithWord:(NSString *)word;
+-(BossDragon *) createWithWord:(NSString *)word;
+
+-(void) throwFireballAt:(Player *)player;
 
 @end

@@ -15,12 +15,13 @@
 @synthesize word = _word;
 @synthesize points = _points;
 @synthesize reachedPlayer;
-@synthesize walkAction = _walkAction;
+@synthesize movementAnimationAction = _walkAction;
 @synthesize isSlatedToDie;
 @synthesize peerID;
 @synthesize uniqueID;
 @synthesize moveAction = _moveAction;
 @synthesize isMine;
+@synthesize animation = _animation;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -53,9 +54,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     
     CCAnimation *animation = [Monster animationFromTemplate:animationTemplate andFrames:frames];
     NSAssert2(animation, @"Could not create animation for template %@ and frames %@", animationTemplate, frames);
-    
-    
-    
+    self.animation = animation;
     
     if (self = [super initWithSpriteFrame:[animation.frames lastObject] ]) {
         timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
@@ -68,8 +67,8 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
-        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
-        [self runAction:self.walkAction];
+//        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
+//        [self runAction:self.walkAction];
     }
     
     return self;
@@ -177,7 +176,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 - (void)dealloc
 {
     self.word = nil;
-    self.walkAction = nil;
+    self.movementAnimationAction = nil;
     self.peerID = nil;
     self.moveAction = nil;
     [super dealloc];
