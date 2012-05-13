@@ -16,6 +16,7 @@
 
 @synthesize deviceName;
 @synthesize peerID;
+@synthesize available, unavailable, connected, disconnected, connecting;
 
 - (id)initWithSession:(GKSession *)openSession peer:(NSString *)ID {
 	self = [super init];
@@ -33,7 +34,29 @@
 	return object && ([object isKindOfClass:[Device class]]) && ([((Device *) object).peerID isEqual:peerID]);
 }
 
-- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection {
+//typedef enum {
+//    GKPeerStateAvailable,
+//    GKPeerStateUnavailable,
+//    GKPeerStateConnected,
+//    GKPeerStateDisconnected,
+//    GKPeerStateConnecting
+//} GKPeerConnectionState;
+
+- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection
+{
+    if (unavailable) {
+        NSLog(@"device unavailable");
+        return;
+    }
+    if (connected) {
+        NSLog(@"device already connected");
+        return;
+    }
+    if (connecting) {
+        NSLog(@"device connecting");
+        return;
+    }
+    
 	// We need to persist this info, because the call to connect is assynchronous.
 	delegateToCallAboutConnection = delegate;
 	selectorToPerformWhenConnectionWasStablished = connectionStablishedConnection;
@@ -48,6 +71,10 @@
 }
 
 - (void)triggerConnectionSuccessfull:(NSNotification *)notification {
+    
+    // TODO: make sure this isn't triggered multiple times for multiple devices
+    NSLog(@"triggerConnectionSuccessfull:");
+    
 	Device *device = [notification.userInfo objectForKey:DEVICE_KEY];
 	
 	if ([self isEqual:device] && delegateToCallAboutConnection &&
@@ -95,6 +122,41 @@
 	}
 	
 	return found;
+}
+
+- (NSString *)appendStatus:(NSString *)status toString:(NSString *)string {
+    if (string == nil) {
+        return status;
+    }
+    
+    return [string stringByAppendingFormat:@", %@", status];
+}
+
+- (NSString *)statusString {
+    // states are not mutually exclusive
+    
+    //    GKPeerStateAvailable,
+    //    GKPeerStateUnavailable,
+    //    GKPeerStateConnected,
+    //    GKPeerStateDisconnected,
+    //    GKPeerStateConnecting
+    NSString *state = @"";
+    if (available) {
+        state = @"available";
+    }
+    if (unavailable) {
+        state = [self appendStatus:@"unavailable" toString:state];
+    }
+    if (connected) {
+        state = [self appendStatus:@"connected" toString:state];
+    }
+    if (disconnected) {
+        state = [self appendStatus:@"disconnected" toString:state];
+    }
+    if (connecting) {
+        state = [self appendStatus:@"connecting" toString:state];
+    }
+    return state;
 }
 
 - (BOOL)sendData:(NSData *)data error:(NSError **)error {

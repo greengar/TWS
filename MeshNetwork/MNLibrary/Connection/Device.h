@@ -9,6 +9,14 @@
 
 #import <GameKit/GameKit.h>
 
+//typedef enum {
+//    GKPeerStateAvailable,
+//    GKPeerStateUnavailable,
+//    GKPeerStateConnected,
+//    GKPeerStateDisconnected,
+//    GKPeerStateConnecting
+//} GKPeerConnectionState;
+
 @interface Device : NSObject {
 	GKSession *session;
 	
@@ -27,10 +35,17 @@
 - (void)cancelConnection;
 
 - (BOOL)isConnected;
+- (NSString *)statusString;
 
 - (BOOL)sendData:(NSData *)data error:(NSError **)error;
 
 @property (nonatomic, readonly) NSString *peerID;
 @property (nonatomic, readonly) NSString *deviceName;
+
+@property (nonatomic) BOOL available;
+@property (nonatomic) BOOL unavailable;
+@property (nonatomic) BOOL connected;
+@property (nonatomic) BOOL disconnected;
+@property (nonatomic) BOOL connecting;
 
 @end

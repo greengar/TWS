@@ -51,18 +51,70 @@
 	switch (state) {
 		case GKPeerStateConnected:
 			if (currentDevice) {
+                currentDevice.connected = YES;
+                
+                // set all disconnected = NO, connecting = NO
+                for (Device *d in [devicesManager sortedDevices]) {
+                    d.disconnected = NO;
+                    d.connecting = NO;
+                }
+                
+                // set some connecting = YES
+                NSArray *peerArray = [session peersWithConnectionState:GKPeerStateConnecting];
+                for (NSString *p in peerArray) {
+                    Device *d = [devicesManager deviceWithID:p];
+                    d.connecting = YES;
+                    NSLog(@"state of '%@' : connecting", d.deviceName);
+                }
+                
+                // set some disconnected = YES
+                NSArray *disconnectedPeers = [session peersWithConnectionState:GKPeerStateDisconnected];
+                for (NSString *p in disconnectedPeers) {
+                    Device *d = [devicesManager deviceWithID:p];
+                    d.disconnected = YES;
+                    NSLog(@"state of '%@' : disconnected", d.deviceName);
+                }
+                
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_CONNECTED object:nil userInfo:[self getDeviceInfo:currentDevice]];
 			}
 			break;
-		case GKPeerStateConnecting:
+		case GKPeerStateConnecting: // handle this together with 'Available'
 		case GKPeerStateAvailable:
 			if (!currentDevice) {
 				currentDevice = [self addDevice:peerID];
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_AVAILABLE object:nil userInfo:[self getDeviceInfo:currentDevice]];
 			}
+            
+            // set all connecting = NO, available = NO
+            for (Device *d in [devicesManager sortedDevices]) {
+                d.connecting = NO;
+                d.available = NO;
+            }
+            
+            // set some connecting = YES
+            NSArray *peerArray = [session peersWithConnectionState:GKPeerStateConnecting];
+            for (NSString *p in peerArray) {
+                Device *d = [devicesManager deviceWithID:p];
+                d.connecting = YES;
+                NSLog(@"state of '%@' : connecting", d.deviceName);
+            }
+            
+            // set some available = YES
+            peerArray = [session peersWithConnectionState:GKPeerStateAvailable];
+            for (NSString *p in peerArray) {
+                Device *d = [devicesManager deviceWithID:p];
+                d.available = YES;
+                NSLog(@"state of '%@' : available", d.deviceName);
+            }
+            
 			break;
 		case GKPeerStateUnavailable:
 			if (currentDevice) {
+                if (currentDevice.unavailable) {
+                    NSLog(@"%@ already unavailable", currentDevice.deviceName);
+                } else {
+                    currentDevice.unavailable = YES;
+                }
 				[currentDevice retain];
 				[self removeDevice:currentDevice];
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_UNAVAILABLE object:nil userInfo:[self getDeviceInfo:currentDevice]];
@@ -71,6 +123,21 @@
 			break;
 		case GKPeerStateDisconnected:
 			if (currentDevice) {
+                currentDevice.disconnected = YES;
+                
+                // set all connected = NO
+                for (Device *d in [devicesManager sortedDevices]) {
+                    d.connected = NO;
+                }
+                
+                // set some connected = YES
+                NSArray *connectedPeers = [session peersWithConnectionState:GKPeerStateConnected];
+                for (NSString *p in connectedPeers) {
+                    Device *d = [devicesManager deviceWithID:p];
+                    d.connected = YES;
+                    NSLog(@"state of '%@' : connected", d.deviceName);
+                }
+                
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_DISCONNECTED object:nil userInfo:[self getDeviceInfo:currentDevice]];
 			}
 			break;
