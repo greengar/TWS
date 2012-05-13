@@ -12,6 +12,7 @@
 @implementation Monster
 
 @synthesize word = _word;
+@synthesize points = _points;
 @synthesize reachedPlayer;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
@@ -25,13 +26,13 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     if (self = [super initWithFile:MINION_MONSTER_IMAGE]) {
         self.position = ccp(x,y);
         self.word = word;
+        self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;
         
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
-        
         
     }
     
@@ -60,6 +61,10 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     //NSLog(@"Equal: %i  %@ <-> %@", self.word, attackWord);
     //NSLog(@"Length: %i <-> %i", [self.word length], [attackWord length]);
     return equal;
+}
+
+-(void) decreasePointValue {
+    self.points = self.points - POINT_DECREASE_VALUE;
 }
 
 @end
