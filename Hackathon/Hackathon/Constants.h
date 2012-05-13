@@ -14,4 +14,9 @@
 #define MONSTER_MOVE_EVERY_X_SECONDS 3.0 // for now
 #define MONSTER_MOVE_DURATION_SECONDS 10.0 // seconds
 
+typedef enum {
+    kGameOverTimeOut=1,
+    kGameOverEaten
+} GameOverReasonType;
+
 #endif

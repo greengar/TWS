@@ -29,6 +29,8 @@
 @property (nonatomic, retain) UITextField *textEntryFieldUI;
 @property (nonatomic, retain) CCLabelTTF *textEntryLabel;
 @property (nonatomic, retain) CCTextField *textEntryFieldCC;
+@property GameOverReasonType gameOverReason;
+@property BOOL isGameOver;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
