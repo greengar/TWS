@@ -22,6 +22,7 @@
 @synthesize moveAction = _moveAction;
 @synthesize completedLabel;
 @synthesize isMine;
+@synthesize animation = _animation;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -54,9 +55,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     
     CCAnimation *animation = [Monster animationFromTemplate:animationTemplate andFrames:frames];
     NSAssert2(animation, @"Could not create animation for template %@ and frames %@", animationTemplate, frames);
-    
-    
-    
+    self.animation = animation;
     
     if (self = [super initWithSpriteFrame:[animation.frames lastObject] ]) {
         timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
@@ -76,10 +75,9 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         [self.completedLabel setAnchorPoint:ccp(0, 1)];
         [self addChild:self.completedLabel];
         self.completedLabel.position = ccp(CGRectGetMinX(name.boundingBox),0 );
-        //name.position.x-(name.dimensions.width/2)
         
-        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
-        [self runAction:self.walkAction];
+//        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:animation restoreOriginalFrame:NO]];
+//        [self runAction:self.walkAction];
     }
     
     return self;
