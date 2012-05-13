@@ -26,16 +26,20 @@
 	if (self) {
 		devicesManager = manager;
 
-		beamItSession = [[GKSession alloc] initWithSessionID:MESH_NETWORK_GLOBAL_SESSION_ID displayName:nil sessionMode:GKSessionModePeer];
-		beamItSession.delegate = self;
-		[beamItSession setDataReceiveHandler:handler withContext:nil];
+		meshSession = [[GKSession alloc] initWithSessionID:MESH_NETWORK_GLOBAL_SESSION_ID displayName:nil sessionMode:GKSessionModePeer];
+		meshSession.delegate = self;
+		[meshSession setDataReceiveHandler:handler withContext:nil];
 	}
 	
 	return self;
 }
 
 - (void)start {
-	beamItSession.available = YES;
+	meshSession.available = YES;
+}
+
+- (void)stop {
+    meshSession.available = NO;
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -74,7 +78,7 @@
 }
 
 - (Device *)addDevice:(NSString *)peerID {
-	Device *device = [[Device alloc] initWithSession:beamItSession peer:peerID];
+	Device *device = [[Device alloc] initWithSession:meshSession peer:peerID];
 	[devicesManager addDevice:device];
 	[device release];
 	
@@ -90,7 +94,7 @@
 }
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-	[beamItSession acceptConnectionFromPeer:peerID error:nil];
+	[meshSession acceptConnectionFromPeer:peerID error:nil];
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {

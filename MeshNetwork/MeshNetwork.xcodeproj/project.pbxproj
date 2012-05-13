@@ -34,6 +34,7 @@
 		A9B6370B155F143200BC9EAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B63709155F143200BC9EAB /* AddressBookUI.framework */; };
 		A9B6370D155F145D00BC9EAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */; };
 		A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B6370F155F17D100BC9EAB /* MNCenter.m */; };
+		A9B63714155F3C1300BC9EAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9B63712155F3C1300BC9EAB /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		A9B6370C155F145D00BC9EAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A9B6370E155F17D100BC9EAB /* MNCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNCenter.h; path = MNLibrary/MNCenter.h; sourceTree = SOURCE_ROOT; };
 		A9B6370F155F17D100BC9EAB /* MNCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNCenter.m; path = MNLibrary/MNCenter.m; sourceTree = SOURCE_ROOT; };
+		A9B63713155F3C1300BC9EAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				A9769190155F0F2E00AD11A6 /* ViewController.m */,
 				A9769192155F0F2E00AD11A6 /* ViewController_iPhone.xib */,
 				A9769195155F0F2E00AD11A6 /* ViewController_iPad.xib */,
+				A9B63712155F3C1300BC9EAB /* Localizable.strings */,
 				A9769184155F0F2E00AD11A6 /* Supporting Files */,
 			);
 			path = MeshNetwork;
@@ -346,6 +349,7 @@
 				A9769188155F0F2E00AD11A6 /* InfoPlist.strings in Resources */,
 				A9769194155F0F2E00AD11A6 /* ViewController_iPhone.xib in Resources */,
 				A9769197155F0F2E00AD11A6 /* ViewController_iPad.xib in Resources */,
+				A9B63714155F3C1300BC9EAB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +448,14 @@
 				A97691A8155F0F2F00AD11A6 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A9B63712155F3C1300BC9EAB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9B63713155F3C1300BC9EAB /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

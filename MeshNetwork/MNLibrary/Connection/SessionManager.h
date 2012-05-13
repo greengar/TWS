@@ -23,11 +23,12 @@
 #define DEVICE_KEY @"Device"
 
 @interface SessionManager : NSObject<GKSessionDelegate> {
-	GKSession *beamItSession;
+	GKSession *meshSession;
 	DevicesManager *devicesManager;
 }
 
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager;
 - (void)start;
+- (void)stop;
 
 @end

@@ -31,7 +31,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // enable Bluetooth
+    // enable Bluetooth - works on iOS 5.1, but not on iOS 5.1.1
     // private API: probably won't be allowed on the App Store!
     // be VERY careful about touching this code. it's VERY finicky
 #if TARGET_IPHONE_SIMULATOR

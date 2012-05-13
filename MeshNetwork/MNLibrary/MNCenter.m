@@ -31,6 +31,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnavailableNotification:) name:NOTIFICATION_DEVICE_UNAVAILABLE object:nil];
     
     [sessionManager start];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (NSArray *)sortedDevices {
@@ -51,6 +54,17 @@
 {
     // TODO: pass the device that became available
     deviceUnavailableBlock(nil);
+}
+
+- (void)applicationWillResignActiveNotification:(NSNotification *)n {
+    [sessionManager stop];
+}
+
+- (void)applicationDidBecomeActiveNotification:(NSNotification *)n
+{
+    if (deviceAvailableBlock && deviceUnavailableBlock) {
+        [sessionManager start];
+    }
 }
 
 - (NSString *)deviceName {
