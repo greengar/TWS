@@ -489,7 +489,11 @@ static MNCenter *mnCenter = nil;
             return NO;
     }
     // which text field could it be?
-    return YES; 
+    return YES;
+}
+
+- (void)textFieldDidReturn:(CCTextField *)textField {
+    // intentionally do nothing
 }
 
 -(void) repositionPlayers {
