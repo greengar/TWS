@@ -19,6 +19,7 @@
 #define BLOOD_MOVE_DURATION_SECONDS 1.5
 #define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
 #define BOSS_INITIAL_POINTS 200
+#define FIREBALL_EVERY_X_SECONDS 2 // for now
 #define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
 
 typedef enum {

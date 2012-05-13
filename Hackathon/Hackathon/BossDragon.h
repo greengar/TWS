@@ -19,6 +19,6 @@
 
 -(BossDragon *) createWithWord:(NSString *)word;
 
--(void) throwFireballAt:(Player *)player;
+//-(void) throwFireballAt:(Player *)player;
 
 @end

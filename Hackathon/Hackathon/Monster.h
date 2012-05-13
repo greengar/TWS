@@ -46,8 +46,8 @@ typedef enum {
 @property (nonatomic, retain) CCAnimation* animation;
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
-
-    - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
+- (Monster*)createWithWord:(NSString*)word;
+- (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
 -(BOOL) attackWithString:(NSString *)string; // returns YES if monster dead
