@@ -10,7 +10,7 @@
 
 @implementation MNCenter
 
-@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock, deviceConnectedCallback, deviceDisconnectedCallback, dataReceivedCallback;
+@synthesize sessionManager, deviceConnectedCallback, deviceDisconnectedCallback, dataReceivedCallback;
 
 - (id)init {
     NSLog(@"warning: using SessionID: mesh-network");
@@ -30,18 +30,6 @@
     if (dataReceivedCallback) {
         dataReceivedCallback(data, d);
     }
-}
-
-- (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub
-{
-    self.deviceAvailableBlock = ab;
-    self.deviceUnavailableBlock = ub;
-    
-    // Notifications being called from the SessionManager when devices become available/unavailable
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceAvailableNotification:) name:NOTIFICATION_DEVICE_AVAILABLE object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnavailableNotification:) name:NOTIFICATION_DEVICE_UNAVAILABLE object:nil];
-    
-    [self start];
 }
 
 - (void)start {
@@ -67,14 +55,17 @@
     }
 }
 
-- (void)sendDataToAllPeers:(NSData *)data callback:(ErrorBlock)callback
+- (BOOL)sendDataToAllPeers:(NSData *)data
 {
     NSError *error = nil;
     BOOL success = [sessionManager.meshSession sendDataToAllPeers:data withDataMode:GKSendDataReliable error:&error];
     if (!success) {
-        callback(error);
+        NSLog(@"failed to queue data for sending to all peers");
     }
-    // TODO: provide real async callback
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
+    return success;
 }
 
 - (BOOL)sendData:(NSData *)data toPeerID:(NSString *)peerID
@@ -82,7 +73,7 @@
     NSError *error = nil;
     BOOL success = [sessionManager.meshSession sendData:data toPeers:[NSArray arrayWithObject:peerID] withDataMode:GKSendDataReliable error:&error];
     if (!success) {
-        NSLog(@"failed to queue data for sending");
+        NSLog(@"failed to queue data for sending to one peer");
     }
     if (error) {
         NSLog(@"error: %@", error);
@@ -98,26 +89,13 @@
 	return nil;
 }
 
-- (void)deviceAvailableNotification:(NSNotification *)notification
-{
-    // TODO: pass the device that became available
-    deviceAvailableBlock(nil);
-}
-
-- (void)deviceUnavailableNotification:(NSNotification *)notification
-{
-    // TODO: pass the device that became available
-    deviceUnavailableBlock(nil);
-}
-
 - (void)applicationWillResignActiveNotification:(NSNotification *)n {
     [sessionManager stop];
 }
 
 - (void)applicationDidBecomeActiveNotification:(NSNotification *)n
 {
-    if ((deviceAvailableBlock && deviceUnavailableBlock) ||
-        (deviceConnectedCallback && deviceDisconnectedCallback)) {
+    if (deviceConnectedCallback && deviceDisconnectedCallback) {
         [sessionManager start];
     }
 }

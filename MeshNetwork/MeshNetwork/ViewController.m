@@ -85,9 +85,7 @@
     //////////////////////////////////////
     // 4. send data to all connected peers
     
-    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding] callback:^(NSError *err) {
-        NSLog(@"callback");
-    }];
+    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding]];
     
     // data sent is NOT received by myself, so add my own message to my own log
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
