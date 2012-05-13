@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 #import "Monster.h"
+#import "EndScreen.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer

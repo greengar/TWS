@@ -129,6 +129,7 @@
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
+		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +379,8 @@
 		F96BD872155F075400CF399A /* MinionDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionDragon.h; sourceTree = "<group>"; };
 		F96BD873155F075400CF399A /* MinionDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionDragon.m; sourceTree = "<group>"; };
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
+		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
+		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +462,8 @@
 				90FC052F155EFD21002C3BAE /* Resources */,
 				90FC0543155EFD21002C3BAE /* libs */,
 				90FC067C155EFD23002C3BAE /* Supporting Files */,
+				F96BD890155F4FC900CF399A /* EndScreen.h */,
+				F96BD891155F4FC900CF399A /* EndScreen.m */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";
@@ -979,6 +984,7 @@
 				90FC06AA155F01F7002C3BAE /* Monster.m in Sources */,
 				F96BD874155F075400CF399A /* MinionDragon.m in Sources */,
 				90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */,
+				F96BD892155F4FC900CF399A /* EndScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
