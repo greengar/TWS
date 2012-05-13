@@ -305,18 +305,40 @@ static MNCenter *mnCenter = nil;
 
 }
 
--(void)randomMonsterGenerator:(ccTime) dt {
+-(void)randomMonsterGenerator:(ccTime) dt monsterType:(MonsterType) monsterType {
     nextMonsterTimer -= dt;
     while (nextMonsterTimer < 0) {
-        nextMonsterTimer += MONSTER_EVERY_X_SECONDS;
-        
+
         // create new monster with random word and random location at the top
         int randomWordGen = arc4random() % [self.dictionary count];
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
+        double delta;
+        Monster* newMonster = nil;
+        CGPoint location;
         int randomXLoc = arc4random() % (int)screenSize.width;
-        Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
+
+        switch (monsterType) {
+            case kMonsterTypeMinion:
+                delta = MONSTER_EVERY_X_SECONDS;
+                newMonster = [[MinionDragon alloc] createWithWord:newWord];
+                location = ccp(randomXLoc, screenSize.height); 
+                break;
+                
+            case kMonsterTypeFireball:
+                delta = FIREBALL_EVERY_X_SECONDS;
+                newMonster = [[Fireball alloc] createWithWord:newWord];
+                location = ccp(screenSize.width/2, screenSize.height-self.boss.boundingBox.size.height/0.75);                break;
+                
+            default:
+                delta = 10000; // what the hell is going on?
+                return;
+                break;
+        }
+        nextMonsterTimer += delta;
+        
         [newMonster setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].peerID]; // set me as owner
-        newMonster.position = ccp(randomXLoc, screenSize.height);
+        newMonster.position = location;
+
         [self.monsters addObject:newMonster];
         [self.localMonsters addObject:newMonster]; // keep separate tab of local monsters
         [self addChild:newMonster];
@@ -331,6 +353,7 @@ static MNCenter *mnCenter = nil;
     }
 }
 
+/*
 -(void)fireballGenerator:(ccTime) dt {
     nextFireballTimer -= dt;
     while (nextFireballTimer < 0) {
@@ -354,6 +377,7 @@ static MNCenter *mnCenter = nil;
         }
     }
 }
+ */
 
 -(void)generateBoss {
     int randomBossWordGen = arc4random() % [self.bossDictionary count];
@@ -462,8 +486,11 @@ static MNCenter *mnCenter = nil;
     if (timeLeft > 0) { // game not over yet since timer still ticking
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
-        [self randomMonsterGenerator:dt];
-        [self fireballGenerator:dt];
+        if (timeLeft > 10) {
+            [self randomMonsterGenerator:dt monsterType:kMonsterTypeMinion];
+        } else {
+            [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
+        }
 
         // add boss at 10 seconds remaining
         if (min == 0 && sec <= 10) {

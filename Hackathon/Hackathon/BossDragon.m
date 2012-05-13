@@ -27,6 +27,10 @@
     return self;
 }
 
+-(void) marchTo:(CGPoint)destination {
+    return; // no movement for boss dragon
+}
+
 
 //-(void) throwFireballAt:(Player *)player {
 //    CCFiniteTimeAction *fireballAction = [CCCallBlock actionWithBlock:^{
