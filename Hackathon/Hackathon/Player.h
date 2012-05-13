@@ -11,13 +11,17 @@
 #import "Monster.h"
 
 @interface Player : CCSprite {
-    
+    CGSize screenSize;
 }
 
 @property (nonatomic, retain) NSString *name;
 @property BOOL isMe;
 @property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
+@property BOOL isLeaving; // YES once player is leaving screen. no new actions on it
+@property CGPoint eventualPosition; // incoming messaged will be shuttled here in case monster is still moving
 
 -(Player *) initWithName:(NSString *) playerName;
 -(void) throwWeaponAt:(Monster *)monster;
+-(void) walkTo:(CGPoint) newPos; // remote ninja moving
+-(void) walkOffScreen; // and going away
 @end

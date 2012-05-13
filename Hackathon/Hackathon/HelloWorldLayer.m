@@ -33,7 +33,7 @@
 @synthesize gameOverScreen = _gameOverScreen;
 @synthesize blood = _blood;
 @synthesize devices = _devices;
-
+@synthesize players = _players;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -128,6 +128,14 @@ static MNCenter *mnCenter = nil;
         [self.textEntryFieldCC setFocus];
     }
     [self sendJoinRequest:nil]; // broadcast request for monster info
+
+    // existing player re-walk onto the screen
+    for (Player *player in self.players.allValues) {
+        if (!player.isMe) {
+            player.position = ccp(-player.boundingBox.size.width / 2, self.myPlayer.position.y); // offscreen position. We'll rewalk them all on screen
+        }
+    }
+    [self repositionPlayers]; // reposition all remote players
 }
 
 -(void) initCommChannel {
@@ -135,14 +143,15 @@ static MNCenter *mnCenter = nil;
     MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
     networkCenter.deviceConnectedCallback = ^(Device *device) {
         [self.devices addObject:device];
-        NSLog(@"Connected: %@", [device deviceName]);
+        //NSLog(@"Connected: %@", [device deviceName]);
         [self sendJoinRequest:device];
         //[self connected];
     };
     
     networkCenter.deviceDisconnectedCallback = ^(Device *device) {
         [self.devices removeObject:device];
-        NSLog(@"Disconnected: %@", [device deviceName]);
+        [self remotePlayerLeft:device];
+        //NSLog(@"Disconnected: %@", [device deviceName]);
         
         //[self connected];
     };
@@ -156,8 +165,11 @@ static MNCenter *mnCenter = nil;
     networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
         NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         [self handleIncomingMessage:data fromDevice:d];
-        NSLog(@"Received msg from %@: %@", d.deviceName, msg);
+        //NSLog(@"Received msg from %@: %@", d.deviceName, msg);
     };
+    
+    //NSLog(@"MY PEER ID: %@", [HelloWorldLayer sharedMNCenter].sessionManager.meshSession.peerID);
+
     
 }
 
@@ -168,9 +180,8 @@ static MNCenter *mnCenter = nil;
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
-        [self initCommChannel];
-        
         self.lastWord = @"";
+        self.players = [NSMutableDictionary dictionaryWithCapacity:5];
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -230,6 +241,9 @@ static MNCenter *mnCenter = nil;
         gameCount = 0;
         [self resetGame]; // reset all counters, labels, etc.
         
+        [self initCommChannel];
+        [self.players setObject:self.myPlayer forKey:[HelloWorldLayer sharedMNCenter].peerID];
+
         [self schedule: @selector(tick:)];
         
 /*
@@ -245,11 +259,15 @@ static MNCenter *mnCenter = nil;
 }
 
 -(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
-
+    if (self.isGameOver)
+        return; // monsters don't bother us if we're not playing
     Monster *monster = [Monster deserialize:dict peerID:device.peerID];
     [self.monsters addObject:monster];
     [self addChild:monster];
-    [monster marchTo:playerPosition]; // will take into account time left
+    Player *player = [self.players objectForKey:device.peerID];
+    NSLog(@"COMM: Creating monster for which there's no peer on file: %@", device.peerID);
+    
+    [monster marchTo:player.eventualPosition];
 
 }
 
@@ -263,12 +281,14 @@ static MNCenter *mnCenter = nil;
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
         Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
-        [newMonster setOwnerMe:YES uniqueID:0 peerID:nil]; // set me as owner
+        [newMonster setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].peerID]; // set me as owner
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
-        [newMonster marchTo:playerPosition];
+        [newMonster marchTo:self.myPlayer.position];
         NSLog(@"new monster is %@",newMonster);
+        
+        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
         
         for (Monster* monster in self.monsters) {
             [monster decreasePointValue];
@@ -303,7 +323,40 @@ static MNCenter *mnCenter = nil;
 -(void) hitByMonster:(Monster *) monster {
     self.isGameOver = YES;
     self.gameOverReason = kGameOverEaten;
+    [self sendPlayerLeftMessage];
     [self showBlood];
+}
+
+-(void) remoteKillMonster:(NSDictionary *)dict device:(Device *)device {
+
+    NSString *word = [dict objectForKey:KEY_WORD];
+    //NSLog(@"REMOTE KILL WORD %@ PEER ID: %@ FOR UID %i", [dict objectForKey:KEY_WORD], [dict objectForKey:KEY_PEER_ID], [[dict objectForKey:KEY_UNIQUE_ID] intValue]);
+    int uid = [[dict objectForKey:KEY_UNIQUE_ID] intValue];
+    NSString *peerID = [dict objectForKey:KEY_PEER_ID];
+    // there will only be one such monster. Place it in a variable
+    Monster *theDead = nil;
+    
+    for (Monster *monster in self.monsters) {
+        if ((monster.uniqueID == uid)) {
+            if ([monster.peerID isEqualToString:peerID]) {
+                //NSLog(@"KILLING: %@", word);
+                theDead = monster;
+            }
+        }
+    }
+    
+    if (theDead) {
+        theDead.isSlatedToDie = YES;
+        // For now, just kill the monster, since we don't yet have an associated player:
+        Player *player = [self.players objectForKey:theDead.peerID];
+        if (player) {
+            [player throwWeaponAt:theDead];
+        } else {
+            // someone killed it but we don't know who. Just explode it
+            [theDead die];
+        }
+        [self.monsters removeObject:theDead];
+    }
 }
 
 // main update loop
@@ -319,6 +372,7 @@ static MNCenter *mnCenter = nil;
         // game over, timed out
         self.isGameOver = YES;
         self.gameOverReason = kGameOverTimeOut;
+        [self sendPlayerLeftMessage];
         [self showGameOverScreen];
     } 
     
@@ -342,6 +396,7 @@ static MNCenter *mnCenter = nil;
                 if ([monster attackWithWord:newWord]) {
                     monster.isSlatedToDie = YES;
                     [deadMonsters addObject:monster];
+                    [self sendMonsterDiedMessage:monster];
                 }
             }
             for (Monster *monster in deadMonsters) {
@@ -381,7 +436,82 @@ static MNCenter *mnCenter = nil;
     return YES; 
 }
 
+-(void) repositionPlayers {
+    int remotePlayers = [self.players count] - 1;
+    if (remotePlayers == 0)
+        return; // nothing to do
 
+    // identify if new player joined
+    
+    Player *firstPlayer = nil;
+    NSMutableArray *allPlayers = [NSMutableArray arrayWithArray:self.players.allValues];
+    [allPlayers removeObject:self.myPlayer];
+    for (Player *player in allPlayers) {
+        if (!CGRectContainsPoint(self.boundingBox, player.position)) {
+            // this player is off screen so just joining. give it prime position outside
+            firstPlayer = player;
+            break;
+        }
+    }
+    if (firstPlayer) {
+        [allPlayers removeObject:firstPlayer];
+        [allPlayers insertObject:firstPlayer atIndex:0]; // make sure it's the first player
+    }    
+    // Now position equidistantly around main player
+    if (remotePlayers % 2 == 0)
+        remotePlayers++; // make it odd for center placement
+
+    float deltaD = screenSize.width / (remotePlayers + 2); //  +2 for buffers on left and right of screen
+
+    int pos = - remotePlayers / 2; // start from left of screen
+    // now traverse in order
+    for (Player *player in allPlayers) {
+        if (pos == 0)
+            pos++; // 0 position is reserved for main player
+        CGPoint newPos = ccp(self.myPlayer.position.x + pos * deltaD, self.myPlayer.position.y);
+        [player walkTo:newPos];
+        pos++;
+    }
+}
+
+-(void) remotePlayerJoined:(Device *)device {
+    Player *player = [self.players objectForKey:device.peerID];
+    if (!player) {
+        // we don't have this player yet. create
+        player = [[Player alloc] initWithName:device.deviceName];
+        [self addChild:player];
+        [self.players setObject:player forKey:device.peerID];
+        // position off screen. Player will be animated onto it
+        player.position = ccp(-self.boundingBox.size.width, 215 + self.boundingBox.size.height / 2);
+        [self repositionPlayers];
+    } else {
+        NSLog(@"COMM: Player joining game they're alreayd part of: %@", device.peerID);
+    }
+        
+}
+
+-(void) remotePlayerLeft:(Device *)device {
+    Player *player = [self.players objectForKey:device.peerID];
+    if (player) {
+        if (!self.isGameOver) {
+            [player walkOffScreen];
+            [self repositionPlayers];
+        }
+        [self.players removeObjectForKey:device.peerID];
+        NSMutableSet *goneMonsters = [NSMutableSet setWithCapacity:5];
+        for (Monster *monster in self.monsters) {
+            if ((!monster.isMine) && [monster.peerID isEqualToString:device.peerID]) {
+                if (!self.isGameOver) {
+                    [monster walkOffScreen];
+                }
+                [goneMonsters addObject:monster];
+            }
+        }
+        [self.monsters minusSet:goneMonsters];
+    } else {
+        NSLog(@"COMM: Unknown player leaving the game. what to do what to do?: %@",device.peerID);
+    }
+}
 
 /************* Communication **************/
 
@@ -391,11 +521,15 @@ static MNCenter *mnCenter = nil;
     NSLog(@"Got message of type: %i", peerMessageType);
     switch (peerMessageType) {
         case kMessageJoinRequest: {
-            NSLog(@"New peer wants to join the game. Send them a dump of all current (local) monsters");
-            for (Monster *monster in self.monsters) {
-                if (monster.isMine) {
-                    [self sendMonsterBornMessage:monster];
-                }
+            if (!self.isGameOver) {
+                [self remotePlayerJoined:device];
+                //NSLog(@"New peer wants to join the game. Send them a dump of all current (local) monsters");
+                // for now don't send any existing monsters:
+                //for (Monster *monster in self.monsters) {
+                //    if (monster.isMine) {
+                //        [self sendMonsterBornMessage:monster];
+                //    }
+                //}
             }
         }
             break;
@@ -404,6 +538,13 @@ static MNCenter *mnCenter = nil;
             [self peerMonsterGenerator:dict device:device];
             break;
             
+        case kMessageMonsterDead:
+            [self remoteKillMonster:dict device:device];
+            break;
+            
+        case kMessagePlayerLeft:
+            [self remotePlayerLeft:device];
+            break;
         default:
             NSLog(@"unknown message type received!");
             break;
@@ -429,6 +570,19 @@ static MNCenter *mnCenter = nil;
     [self sendMessage:dict];
 }
 
+-(void) sendMonsterDiedMessage:(Monster *)monster {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageMonsterDead] forKey:MESSAGE_TYPE];
+    [dict addEntriesFromDictionary:[monster serialize]]; // we can use the whole dictionary. The message type says it all so we won't parse the whole thing
+    [self sendMessage:dict];
+}
+
+// notify that player left game (for whatever reason)
+-(void) sendPlayerLeftMessage {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessagePlayerLeft] forKey:MESSAGE_TYPE];
+    [self sendMessage:dict];
+}
 
 
 
@@ -447,7 +601,8 @@ static MNCenter *mnCenter = nil;
     self.lastWord = nil;
     self.myPlayer = nil;
     self.devices = nil;
-
+    self.players = nil;
+    
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }

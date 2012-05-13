@@ -38,6 +38,7 @@
 @property GameOverReasonType gameOverReason;
 @property BOOL isGameOver;
 @property (nonatomic, retain) Player *myPlayer;
+@property (nonatomic, retain) NSMutableDictionary *players;
 @property (nonatomic, retain) EndScreen* gameOverScreen;
 @property (nonatomic, retain) BloodDrip* blood;
 @property (nonatomic, retain) NSMutableSet *devices;
@@ -52,5 +53,7 @@
 -(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device;
 -(void) sendJoinRequest:(Device *)device; // actually sends to all devices
 -(void) sendMonsterBornMessage:(Monster *)monster;
+-(void) sendMonsterDiedMessage:(Monster *)monster;
+-(void) sendPlayerLeftMessage; 
 
 @end

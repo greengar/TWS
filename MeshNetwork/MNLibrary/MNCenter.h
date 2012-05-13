@@ -24,6 +24,7 @@ typedef void(^DataBlock)(NSData *, Device *);
 @property (nonatomic, copy) DeviceBlock deviceConnectedCallback;
 @property (nonatomic, copy) DeviceBlock deviceDisconnectedCallback;
 @property (nonatomic, copy) DataBlock dataReceivedCallback;
+@property (nonatomic, readonly) NSString *peerID;
 
 - (id)initWithSessionID:(NSString *)sessionID;
 - (void)start;
