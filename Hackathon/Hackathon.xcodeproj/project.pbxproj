@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		901F802A155F45C20019E2F9 /* small-dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8028155F45C20019E2F9 /* small-dragon.png */; };
+		901F802B155F45C20019E2F9 /* small-dragon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8029155F45C20019E2F9 /* small-dragon-hd.png */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -123,13 +125,15 @@
 		90FC0685155EFD23002C3BAE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0684155EFD23002C3BAE /* RootViewController.m */; };
 		90FC0688155EFD23002C3BAE /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */; };
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
-		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
-		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
+		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
+		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		901F8028155F45C20019E2F9 /* small-dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon.png"; sourceTree = "<group>"; };
+		901F8029155F45C20019E2F9 /* small-dragon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-hd.png"; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -368,12 +372,12 @@
 		90FC06A8155F01F7002C3BAE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		90FC06A9155F01F7002C3BAE /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
 		90FC06AB155F0262002C3BAE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		F96BD872155F075400CF399A /* MinionDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionDragon.h; sourceTree = "<group>"; };
-		F96BD873155F075400CF399A /* MinionDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionDragon.m; sourceTree = "<group>"; };
-		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F96BD872155F075400CF399A /* MinionDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionDragon.h; sourceTree = "<group>"; };
+		F96BD873155F075400CF399A /* MinionDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinionDragon.m; sourceTree = "<group>"; };
+		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +399,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		901F8027155F45B70019E2F9 /* monsters */ = {
+			isa = PBXGroup;
+			children = (
+				901F8028155F45C20019E2F9 /* small-dragon.png */,
+				901F8029155F45C20019E2F9 /* small-dragon-hd.png */,
+			);
+			name = monsters;
+			path = Resources/monsters;
+			sourceTree = "<group>";
+		};
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +466,7 @@
 		90FC052F155EFD21002C3BAE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				901F8027155F45B70019E2F9 /* monsters */,
 				90FC0530155EFD21002C3BAE /* Default.png */,
 				90FC0532155EFD21002C3BAE /* fps_images.png */,
 				90FC0534155EFD21002C3BAE /* Icon-72.png */,
@@ -851,6 +866,8 @@
 				90FC0542155EFD21002C3BAE /* iTunesArtwork in Resources */,
 				F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */,
 				90FC06CD155F1872002C3BAE /* README.md in Resources */,
+				901F802A155F45C20019E2F9 /* small-dragon.png in Resources */,
+				901F802B155F45C20019E2F9 /* small-dragon-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

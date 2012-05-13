@@ -13,7 +13,7 @@
 
 @synthesize word = _word;
 
-NSString* const MINION_MONSTER_IMAGE = @"icon.png";
+NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
 - (NSString*)description {
      NSString* description = [NSString stringWithFormat:@"xPos: %@, yPos: %@, word: %@",[NSNumber numberWithFloat:self.position.x],[NSNumber numberWithFloat:self.position.y],self.word];
