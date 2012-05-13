@@ -18,6 +18,9 @@
 @property BOOL reachedPlayer;
 @property (nonatomic, retain) CCFiniteTimeAction *walkAction;
 @property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
+@property int uniqueID;
+@property (nonatomic, retain) NSString *peerID; // if a remote monster
+
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
 
@@ -27,5 +30,6 @@
 -(BOOL) attackWithWord:(NSString *)word; // returns YES if monster dead
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;
+-(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
 
 @end

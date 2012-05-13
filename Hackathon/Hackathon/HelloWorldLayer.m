@@ -242,6 +242,7 @@ static MNCenter *mnCenter = nil;
         NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
         int randomXLoc = arc4random() % (int)screenSize.width;
         Monster* newMonster = [[MinionDragon alloc] createWithWord:newWord];
+        [newMonster setOwnerMe:YES uniqueID:0 peerID:nil]; // set me as owner
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];

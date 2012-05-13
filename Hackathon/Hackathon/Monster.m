@@ -16,6 +16,8 @@
 @synthesize reachedPlayer;
 @synthesize walkAction = _walkAction;
 @synthesize isSlatedToDie;
+@synthesize peerID;
+@synthesize uniqueID;
 
 NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 
@@ -105,10 +107,23 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     self.points = self.points - POINT_DECREASE_VALUE;
 }
 
+-(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
+    if (isMine) {
+        self.peerID = nil;
+        self.uniqueID = arc4random();
+    } else {
+        self.peerID = thePeerID;
+        self.uniqueID = theUniqueId;
+    }
+    NSLog(@"Peer: %@ ID: %i", self.peerID, self.uniqueID);
+}
+
 - (void)dealloc
 {
     self.word = nil;
     self.walkAction = nil;
+    self.peerID = nil;
+    
     [super dealloc];
 }
 
