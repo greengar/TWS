@@ -106,6 +106,9 @@ static MNCenter *mnCenter = nil;
 -(void) resetGame {
     gameCount++;
     
+    // clear text field
+    self.textEntryFieldCC.text = @"";
+    
     // remove existing monsters
     for (Monster* monster in self.monsters) {
         [self removeChild:monster cleanup:YES];
@@ -411,10 +414,10 @@ static MNCenter *mnCenter = nil;
             score+=monster.points;
             [self notifyScore:score];
         }
-//        if ([deadMonsters count] > 0) {
-//            // we killed a monster, so clear field  
-//            self.textEntryFieldCC.text = @"";
-//        }
+        if ([deadMonsters count] > 0) {
+            // we killed a monster, so clear field  
+            self.textEntryFieldCC.text = @"";
+        }
         [self.monsters minusSet:deadMonsters]; // this same code appears again later ... ???
         [self.localMonsters minusSet:deadMonsters];
         self.lastWord = [NSString stringWithString:newWord];
