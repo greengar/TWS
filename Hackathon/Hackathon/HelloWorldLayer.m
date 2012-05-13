@@ -32,9 +32,12 @@
 @synthesize blood = _blood;
 @synthesize devices = _devices;
 @synthesize players = _players;
+@synthesize bossDictionary = _bossDictionary;
 @synthesize localMonsters = _localMonsters;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
+NSString* const BOSS_DICTIONARY_FILE = @"CommonWords-TwelveOrMore";
+
 
 #pragma mark - setters and getters 
 
@@ -58,6 +61,17 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 - (void)setDictionary:(NSMutableArray *)dictionary {
     _dictionary = dictionary;
+}
+
+- (NSMutableArray*)bossDictionary { 
+    if (_bossDictionary == nil) {
+        _bossDictionary = [[NSMutableArray alloc] init];
+    }
+    return _bossDictionary;
+}
+
+- (void)setBossDictionary:(NSMutableArray *)bossDictionary {
+    _bossDictionary = bossDictionary;
 }
 
 
@@ -222,12 +236,22 @@ static MNCenter *mnCenter = nil;
                 [self.dictionary addObject:word];
             }
         }
+        
+        filePath = [[NSBundle mainBundle] pathForResource:BOSS_DICTIONARY_FILE ofType:@"txt"];
+        fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
+        wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for (NSString* word in wordsWithBlanks) {
+            if (![[word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
+                [self.bossDictionary addObject:word];
+            }
+        }
+        
 
 //        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 //        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
-
-        //NSLog(@"the file contents are %@",fileContents);
-        //NSLog(@"the dictionary is : %@",self.dictionary);
+//        NSLog(@"the file contents are %@",fileContents);
+        
+        NSLog(@"the dictionary is : %@",self.bossDictionary);
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
