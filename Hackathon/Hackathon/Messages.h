@@ -13,10 +13,10 @@ typedef enum {
     kMessageJoinRequest=1, // join a game, ask for a monster dump
     kMessageMonsterBorn,
     kMessageMonsterDead,
-    kMessagePlayerDied,
+    kMessagePlayerTyped,
     kMessagePlayerLeft,
 } PeerMessageType;
 
 #define MESSAGE_TYPE @"MessageType"
-
+#define KEY_TEXT @"text"
 #endif

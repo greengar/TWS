@@ -58,5 +58,6 @@
 -(void) sendMonsterBornMessage:(Monster *)monster;
 -(void) sendMonsterDiedMessage:(Monster *)monster;
 -(void) sendPlayerLeftMessage; 
+-(void) sendPlayerTypedMessage:(NSString *)text;
 
 @end
