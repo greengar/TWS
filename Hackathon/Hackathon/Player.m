@@ -23,6 +23,7 @@
 @synthesize swayAction = _swayAction;
 @synthesize throwAction = _throwAction;
 @synthesize isLeaving = _isLeaving;
+@synthesize eventualPosition;
 
 -(Player *) initWithName:(NSString *) playerName {
     CCAnimation *animation = [Monster animationFromTemplate:TEMPLATE_NAME andFrames:FRAME_ORDER];
@@ -87,11 +88,9 @@
                      nil]];
 }
 
--(void) walkOntoScreen {
-    // for now, just pick a random place for them. Later on we'll do some more interesting positioning
-    self.position = ccp(-self.boundingBox.size.width, 215 + self.boundingBox.size.height / 2);
-    CGPoint newPosition = ccp(screenSize.width / 3, 215 + self.boundingBox.size.height / 2);
-    [self runAction:[CCMoveTo actionWithDuration:0.5 position:newPosition]];
+-(void) walkTo:(CGPoint)newPos {
+    self.eventualPosition = newPos;
+    [self runAction:[CCMoveTo actionWithDuration:0.5 position:newPos]];
 
 }
 

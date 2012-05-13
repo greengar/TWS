@@ -132,9 +132,10 @@ static MNCenter *mnCenter = nil;
     // existing player re-walk onto the screen
     for (Player *player in self.players.allValues) {
         if (!player.isMe) {
-            [player walkOntoScreen];
+            player.position = ccp(-player.boundingBox.size.width / 2, self.myPlayer.position.y); // offscreen position. We'll rewalk them all on screen
         }
     }
+    [self repositionPlayers]; // reposition all remote players
 }
 
 -(void) initCommChannel {
@@ -258,14 +259,15 @@ static MNCenter *mnCenter = nil;
 }
 
 -(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
-
+    if (self.isGameOver)
+        return; // monsters don't bother us if we're not playing
     Monster *monster = [Monster deserialize:dict peerID:device.peerID];
     [self.monsters addObject:monster];
     [self addChild:monster];
     Player *player = [self.players objectForKey:device.peerID];
     NSLog(@"COMM: Creating monster for which there's no peer on file: %@", device.peerID);
     
-    [monster marchTo:player.position]; // will take into account time left
+    [monster marchTo:player.eventualPosition];
 
 }
 
@@ -434,14 +436,54 @@ static MNCenter *mnCenter = nil;
     return YES; 
 }
 
+-(void) repositionPlayers {
+    int remotePlayers = [self.players count] - 1;
+    if (remotePlayers == 0)
+        return; // nothing to do
+
+    // identify if new player joined
+    
+    Player *firstPlayer = nil;
+    NSMutableArray *allPlayers = [NSMutableArray arrayWithArray:self.players.allValues];
+    [allPlayers removeObject:self.myPlayer];
+    for (Player *player in allPlayers) {
+        if (!CGRectContainsPoint(self.boundingBox, player.position)) {
+            // this player is off screen so just joining. give it prime position outside
+            firstPlayer = player;
+            break;
+        }
+    }
+    if (firstPlayer) {
+        [allPlayers removeObject:firstPlayer];
+        [allPlayers insertObject:firstPlayer atIndex:0]; // make sure it's the first player
+    }    
+    // Now position equidistantly around main player
+    if (remotePlayers % 2 == 0)
+        remotePlayers++; // make it odd for center placement
+
+    float deltaD = screenSize.width / (remotePlayers + 2); //  +2 for buffers on left and right of screen
+
+    int pos = - remotePlayers / 2; // start from left of screen
+    // now traverse in order
+    for (Player *player in allPlayers) {
+        if (pos == 0)
+            pos++; // 0 position is reserved for main player
+        CGPoint newPos = ccp(self.myPlayer.position.x + pos * deltaD, self.myPlayer.position.y);
+        [player walkTo:newPos];
+        pos++;
+    }
+}
+
 -(void) remotePlayerJoined:(Device *)device {
     Player *player = [self.players objectForKey:device.peerID];
     if (!player) {
         // we don't have this player yet. create
         player = [[Player alloc] initWithName:device.deviceName];
         [self addChild:player];
-        [player walkOntoScreen];
         [self.players setObject:player forKey:device.peerID];
+        // position off screen. Player will be animated onto it
+        player.position = ccp(-self.boundingBox.size.width, 215 + self.boundingBox.size.height / 2);
+        [self repositionPlayers];
     } else {
         NSLog(@"COMM: Player joining game they're alreayd part of: %@", device.peerID);
     }
@@ -453,6 +495,7 @@ static MNCenter *mnCenter = nil;
     if (player) {
         if (!self.isGameOver) {
             [player walkOffScreen];
+            [self repositionPlayers];
         }
         [self.players removeObjectForKey:device.peerID];
         NSMutableSet *goneMonsters = [NSMutableSet setWithCapacity:5];
