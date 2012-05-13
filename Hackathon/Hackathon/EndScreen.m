@@ -84,6 +84,18 @@
     [self addChild:self.highScoreLabel z:3];
     
     // play again button
+    CCMenuItemFont *playAgainButton = [CCMenuItemFont itemFromString:@"Play Again!" target:self selector:@selector(resetGame:)];
+    [CCMenuItemFont setFontSize:25];
+    [CCMenuItemFont setFontName:@"Helvetica"];
+    CCMenu* myMenu = [CCMenu menuWithItems:playAgainButton, nil];
+    [myMenu setAnchorPoint:ccp(0.5,0.5)];
+    myMenu.position = ccp(screenSize.width/2,150);
+    [self addChild:myMenu z:3];
+}
+
+-(void)resetGame:(CCMenuItem *)item {
+    NSLog(@"the parent is %@",self.parent);
+    [self.parent resetGame];
 }
 
 @end

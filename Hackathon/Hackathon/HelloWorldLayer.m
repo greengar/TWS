@@ -10,7 +10,6 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 #import "Monster.h"
-#import "EndScreen.h"
 #import "MinionDragon.h"
 
 // HelloWorldLayer implementation
@@ -27,7 +26,7 @@
 @synthesize gameOverReason;
 @synthesize isGameOver;
 @synthesize myPlayer = _myPlayer;
-
+@synthesize gameOverScreen = _gameOverScreen;
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 #pragma mark - setters and getters 
@@ -53,6 +52,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 - (void)setDictionary:(NSMutableArray *)dictionary {
     _dictionary = dictionary;
 }
+
 
 +(CCScene *) scene
 {
@@ -83,6 +83,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 // reset all re-playable game elements
 -(void) resetGame {
+    NSLog(@"reset game called");
+    gameCount++;
     self.isGameOver = NO;
     self.gameOverReason = 0; // no reason
     timeLeft = GAME_LENGTH_SECONDS;
@@ -90,6 +92,19 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     score = 0;
     [self notifyTime:timeLeft];
     [self notifyScore:score];
+    
+    // remove existing monsters
+    for (Monster* monster in self.monsters) {
+        [self removeChild:monster cleanup:YES];
+    }
+    
+    [self.monsters removeAllObjects];
+    
+    if (gameCount > 1) {
+        NSLog(@"game over screen is %@",self.gameOverScreen);
+        [self removeChild:self.gameOverScreen cleanup:YES];
+        [self.textEntryFieldCC setFocus];
+    }
 }
 
 // on "init" you need to initialize your instance
@@ -154,6 +169,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         self.myPlayer.isMe = YES;
         [self addChild:self.myPlayer];
         
+        gameCount = 0;
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
@@ -186,9 +202,9 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 -(void) showGameOverScreen {
     // Kim - call the game over layer from here 
     [self.textEntryFieldCC hideKeyboard];
-    EndScreen* gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
-    [gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
-    [self addChild:gameOverScreen z:2];
+    self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
+    [self.gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
+    [self addChild:self.gameOverScreen z:2];
 }
 
 

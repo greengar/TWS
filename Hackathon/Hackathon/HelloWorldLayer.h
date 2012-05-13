@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "CCTextField.h"
 #import "Player.h"
+#import "EndScreen.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -21,6 +22,7 @@
     double score;
     CGSize screenSize;
     CGPoint playerPosition;
+    int gameCount;
 }
 
 @property (nonatomic, retain) CCLabelTTF *scoreLabel, *timerLabel;
@@ -33,6 +35,7 @@
 @property GameOverReasonType gameOverReason;
 @property BOOL isGameOver;
 @property (nonatomic, retain) Player *myPlayer;
+@property (nonatomic, retain) EndScreen* gameOverScreen;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
