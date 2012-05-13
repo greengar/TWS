@@ -349,11 +349,11 @@ static MNCenter *mnCenter = nil;
         [newMonster marchTo:self.myPlayer.position];
         NSLog(@"new monster is %@",newMonster);
         
-        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
-        
-        for (Monster* monster in self.monsters) {
-            [monster decreasePointValue];
-        }
+//        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
+//        
+//        for (Monster* monster in self.monsters) {
+//            [monster decreasePointValue];
+//        }
     }
 }
 
@@ -465,19 +465,14 @@ static MNCenter *mnCenter = nil;
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
-        [self fireballGenerator:dt];
 
         // add boss at 10 seconds remaining
-        if (min == 0 && sec <= 10) {
+        if (min == 0 && sec <= BOSS_APPEARS_AT_TIME_LEFT) {
             if (bossAppeared == NO) {
                 bossAppeared = YES;
-                //[self generateBoss];
+                [self generateBoss];
+                [self fireballGenerator:dt];
             }
-//            if (sec % 3) {
-//                [self.boss throwFireballAt:self.myPlayer];
-//                NSLog(@"throw fireball");
-//            }
-//            NSLog(@"10 sec left");
         }
     }        
     // check if a new word was entered (very inefficient) and then check against all monsters

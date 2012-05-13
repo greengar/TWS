@@ -7,6 +7,7 @@
 //
 
 #import "Fireball.h"
+#import "Constants.h"
 
 @implementation Fireball
 
@@ -15,7 +16,9 @@
     if ((self = (Fireball*)[super createWithWord:word])) {
         CCParticleSystemQuad *fireParticle = [CCParticleSystemQuad particleWithFile:@"Fireball.plist"];
         [self addChild:fireParticle];
-        fireParticle.position = self.position;
+        fireParticle.position = ccp(0,0);
+        
+        timeLeftToReachPlayer = FIREBALL_MOVE_DURATION_SECONDS;
     }
     return self;
 }

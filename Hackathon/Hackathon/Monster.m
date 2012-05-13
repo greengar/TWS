@@ -62,7 +62,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
-        name.position = ccp(self.boundingBox.size.width / 2,0 );
+        name.position = ccp(self.boundingBox.size.width / 2,-10);
     }
     return self;
 }
@@ -195,7 +195,6 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 -(int) getKillScore {
     float ratio = (self.moveAction.duration - self.moveAction.elapsed) / self.moveAction.duration; // this is how much time is left
     int score = ((float)self.points) * ratio;
-    NSLog(@"Monster score: %i out of %i", score, self.points);
     return score;
 }
 

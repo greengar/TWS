@@ -17,8 +17,10 @@
 #define POINT_DECREASE_VALUE 5.0;
 #define STAR_THROW_TIME 0.5
 #define BLOOD_MOVE_DURATION_SECONDS 1.5
+#define BOSS_APPEARS_AT_TIME_LEFT 10.0
 #define BOSS_INITIAL_POINTS 200
-#define FIREBALL_EVERY_X_SECONDS 2 // for now
+#define FIREBALL_EVERY_X_SECONDS 7.0 // for now
+#define FIREBALL_MOVE_DURATION_SECONDS 10.0 // seconds
 #define NINJA_WALK_ON_SCREEN_TIME 0.5 // remote ninjas showing up animation
 
 typedef enum {

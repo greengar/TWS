@@ -27,25 +27,8 @@
     return self;
 }
 
-
-//-(void) throwFireballAt:(Player *)player {
-//    CCFiniteTimeAction *fireballAction = [CCCallBlock actionWithBlock:^{
-//        CCParticleSystemQuad *fireParticle = [CCParticleSystemQuad particleWithFile:@"Fireball.plist"];
-//        Fireball *fireball = [Fireball spriteWithFile:@"blank.png"];
-//        [fireball addChild:fireParticle];
-//        fireball.position = self.position;
-//        [self.parent addChild:fireball];
-//
-//        CCFiniteTimeAction *playerIsHit = [CCCallBlock actionWithBlock:^{
-//            
-//        }];
-//        
-//        CCMoveTo *fireballMove = [CCMoveTo actionWithDuration:STAR_THROW_TIME position:player.position];
-//        [fireball runAction:[CCSequence actions:fireballMove, playerIsHit, nil]];
-//    }];
-//    [self runAction:[CCSequence actions:
-//                     fireballAction,
-//                     nil]];
-//}
+-(int) getKillScore {
+    return self.points;
+}
 
 @end
