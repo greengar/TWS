@@ -491,19 +491,6 @@ static MNCenter *mnCenter = nil;
         } else {
             [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
         }
-
-        // add boss at 10 seconds remaining
-        if (min == 0 && sec <= 10) {
-            if (bossAppeared == NO) {
-                bossAppeared = YES;
-                //[self generateBoss];
-            }
-//            if (sec % 3) {
-//                [self.boss throwFireballAt:self.myPlayer];
-//                NSLog(@"throw fireball");
-//            }
-//            NSLog(@"10 sec left");
-        }
     }
     
     // [monster killing moved to lower in this file]
