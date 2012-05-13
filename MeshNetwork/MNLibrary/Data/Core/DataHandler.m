@@ -131,6 +131,10 @@
 	Device *device = [devicesManager deviceWithID:peer];
 	
 	if (device) {
+        
+        NSLog(@"received data: %@", data);
+        
+        
 		// Checks if it's busy, otherwise call other handler methods
 		switch (currentState) {
 			case DHSNone:

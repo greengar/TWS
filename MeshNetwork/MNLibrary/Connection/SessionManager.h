@@ -22,13 +22,18 @@
 
 #define DEVICE_KEY @"Device"
 
+typedef void(^BasicBlock)(void);
+
 @interface SessionManager : NSObject<GKSessionDelegate> {
 	GKSession *meshSession;
 	DevicesManager *devicesManager;
 }
 
+@property (nonatomic, copy) BasicBlock onStateChange;
+
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager;
 - (void)start;
+- (void)sendStringToAllPeers:(NSString *)string callback:(ErrorBlock)callback;
 - (void)stop;
 
 @end

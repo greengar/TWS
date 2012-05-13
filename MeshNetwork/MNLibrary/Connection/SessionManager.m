@@ -20,6 +20,8 @@
 
 @implementation SessionManager
 
+@synthesize onStateChange;
+
 - (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager {
 	self = [super init];
 	
@@ -142,6 +144,10 @@
 			}
 			break;
 	}
+    
+    if (onStateChange) {
+        onStateChange();
+    }
 }
 
 - (Device *)addDevice:(NSString *)peerID {
@@ -171,6 +177,22 @@
 	if (currentDevice) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_CONNECTION_FAILED object:nil userInfo:[self getDeviceInfo:currentDevice]];
 	}
+}
+
+- (void)sendStringToAllPeers:(NSString *)string callback:(ErrorBlock)callback
+{
+    // from DataHandler:
+    
+//    [self showProcess:[NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_ACCEPTANCE_PROCESS", @"Waiting for acceptance"), currentStateRelatedDevice.deviceName]];
+//	NSString *strToSend = [NSString stringWithFormat:@"%@%@", BEAM_IT_REQUESTING_PERMISSION_TO_SEND, [dataProvider getLabelOfDataToSend]];
+//	[currentStateRelatedDevice sendData:[self dataFromString:strToSend] error:nil];
+    
+    NSError *error = nil;
+    BOOL success = [meshSession sendDataToAllPeers:[string dataUsingEncoding:NSUTF8StringEncoding] withDataMode:GKSendDataReliable error:&error];
+    if (!success) {
+        callback(error);
+    }
+    // TODO: provide real async callback
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

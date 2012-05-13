@@ -13,8 +13,8 @@
 
 typedef void(^DeviceBlock)(Device *);
 
-@interface MNCenter : NSObject {
-    SessionManager *sessionManager;
+@interface MNCenter : NSObject
+{
 	DataHandler *dataHandler;
 	DevicesManager *devicesManager;
     
@@ -22,6 +22,7 @@ typedef void(^DeviceBlock)(Device *);
     DeviceBlock deviceUnavailableBlock;
 }
 
+@property (nonatomic, retain) SessionManager *sessionManager;
 @property (nonatomic, copy) DeviceBlock deviceAvailableBlock;
 @property (nonatomic, copy) DeviceBlock deviceUnavailableBlock;
 

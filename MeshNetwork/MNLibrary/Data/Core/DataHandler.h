@@ -30,6 +30,8 @@ typedef enum
 	DHSSending
 } DataHandlerState;
 
+typedef void(^ErrorBlock)(NSError *);
+
 @interface DataHandler : NSObject {
 	DataHandlerState currentState;
 	Device *currentStateRelatedDevice;

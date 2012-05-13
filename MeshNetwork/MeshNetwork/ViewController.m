@@ -21,39 +21,49 @@
     
     networkCenter = [[MNCenter alloc] init];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
-    label.numberOfLines = 10;
-    label.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
-    [self.view addSubview:label];
+    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
+    [self.view addSubview:connections];
     
     [networkCenter startWithDeviceAvailable:^(Device *device) {
         NSLog(@"device became available");
-        label.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
         for (Device *d in [networkCenter sortedDevices]) {
             // no harm should come from attempting to connect to already-connected devices
             [d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)];
-            label.text = [label.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+            connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
         }
     } deviceUnavailable:^(Device *device) {
         NSLog(@"device became unavailable");
-        label.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
         for (Device *d in [networkCenter sortedDevices]) {
-            label.text = [label.text stringByAppendingFormat:@"%@\n", d.deviceName];
+            connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
         }
     }];
     
-    //[label release];
+    [networkCenter.sessionManager setOnStateChange:^{
+        [self connected];
+    }];
+    
+    //[connections release];
 }
 
 - (void)connected {
-    label.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
+    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
     for (Device *d in [networkCenter sortedDevices]) {
-        label.text = [label.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+        connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
     }
 }
 
 - (void)notConnected {
     // ...
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [networkCenter.sessionManager sendStringToAllPeers:@"test" callback:^(NSError *err) {
+        NSLog(@"callback");
+    }];
+    return YES;
 }
 
 - (void)viewDidUnload

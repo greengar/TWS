@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MNCenter.h"
 
-@interface ViewController : UIViewController {
+@interface ViewController : UIViewController <UITextFieldDelegate> {
     MNCenter *networkCenter;
-    UILabel *label;
+    IBOutlet UILabel *connections;
+    IBOutlet UILabel *messages;
 }
 
 @end

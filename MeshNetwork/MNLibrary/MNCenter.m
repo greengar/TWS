@@ -10,7 +10,7 @@
 
 @implementation MNCenter
 
-@synthesize deviceAvailableBlock, deviceUnavailableBlock;
+@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock;
 
 - (id)init {
     if ((self = [super init])) {
