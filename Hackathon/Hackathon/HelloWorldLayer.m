@@ -17,6 +17,8 @@
 #import "Fireball.h"
 #import <objc/runtime.h>
 
+#define NETWORK_SESSION_ID @"ninjasvsdragons3"
+
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 
@@ -92,7 +94,7 @@ static MNCenter *mnCenter = nil;
 +(MNCenter *) sharedMNCenter {
 
     if (!mnCenter) {
-        mnCenter = [[MNCenter alloc] initWithSessionID:@"ninjasvsdragons"];
+        mnCenter = [[MNCenter alloc] initWithSessionID:NETWORK_SESSION_ID];
     }
     return mnCenter;
 
