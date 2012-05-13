@@ -531,30 +531,7 @@
 		901F8027155F45B70019E2F9 /* monsters */ = {
 			isa = PBXGroup;
 			children = (
-				F95CBB30155FA2FF0008E77A /* small-dragon-1-hd.png */,
-				F95CBB31155FA2FF0008E77A /* small-dragon-1.png */,
-				F95CBB32155FA3000008E77A /* small-dragon-2-hd.png */,
-				F95CBB33155FA3000008E77A /* small-dragon-2.png */,
-				F95CBB34155FA3000008E77A /* small-dragon-3-hd.png */,
-				F95CBB35155FA3000008E77A /* small-dragon-3.png */,
-				F95CBB36155FA3000008E77A /* small-dragon-4-hd.png */,
-				F95CBB37155FA3010008E77A /* small-dragon-4.png */,
-				F95CBB38155FA3010008E77A /* small-dragon-5-hd.png */,
-				F95CBB39155FA3010008E77A /* small-dragon-5.png */,
-				F95CBB3A155FA3010008E77A /* small-dragon-6-hd.png */,
-				F95CBB3B155FA3010008E77A /* small-dragon-6.png */,
-				F95CBB3C155FA3010008E77A /* small-dragon-7-hd.png */,
-				F95CBB3D155FA3020008E77A /* small-dragon-7.png */,
-				F95CBB3E155FA3020008E77A /* small-dragon-8-hd.png */,
-				F95CBB3F155FA3020008E77A /* small-dragon-8.png */,
-				F95CBB40155FA3020008E77A /* small-dragon-9-hd.png */,
-				F95CBB41155FA3020008E77A /* small-dragon-9.png */,
-				F95CBB42155FA3020008E77A /* small-dragon-10-hd.png */,
-				F95CBB43155FA3030008E77A /* small-dragon-10.png */,
-				F95CBB44155FA3030008E77A /* small-dragon-11-hd.png */,
-				F95CBB45155FA3030008E77A /* small-dragon-11.png */,
-				F95CBB46155FA3030008E77A /* small-dragon-12-hd.png */,
-				F95CBB47155FA3030008E77A /* small-dragon-12.png */,
+				F95CBB60155FA4860008E77A /* redragon */,
 				901F8063155F67970019E2F9 /* ninja-standing-hd.png */,
 				901F8064155F67970019E2F9 /* ninja-standing.png */,
 			);
@@ -1069,6 +1046,37 @@
 			);
 			name = CCTextField;
 			path = libs/CCTextField;
+			sourceTree = "<group>";
+		};
+		F95CBB60155FA4860008E77A /* redragon */ = {
+			isa = PBXGroup;
+			children = (
+				F95CBB30155FA2FF0008E77A /* small-dragon-1-hd.png */,
+				F95CBB31155FA2FF0008E77A /* small-dragon-1.png */,
+				F95CBB32155FA3000008E77A /* small-dragon-2-hd.png */,
+				F95CBB33155FA3000008E77A /* small-dragon-2.png */,
+				F95CBB34155FA3000008E77A /* small-dragon-3-hd.png */,
+				F95CBB35155FA3000008E77A /* small-dragon-3.png */,
+				F95CBB36155FA3000008E77A /* small-dragon-4-hd.png */,
+				F95CBB37155FA3010008E77A /* small-dragon-4.png */,
+				F95CBB38155FA3010008E77A /* small-dragon-5-hd.png */,
+				F95CBB39155FA3010008E77A /* small-dragon-5.png */,
+				F95CBB3A155FA3010008E77A /* small-dragon-6-hd.png */,
+				F95CBB3B155FA3010008E77A /* small-dragon-6.png */,
+				F95CBB3C155FA3010008E77A /* small-dragon-7-hd.png */,
+				F95CBB3D155FA3020008E77A /* small-dragon-7.png */,
+				F95CBB3E155FA3020008E77A /* small-dragon-8-hd.png */,
+				F95CBB3F155FA3020008E77A /* small-dragon-8.png */,
+				F95CBB40155FA3020008E77A /* small-dragon-9-hd.png */,
+				F95CBB41155FA3020008E77A /* small-dragon-9.png */,
+				F95CBB42155FA3020008E77A /* small-dragon-10-hd.png */,
+				F95CBB43155FA3030008E77A /* small-dragon-10.png */,
+				F95CBB44155FA3030008E77A /* small-dragon-11-hd.png */,
+				F95CBB45155FA3030008E77A /* small-dragon-11.png */,
+				F95CBB46155FA3030008E77A /* small-dragon-12-hd.png */,
+				F95CBB47155FA3030008E77A /* small-dragon-12.png */,
+			);
+			name = redragon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
