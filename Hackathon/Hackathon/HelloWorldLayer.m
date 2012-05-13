@@ -136,12 +136,9 @@ static MNCenter *mnCenter = nil;
         }
     }];
     
-    [networkCenter.sessionManager setOnStateChange:^{
-        //[self connected];
-    }];
-    
-    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
-        NSLog(@"Received message from %@: %@", d.deviceName, msg);
+    networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
+        NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        NSLog(@"Received msg from %@: %@", d.deviceName, msg);
     };
     
 }
