@@ -327,9 +327,9 @@ static MNCenter *mnCenter = nil;
         
         [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
         
-        for (Monster* monster in self.monsters) {
-            [monster decreasePointValue];
-        }
+        //for (Monster* monster in self.monsters) {
+        //    [monster decreasePointValue];
+        //}
     }
 }
 
@@ -393,10 +393,18 @@ static MNCenter *mnCenter = nil;
     [self addChild:self.gameOverScreen z:3];
 }
 
+// remove leftover monsters. for some reason they're sticking around
+-(void) endOfGameCleanup {
+    for (Monster* monster in self.monsters) {
+        [monster removeFromParentAndCleanup:YES];
+    }
+    
+}
 
 -(void) hitByMonster:(Monster *) monster {
     self.isGameOver = YES;
     self.gameOverReason = kGameOverEaten;
+    [self endOfGameCleanup];
     [self sendPlayerLeftMessage];
     [self showBlood];
 }
@@ -447,6 +455,7 @@ static MNCenter *mnCenter = nil;
         // game over, timed out
         self.isGameOver = YES;
         self.gameOverReason = kGameOverTimeOut;
+        [self endOfGameCleanup];
         [self sendPlayerLeftMessage];
         [self showGameOverScreen];
         return; // nothing further to do
@@ -462,7 +471,7 @@ static MNCenter *mnCenter = nil;
         if (min == 0 && sec <= 10) {
             if (bossAppeared == NO) {
                 bossAppeared = YES;
-                [self generateBoss];
+                //[self generateBoss];
             }
 //            if (sec % 3) {
 //                [self.boss throwFireballAt:self.myPlayer];
@@ -483,8 +492,8 @@ static MNCenter *mnCenter = nil;
             }
         }
         for (Monster *monster in deadMonsters) {
+            score+=[monster getKillScore];
             [self.myPlayer throwWeaponAt:monster];
-            score+=monster.points;
             [self notifyScore:score];
         }
         if ([deadMonsters count] > 0) {
@@ -494,6 +503,7 @@ static MNCenter *mnCenter = nil;
         [self.monsters minusSet:deadMonsters]; // this same code appears again later ... ???
         [self.localMonsters minusSet:deadMonsters];
         self.lastWord = [NSString stringWithString:newWord];
+        [self sendPlayerTypedMessage:self.lastWord];
     }
     
     // Check for monsters that have reached the player
@@ -646,6 +656,16 @@ static MNCenter *mnCenter = nil;
     }
 }
 
+-(void) remotePlayerTyped:(NSDictionary *)dict device:(Device *)device {
+    NSString *text = [dict objectForKey:KEY_TEXT];
+    Player *player = [self.players objectForKey:device.peerID];
+    if (player) {
+        [player notifyTypedMessage:text];
+    } else {
+        NSLog(@"COMM: Typed message from unknown player %@: %@", device.peerID, text );
+    }
+}
+
 /************* Communication **************/
 
 -(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device {
@@ -678,6 +698,11 @@ static MNCenter *mnCenter = nil;
         case kMessagePlayerLeft:
             [self remotePlayerLeft:device];
             break;
+            
+        case kMessagePlayerTyped:
+            [self remotePlayerTyped:dict device:device];
+            break;
+            
         default:
             NSLog(@"unknown message type received!");
             break;
@@ -717,6 +742,13 @@ static MNCenter *mnCenter = nil;
     [self sendMessage:dict];
 }
 
+// notify that player typed a message
+-(void) sendPlayerTypedMessage:(NSString *)text {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessagePlayerTyped] forKey:MESSAGE_TYPE];
+    [dict setObject:text forKey:KEY_TEXT];
+    [self sendMessage:dict];
+}
 
 
 // on "dealloc" you need to release all your retained objects

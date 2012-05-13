@@ -19,9 +19,11 @@
 @property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
 @property BOOL isLeaving; // YES once player is leaving screen. no new actions on it
 @property CGPoint eventualPosition; // incoming messaged will be shuttled here in case monster is still moving
+@property (nonatomic, retain) CCLabelTTF *nameLabel; // starts with player name, gets updated as they type
 
 -(Player *) initWithName:(NSString *) playerName;
 -(void) throwWeaponAt:(Monster *)monster;
 -(void) walkTo:(CGPoint) newPos; // remote ninja moving
 -(void) walkOffScreen; // and going away
+-(void) notifyTypedMessage:(NSString *) text; // remote user typd. Show on screen
 @end
