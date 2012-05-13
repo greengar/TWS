@@ -149,6 +149,7 @@ static MNCenter *mnCenter = nil;
     
     networkCenter.deviceDisconnectedCallback = ^(Device *device) {
         [self.devices removeObject:device];
+        [self remotePlayerLeft:device];
         NSLog(@"Disconnected: %@", [device deviceName]);
         
         //[self connected];
