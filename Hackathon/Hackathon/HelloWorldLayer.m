@@ -34,6 +34,7 @@
 @synthesize blood = _blood;
 @synthesize devices = _devices;
 @synthesize players = _players;
+@synthesize localMonsters = _localMonsters;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -111,6 +112,8 @@ static MNCenter *mnCenter = nil;
     }
     
     [self.monsters removeAllObjects];
+    [self.localMonsters removeAllObjects];
+    
     [self removeChild:self.blood cleanup:YES];
     
     self.isGameOver = NO;
@@ -182,7 +185,9 @@ static MNCenter *mnCenter = nil;
 		
         self.lastWord = @"";
         self.players = [NSMutableDictionary dictionaryWithCapacity:5];
-		// ask director the the window size
+        self.localMonsters = [NSMutableSet setWithCapacity:5];
+		
+        // ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
 
@@ -284,6 +289,7 @@ static MNCenter *mnCenter = nil;
         [newMonster setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].peerID]; // set me as owner
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
+        [self.localMonsters addObject:newMonster]; // keep separate tab of local monsters
         [self addChild:newMonster];
         [newMonster marchTo:self.myPlayer.position];
         NSLog(@"new monster is %@",newMonster);
@@ -356,6 +362,7 @@ static MNCenter *mnCenter = nil;
             [theDead die];
         }
         [self.monsters removeObject:theDead];
+        [self.localMonsters removeObject:theDead];
     }
 }
 
@@ -368,7 +375,7 @@ static MNCenter *mnCenter = nil;
     int sec = ((int) timeLeft) % 60;
     
     // game is over, time is up and all monsters created are killed
-    if (timeLeft <= 0 && [self.monsters count] == 0) {
+    if (timeLeft <= 0 && [self.localMonsters count] == 0) {
         // game over, timed out
         self.isGameOver = YES;
         self.gameOverReason = kGameOverTimeOut;
@@ -409,6 +416,7 @@ static MNCenter *mnCenter = nil;
                 self.textEntryFieldCC.text = @"";
             }
             [self.monsters minusSet:deadMonsters];
+            [self.localMonsters minusSet:deadMonsters];
             self.lastWord = [NSString stringWithString:newWord];
         }
         
@@ -602,6 +610,7 @@ static MNCenter *mnCenter = nil;
     self.myPlayer = nil;
     self.devices = nil;
     self.players = nil;
+    self.localMonsters = nil;
     
 	// don't forget to call "super dealloc"
 	[super dealloc];
