@@ -12,6 +12,9 @@
 #import "Monster.h"
 #import "MinionDragon.h"
 #import "BloodDrip.h"
+#import "MNCenter.h"
+#import "Messages.h"
+#import <objc/runtime.h>
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -29,6 +32,9 @@
 @synthesize myPlayer = _myPlayer;
 @synthesize gameOverScreen = _gameOverScreen;
 @synthesize blood = _blood;
+@synthesize devices = _devices;
+
+
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 #pragma mark - setters and getters 
@@ -199,6 +205,12 @@ static MNCenter *mnCenter = nil;
                 [self.dictionary addObject:word];
             }
         }
+
+//        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
+//        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
+
+        //NSLog(@"the file contents are %@",fileContents);
+        //NSLog(@"the dictionary is : %@",self.dictionary);
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;

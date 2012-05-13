@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "EndScreen.h"
 #import "BloodDrip.h"
+#import "MNCenter.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
@@ -39,9 +40,17 @@
 @property (nonatomic, retain) Player *myPlayer;
 @property (nonatomic, retain) EndScreen* gameOverScreen;
 @property (nonatomic, retain) BloodDrip* blood;
+@property (nonatomic, retain) NSMutableSet *devices;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 -(void)showGameOverScreen;
 -(void)showBlood;
+
+
+/******* communication *********/
+-(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device;
+-(void) sendJoinRequest:(Device *)device; // actually sends to all devices
+-(void) sendMonsterBornMessage:(Monster *)monster;
+
 @end
