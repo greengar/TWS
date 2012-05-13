@@ -123,26 +123,27 @@ static MNCenter *mnCenter = nil;
 
 -(void) initCommChannel {
     MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
-    [networkCenter startWithDeviceAvailable:^(Device *device) {
-        NSLog(@"device became available");
-        for (Device *d in [networkCenter sortedDevices]) {
-            // no harm should come from attempting to connect to already-connected devices
-            [d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)];
-            NSLog(@"Device available: %@ - %@\n", d.deviceName, [d statusString]);
-        }
-    } deviceUnavailable:^(Device *device) {
-        NSLog(@"device became unavailable");
-        for (Device *d in [networkCenter sortedDevices]) {
-            NSLog(@"%@\n", d.deviceName);
-        }
-    }];
+    networkCenter.deviceConnectedCallback = ^(Device *device) {
+        //[connectedDevices addObject:device];
+        NSLog(@"Connected: %@", [device deviceName]);
+        //[self connected];
+    };
     
+    networkCenter.deviceDisconnectedCallback = ^(Device *device) {
+        //[connectedDevices removeObject:device];
+        NSLog(@"Disconnected: %@", [device deviceName]);
+        
+        //[self connected];
+    };
+    
+    [networkCenter start];
+        
     [networkCenter.sessionManager setOnStateChange:^{
         //[self connected];
     }];
     
     networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
-        NSLog(@"Received message from %@: %@", d.deviceName, msg);
+        NSLog(@"Got message from %@: %@", d.deviceName, msg);
     };
     
 }
