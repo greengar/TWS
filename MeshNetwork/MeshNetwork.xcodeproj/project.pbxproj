@@ -36,6 +36,7 @@
 		A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B6370F155F17D100BC9EAB /* MNCenter.m */; };
 		A9B63714155F3C1300BC9EAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9B63712155F3C1300BC9EAB /* Localizable.strings */; };
 		A9B63717155F5C8100BC9EAB /* MNLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B63716155F5C8100BC9EAB /* MNLabel.m */; };
+		A9D097A9155F677300D03638 /* MessageDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D097A8155F677300D03638 /* MessageDataProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		A9B63713155F3C1300BC9EAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9B63715155F5C8100BC9EAB /* MNLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLabel.h; sourceTree = "<group>"; };
 		A9B63716155F5C8100BC9EAB /* MNLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLabel.m; sourceTree = "<group>"; };
+		A9D097A7155F677300D03638 /* MessageDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDataProvider.h; sourceTree = "<group>"; };
+		A9D097A8155F677300D03638 /* MessageDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDataProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,7 @@
 		A9B636EB155F136600BC9EAB /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A9D097A6155F677300D03638 /* Message */,
 				A9B636EC155F136600BC9EAB /* Contact */,
 				A9B636EF155F136600BC9EAB /* Core */,
 			);
@@ -279,6 +283,15 @@
 				A9B63702155F141200BC9EAB /* BeamItViewController.m */,
 			);
 			path = BeamIt;
+			sourceTree = "<group>";
+		};
+		A9D097A6155F677300D03638 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				A9D097A7155F677300D03638 /* MessageDataProvider.h */,
+				A9D097A8155F677300D03638 /* MessageDataProvider.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +415,7 @@
 				A9B63703155F141200BC9EAB /* BeamItViewController.m in Sources */,
 				A9B63710155F17D100BC9EAB /* MNCenter.m in Sources */,
 				A9B63717155F5C8100BC9EAB /* MNLabel.m in Sources */,
+				A9D097A9155F677300D03638 /* MessageDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

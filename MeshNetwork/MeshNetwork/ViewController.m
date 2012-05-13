@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+- (NSString *)appendMessage:(NSString *)msg toText:(NSString *)txt;
 @end
 
 @implementation ViewController
@@ -44,7 +44,18 @@
         [self connected];
     }];
     
+    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
+        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", d.deviceName, msg] toText:messages.text];
+    };
+    
     //[connections release];
+}
+
+- (NSString *)appendMessage:(NSString *)msg toText:(NSString *)txt {
+    if (txt == nil || [txt isEqualToString:@""]) {
+        return msg;
+    }
+    return [txt stringByAppendingFormat:@"%@\n", msg];
 }
 
 - (void)connected {
@@ -60,7 +71,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [networkCenter.sessionManager sendStringToAllPeers:@"test" callback:^(NSError *err) {
+    [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
         NSLog(@"callback");
     }];
     return YES;

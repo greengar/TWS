@@ -8,13 +8,17 @@
  Copyright (C) 2009 ArcTouch Inc. All Rights Reserved.
  */
 
+@class Device;
+
 @protocol DataProvider
 
-@required
+//@required
+//
+//- (void)prepareDataAndReplyTo:(id)delegate selector:(SEL)dataPreparedSelector;
+//- (NSString *)getLabelOfDataToSend;
+//- (NSData *)getDataToSend;
+//- (BOOL)storeData:(NSData*)data andReplyTo:(id)delegate selector:(SEL)selector;
 
-- (void)prepareDataAndReplyTo:(id)delegate selector:(SEL)dataPreparedSelector;
-- (NSString *)getLabelOfDataToSend;
-- (NSData *)getDataToSend;
-- (BOOL)storeData:(NSData*)data andReplyTo:(id)delegate selector:(SEL)selector;
+- (void)receiveString:(NSString *)str fromDevice:(Device *)d;
 
 @end

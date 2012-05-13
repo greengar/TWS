@@ -122,7 +122,9 @@
 	currentStateRelatedDevice = device;
 	
 	// When the Provider gets the data to send properly (eg. a contact), the dataPrepared method will be called
-	[dataProvider prepareDataAndReplyTo:self selector:@selector(dataPrepared)];
+//	[dataProvider prepareDataAndReplyTo:self selector:@selector(dataPrepared)];
+    
+    // TODO: prepare data...
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
@@ -132,8 +134,13 @@
 	
 	if (device) {
         
-        NSLog(@"received data: %@", data);
+        NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        NSLog(@"%@: %@", device.deviceName, str);
         
+        [dataProvider receiveString:str fromDevice:device];
+        
+        // bail early!!!
+        return;
         
 		// Checks if it's busy, otherwise call other handler methods
 		switch (currentState) {

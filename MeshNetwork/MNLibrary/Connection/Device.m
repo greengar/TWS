@@ -140,7 +140,7 @@
     //    GKPeerStateConnected,
     //    GKPeerStateDisconnected,
     //    GKPeerStateConnecting
-    NSString *state = @"";
+    NSString *state = nil;
     if (available) {
         state = @"available";
     }

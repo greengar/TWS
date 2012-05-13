@@ -12,8 +12,9 @@
 #import "DevicesManager.h"
 
 typedef void(^DeviceBlock)(Device *);
+typedef void(^MessageBlock)(NSString *, Device *);
 
-@interface MNCenter : NSObject
+@interface MNCenter : NSObject <DataProvider>
 {
 	DataHandler *dataHandler;
 	DevicesManager *devicesManager;
@@ -25,6 +26,7 @@ typedef void(^DeviceBlock)(Device *);
 @property (nonatomic, retain) SessionManager *sessionManager;
 @property (nonatomic, copy) DeviceBlock deviceAvailableBlock;
 @property (nonatomic, copy) DeviceBlock deviceUnavailableBlock;
+@property (nonatomic, copy) MessageBlock receiveMessageCallback;
 
 - (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub;
 - (NSArray *)sortedDevices;

@@ -10,15 +10,21 @@
 
 @implementation MNCenter
 
-@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock;
+@synthesize sessionManager, deviceAvailableBlock, deviceUnavailableBlock, receiveMessageCallback;
 
 - (id)init {
     if ((self = [super init])) {
         devicesManager = [[DevicesManager alloc] init];
-        dataHandler = [[DataHandler alloc] initWithDataProvider:[self createSpecificDataProvider] devicesManager:devicesManager];
+        dataHandler = [[DataHandler alloc] initWithDataProvider:self devicesManager:devicesManager];
         sessionManager = [[SessionManager alloc] initWithDataHandler:dataHandler devicesManager:devicesManager];
     }
     return self;
+}
+
+- (void)receiveString:(NSString *)str fromDevice:(Device *)d {
+    if (receiveMessageCallback) {
+        receiveMessageCallback(str, d);
+    }
 }
 
 - (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub
