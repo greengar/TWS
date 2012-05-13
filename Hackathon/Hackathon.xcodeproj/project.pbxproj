@@ -60,6 +60,14 @@
 		901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A0155F7C480019E2F9 /* MNCenter.m */; };
 		901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 901F80A5155F7C480019E2F9 /* DeviceCell.m */; };
 		901F80B2155F81510019E2F9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901F80B1155F81510019E2F9 /* GameKit.framework */; };
+		901F80CB155F82520019E2F9 /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C3155F82520019E2F9 /* blood-screen-hd.png */; };
+		901F80CC155F82520019E2F9 /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C4155F82520019E2F9 /* blood-screen.png */; };
+		901F80CD155F82520019E2F9 /* grass-background-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C5155F82520019E2F9 /* grass-background-1-hd.png */; };
+		901F80CE155F82520019E2F9 /* grass-background-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C6155F82520019E2F9 /* grass-background-1.png */; };
+		901F80CF155F82520019E2F9 /* grass-background-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C7155F82520019E2F9 /* grass-background-2-hd.png */; };
+		901F80D0155F82520019E2F9 /* grass-background-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C8155F82520019E2F9 /* grass-background-2.png */; };
+		901F80D1155F82520019E2F9 /* grass-background-3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80C9155F82520019E2F9 /* grass-background-3-hd.png */; };
+		901F80D2155F82520019E2F9 /* grass-background-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F80CA155F82520019E2F9 /* grass-background-3.png */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -181,6 +189,7 @@
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
+		F96BD8A6155F815500CF399A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96BD8A5155F815500CF399A /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,6 +254,14 @@
 		901F80A4155F7C480019E2F9 /* DeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCell.h; sourceTree = "<group>"; };
 		901F80A5155F7C480019E2F9 /* DeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCell.m; sourceTree = "<group>"; };
 		901F80B1155F81510019E2F9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		901F80C3155F82520019E2F9 /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
+		901F80C4155F82520019E2F9 /* blood-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen.png"; sourceTree = "<group>"; };
+		901F80C5155F82520019E2F9 /* grass-background-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-1-hd.png"; sourceTree = "<group>"; };
+		901F80C6155F82520019E2F9 /* grass-background-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-1.png"; sourceTree = "<group>"; };
+		901F80C7155F82520019E2F9 /* grass-background-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-2-hd.png"; sourceTree = "<group>"; };
+		901F80C8155F82520019E2F9 /* grass-background-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-2.png"; sourceTree = "<group>"; };
+		901F80C9155F82520019E2F9 /* grass-background-3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-3-hd.png"; sourceTree = "<group>"; };
+		901F80CA155F82520019E2F9 /* grass-background-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-3.png"; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -491,6 +508,7 @@
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
+		F96BD8A5155F815500CF399A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -569,6 +587,14 @@
 		901F8067155F68F10019E2F9 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				901F80C3155F82520019E2F9 /* blood-screen-hd.png */,
+				901F80C4155F82520019E2F9 /* blood-screen.png */,
+				901F80C5155F82520019E2F9 /* grass-background-1-hd.png */,
+				901F80C6155F82520019E2F9 /* grass-background-1.png */,
+				901F80C7155F82520019E2F9 /* grass-background-2-hd.png */,
+				901F80C8155F82520019E2F9 /* grass-background-2.png */,
+				901F80C9155F82520019E2F9 /* grass-background-3-hd.png */,
+				901F80CA155F82520019E2F9 /* grass-background-3.png */,
 				901F8068155F68F10019E2F9 /* grass-background-hd.png */,
 				901F8069155F68F10019E2F9 /* grass-background.png */,
 			);
@@ -654,7 +680,6 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
-				901F80B1155F81510019E2F9 /* GameKit.framework */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
@@ -672,6 +697,7 @@
 		90FC051D155EFD21002C3BAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				901F80B1155F81510019E2F9 /* GameKit.framework */,
 				90FC051E155EFD21002C3BAE /* QuartzCore.framework */,
 				90FC0520155EFD21002C3BAE /* OpenGLES.framework */,
 				90FC0522155EFD21002C3BAE /* OpenAL.framework */,
@@ -1162,6 +1188,14 @@
 				901F808B155F76790019E2F9 /* ninja-star-1.png in Resources */,
 				901F808C155F76790019E2F9 /* ninja-star-2-hd.png in Resources */,
 				901F808D155F76790019E2F9 /* ninja-star-2.png in Resources */,
+				901F80CB155F82520019E2F9 /* blood-screen-hd.png in Resources */,
+				901F80CC155F82520019E2F9 /* blood-screen.png in Resources */,
+				901F80CD155F82520019E2F9 /* grass-background-1-hd.png in Resources */,
+				901F80CE155F82520019E2F9 /* grass-background-1.png in Resources */,
+				901F80CF155F82520019E2F9 /* grass-background-2-hd.png in Resources */,
+				901F80D0155F82520019E2F9 /* grass-background-2.png in Resources */,
+				901F80D1155F82520019E2F9 /* grass-background-3-hd.png in Resources */,
+				901F80D2155F82520019E2F9 /* grass-background-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
