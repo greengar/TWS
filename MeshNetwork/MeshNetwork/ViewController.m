@@ -24,6 +24,8 @@
     
     networkCenter = [[MNCenter alloc] init];
     
+    NSLog(@"my peerID: %@", networkCenter.peerID);
+    
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
     [self.view addSubview:connections];
     
