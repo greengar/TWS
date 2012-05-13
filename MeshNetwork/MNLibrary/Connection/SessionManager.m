@@ -87,8 +87,8 @@
 				currentDevice = [self addDevice:peerID];
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_AVAILABLE object:nil userInfo:[self getDeviceInfo:currentDevice]];
                 
-                // automatically connect to all available peers!
-                [currentDevice connectAndReplyTo:nil selector:NULL errorSelector:NULL];
+                // automatically connect to all available peers
+                [currentDevice connect];
 			}
             
             // set all connecting = NO, available = NO

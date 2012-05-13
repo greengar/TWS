@@ -85,10 +85,6 @@
     return devicesManager.sortedDevices;
 }
 
-- (NSObject<DataProvider> *)createSpecificDataProvider {
-	return nil;
-}
-
 - (void)applicationWillResignActiveNotification:(NSNotification *)n {
     [sessionManager stop];
 }
