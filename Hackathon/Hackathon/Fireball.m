@@ -19,12 +19,14 @@
 
 -(Fireball *) createWithWord:(NSString *)word {
     // there is no fireball animation
-    if ((self = (Fireball*)[super createWithWord:word])) {
+    if ((self = (Fireball*)[super createWithWord:word animationTemplate:@"%@" frames:@"blank.png"])) {
         fireParticle = [CCParticleSystemQuad particleWithFile:@"Fireball.plist"];
         [self addChild:fireParticle];
         fireParticle.position = ccp(0,0);
         
         timeLeftToReachPlayer = FIREBALL_MOVE_DURATION_SECONDS;
+        
+        [self.name setColor:ccBLACK];
     }
     return self;
 }

@@ -34,8 +34,6 @@
 @property (nonatomic, retain) NSMutableArray* dictionary, *bossDictionary, *fireballDictionary;
 @property (nonatomic, retain) NSMutableSet* monsters, *localMonsters;
 @property (nonatomic, retain) NSString *lastWord; // last word checked against the monsters
-@property (nonatomic, retain) UITextField *textEntryFieldUI;
-@property (nonatomic, retain) CCLabelTTF *textEntryLabel;
 @property (nonatomic, retain) CCTextField *textEntryFieldCC;
 @property GameOverReasonType gameOverReason;
 @property BOOL isGameOver;
