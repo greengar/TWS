@@ -11,16 +11,27 @@
 
 @implementation Fireball
 
+-(MonsterType) monsterType {
+    return kMonsterTypeFireball;
+}
+
+
 -(Fireball *) createWithWord:(NSString *)word {
     // there is no fireball animation
     if ((self = (Fireball*)[super createWithWord:word])) {
-        CCParticleSystemQuad *fireParticle = [CCParticleSystemQuad particleWithFile:@"Fireball.plist"];
+        fireParticle = [CCParticleSystemQuad particleWithFile:@"Fireball.plist"];
         [self addChild:fireParticle];
         fireParticle.position = ccp(0,0);
         
         timeLeftToReachPlayer = FIREBALL_MOVE_DURATION_SECONDS;
     }
     return self;
+}
+
+// for debugging purposes
+-(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID {
+    [super setOwnerMe:isMine uniqueID:theUniqueId peerID:thePeerID];
+    fireParticle.scale = 2;
 }
 
 @end

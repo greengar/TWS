@@ -22,7 +22,8 @@
 
 typedef enum {
     kMonsterTypeMinion=1,
-    kMonsterTypeBoss
+    kMonsterTypeBoss,
+    kMonsterTypeFireball,
 } MonsterType;
 
 @interface Monster : CCSprite {
