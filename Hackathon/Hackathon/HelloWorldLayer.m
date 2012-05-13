@@ -142,7 +142,7 @@ static MNCenter *mnCenter = nil;
     MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
     networkCenter.deviceConnectedCallback = ^(Device *device) {
         [self.devices addObject:device];
-        NSLog(@"Connected: %@", [device deviceName]);
+        //NSLog(@"Connected: %@", [device deviceName]);
         [self sendJoinRequest:device];
         //[self connected];
     };
@@ -150,7 +150,7 @@ static MNCenter *mnCenter = nil;
     networkCenter.deviceDisconnectedCallback = ^(Device *device) {
         [self.devices removeObject:device];
         [self remotePlayerLeft:device];
-        NSLog(@"Disconnected: %@", [device deviceName]);
+        //NSLog(@"Disconnected: %@", [device deviceName]);
         
         //[self connected];
     };
@@ -164,10 +164,10 @@ static MNCenter *mnCenter = nil;
     networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
         NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         [self handleIncomingMessage:data fromDevice:d];
-        NSLog(@"Received msg from %@: %@", d.deviceName, msg);
+        //NSLog(@"Received msg from %@: %@", d.deviceName, msg);
     };
     
-    NSLog(@"MY PEER ID: %@", [HelloWorldLayer sharedMNCenter].sessionManager.meshSession.peerID);
+    //NSLog(@"MY PEER ID: %@", [HelloWorldLayer sharedMNCenter].sessionManager.meshSession.peerID);
 
     
 }
@@ -262,7 +262,10 @@ static MNCenter *mnCenter = nil;
     Monster *monster = [Monster deserialize:dict peerID:device.peerID];
     [self.monsters addObject:monster];
     [self addChild:monster];
-    [monster marchTo:playerPosition]; // will take into account time left
+    Player *player = [self.players objectForKey:device.peerID];
+    NSLog(@"COMM: Creating monster for which there's no peer on file: %@", device.peerID);
+    
+    [monster marchTo:player.position]; // will take into account time left
 
 }
 
@@ -280,7 +283,7 @@ static MNCenter *mnCenter = nil;
         newMonster.position = ccp(randomXLoc, screenSize.height);
         [self.monsters addObject:newMonster];
         [self addChild:newMonster];
-        [newMonster marchTo:playerPosition];
+        [newMonster marchTo:self.myPlayer.position];
         NSLog(@"new monster is %@",newMonster);
         
         [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
