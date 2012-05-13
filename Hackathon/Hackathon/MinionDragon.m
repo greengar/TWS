@@ -25,5 +25,13 @@
     return self;
 }
 
+-(void) markAsRemote {
+    //self.color = ccBLACK;
+    CCSprite *halo = [CCSprite spriteWithFile:@"halo.png"];
+    [self setAnchorPoint:ccp(0.5, 0)];
+    halo.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height);
+    [self addChild:halo];
+}
+
 
 @end

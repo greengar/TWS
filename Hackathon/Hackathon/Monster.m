@@ -197,7 +197,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         monster.points = [[dict objectForKey:KEY_POINTS] intValue];
         monster.isSlatedToDie = [[dict objectForKey:KEY_IS_SLATED_TO_DIE] boolValue];
         monster->timeLeftToReachPlayer = [[dict objectForKey:KEY_TIME_LEFT_TO_REACH_PLAYER] doubleValue];
-        monster.color = ccBLACK; // debugging to mark remote monsters
+        [monster markAsRemote];
     }
     return monster;
 
@@ -211,6 +211,9 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return score;
 }
 
+-(void) markAsRemote {
+    return;
+}
 - (void)dealloc
 {
     self.word = nil;

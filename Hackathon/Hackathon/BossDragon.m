@@ -31,6 +31,9 @@
     return; // no movement for boss dragon
 }
 
+-(void) markAsRemote {
+    self.color = ccBLACK;
+}
 
 //-(void) throwFireballAt:(Player *)player {
 //    CCFiniteTimeAction *fireballAction = [CCCallBlock actionWithBlock:^{
