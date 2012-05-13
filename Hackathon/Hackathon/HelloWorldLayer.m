@@ -35,6 +35,8 @@
 @synthesize devices = _devices;
 @synthesize players = _players;
 @synthesize bossDictionary = _bossDictionary;
+@synthesize localMonsters = _localMonsters;
+@synthesize boss = _boss;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 NSString* const BOSS_DICTIONARY_FILE = @"CommonWords-TwelveOrMore";
@@ -135,6 +137,7 @@ static MNCenter *mnCenter = nil;
     nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
     score = 0;
     bossAppeared = NO;
+    self.textEntryFieldCC.text = @"";
     [self notifyTime:timeLeft];
     [self notifyScore:score];
     
@@ -325,6 +328,19 @@ static MNCenter *mnCenter = nil;
     }
 }
 
+-(void)generateBoss {
+    int randomBossWordGen = arc4random() % [self.bossDictionary count];
+    NSString* newWord = [self.bossDictionary objectAtIndex:MAX(0,(randomBossWordGen - 1))];
+    Monster* newBoss = [[BossDragon alloc] createWithWord:newWord];
+    [newBoss setOwnerMe:YES uniqueID:0 peerID:[HelloWorldLayer sharedMNCenter].peerID];
+    newBoss.position = ccp(screenSize.width/2,screenSize.height - newBoss.boundingBox.size.height/2);
+    self.boss = newBoss;
+    [self.monsters addObject:newBoss];
+    [self.localMonsters addObject:newBoss];
+    [self addChild:newBoss];
+    [self sendMonsterBornMessage:newBoss];
+}
+
 -(void)showBlood {
     [self.textEntryFieldCC hideKeyboard];
 
@@ -413,8 +429,15 @@ static MNCenter *mnCenter = nil;
         [self randomMonsterGenerator:dt];
 
         // add boss at 10 seconds remaining
-        if (min == 0 && sec <= 10 && bossAppeared == NO) {
-            bossAppeared = YES;
+        if (min == 0 && sec <= 10) {
+            if (bossAppeared == NO) {
+                bossAppeared = YES;
+                [self generateBoss];
+            }
+            if (sec % 3) {
+                [self.boss throwFireballAt:self.myPlayer];
+                NSLog(@"throw fireball");
+            }
             NSLog(@"10 sec left");
         }
     }        
