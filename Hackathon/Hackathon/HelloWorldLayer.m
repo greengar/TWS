@@ -23,6 +23,8 @@
 @synthesize dictionary = _dictionary;
 @synthesize monsters = _monsters;
 @synthesize lastWord = _lastWord;
+@synthesize gameOverReason;
+@synthesize isGameOver;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
@@ -79,6 +81,8 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 // reset all re-playable game elements
 -(void) resetGame {
+    self.isGameOver = NO;
+    self.gameOverReason = 0; // no reason
     timeLeft = GAME_LENGTH_SECONDS;
     nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
     score = 0;
@@ -177,13 +181,22 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     }
 }
 
+-(void) showGameOverScreen {
+    // Kim - call the game over layer from here 
+}
+
 
 -(void) hitByMonster:(Monster *) monster {
-    
+    self.isGameOver = YES;
+    self.gameOverReason = kGameOverEaten;
+    [self showGameOverScreen];
 }
 
 // main update loop
 -(void) tick: (ccTime) dt {
+    if (self.isGameOver)
+        return;
+    
     if (timeLeft > 0) { // game not over yet so:
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
@@ -222,6 +235,11 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
             }
         }
         [self.monsters minusSet:deadMonsters];
+    } else {
+        // game over, timed out
+        self.isGameOver = YES;
+        self.gameOverReason = kGameOverTimeOut;
+        [self showGameOverScreen];
     }
     
 }
