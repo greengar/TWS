@@ -323,9 +323,9 @@ static MNCenter *mnCenter = nil;
         
         [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
         
-        for (Monster* monster in self.monsters) {
-            [monster decreasePointValue];
-        }
+        //for (Monster* monster in self.monsters) {
+        //    [monster decreasePointValue];
+        //}
     }
 }
 
@@ -437,11 +437,13 @@ static MNCenter *mnCenter = nil;
             }
             if (sec % 3) {
                 [self.boss throwFireballAt:self.myPlayer];
-                NSLog(@"throw fireball");
+                //NSLog(@"throw fireball");
             }
-            NSLog(@"10 sec left");
+            //NSLog(@"10 sec left");
         }
     }
+    
+    // [monster killing moved to lower in this file]
     
     // Check for monsters that have reached the player
     for (Monster *monster in self.monsters) {
@@ -471,7 +473,10 @@ static MNCenter *mnCenter = nil;
     }
     for (Monster *monster in deadMonsters) {
         [self.myPlayer throwWeaponAt:monster]; // TODO: for animation, use fixed velocity instead of fixed time
-        score += monster.points;
+        
+        // Score now relative to monster position. Should work on remote monsters as well.
+        score+=[monster getKillScore];
+        
         [self notifyScore:score];
     }
     // clearing field no longer necessary because there is no visible field
