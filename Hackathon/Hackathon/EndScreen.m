@@ -49,7 +49,7 @@
         
     } else if (reason == kGameOverTimeOut) {
         self.gameOverLabel = [CCLabelTTF labelWithString:@"YOU WIN!" fontName:@"Arial-BoldMT" fontSize:45];
-        [self.gameOverImage initWithFile:@"icon.png"];
+        [self.gameOverImage initWithFile:@"small-dragon.png"];
     }
     
     [self.gameOverImage setAnchorPoint:ccp(0.5,0.5)];

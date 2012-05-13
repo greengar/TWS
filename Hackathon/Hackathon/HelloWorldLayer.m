@@ -231,16 +231,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         NSString *newWord = self.textEntryFieldCC.text.lowercaseString;
         NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:1];
         if (![newWord isEqualToString:self.lastWord]) {
-            //NSLog(@"New word: %@", newWord);
             for (Monster *monster in self.monsters) {
                 if ([monster attackWithWord:newWord]) {
-                    //NSLog(@"Found one!!!!");
                     monster.isSlatedToDie = YES;
                     [deadMonsters addObject:monster];
                 }
             }
             for (Monster *monster in deadMonsters) {
-                //[monster die];
                 [self.myPlayer throwWeaponAt:monster];
                 score+=monster.points;
                 [self notifyScore:score];
@@ -264,9 +261,11 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
         [self.monsters minusSet:deadMonsters];
     } else {
         // game over, timed out
-        self.isGameOver = YES;
-        self.gameOverReason = kGameOverTimeOut;
-        [self showGameOverScreen];
+        if ([self.monsters count] == 0) {
+            self.isGameOver = YES;
+            self.gameOverReason = kGameOverTimeOut;
+            [self showGameOverScreen];
+        }
     }
     
 }

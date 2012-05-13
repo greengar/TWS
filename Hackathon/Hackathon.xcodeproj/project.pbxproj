@@ -189,6 +189,7 @@
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
+		F96BD8A6155F815500CF399A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96BD8A5155F815500CF399A /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -507,6 +508,7 @@
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
+		F96BD8A5155F815500CF399A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1334,7 +1336,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1349,7 +1351,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
