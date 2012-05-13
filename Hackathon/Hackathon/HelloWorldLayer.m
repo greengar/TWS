@@ -14,6 +14,7 @@
 #import "BloodDrip.h"
 #import "MNCenter.h"
 #import "Messages.h"
+#import "Fireball.h"
 #import <objc/runtime.h>
 
 // HelloWorldLayer implementation
@@ -138,6 +139,7 @@ static MNCenter *mnCenter = nil;
     self.gameOverReason = 0; // no reason
     timeLeft = GAME_LENGTH_SECONDS;
     nextMonsterTimer = MONSTER_EVERY_X_SECONDS;
+    nextFireballTimer = FIREBALL_EVERY_X_SECONDS;
     score = 0;
     bossAppeared = NO;
     self.textEntryFieldCC.text = @"";
@@ -331,6 +333,30 @@ static MNCenter *mnCenter = nil;
     }
 }
 
+-(void)fireballGenerator:(ccTime) dt {
+    nextFireballTimer -= dt;
+    while (nextFireballTimer < 0) {
+        nextFireballTimer += FIREBALL_EVERY_X_SECONDS;
+        
+        // create new monster with random word and random location at the top
+        int randomWordGen = arc4random() % [self.dictionary count];
+        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
+        Monster* newMonster = [[Fireball alloc] createWithWord:newWord];
+        newMonster.position = ccp(screenSize.width/2, screenSize.height-self.boss.boundingBox.size.height/0.75);
+        [self.monsters addObject:newMonster];
+        [self.localMonsters addObject:newMonster]; // keep separate tab of local monsters
+        [self addChild:newMonster];
+        [newMonster marchTo:self.myPlayer.position];
+        NSLog(@"new monster is %@",newMonster);
+        
+        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
+        
+        for (Monster* monster in self.monsters) {
+            [monster decreasePointValue];
+        }
+    }
+}
+
 -(void)generateBoss {
     int randomBossWordGen = arc4random() % [self.bossDictionary count];
     NSString* newWord = [self.bossDictionary objectAtIndex:MAX(0,(randomBossWordGen - 1))];
@@ -430,6 +456,7 @@ static MNCenter *mnCenter = nil;
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
+        [self fireballGenerator:dt];
 
         // add boss at 10 seconds remaining
         if (min == 0 && sec <= 10) {
@@ -437,11 +464,11 @@ static MNCenter *mnCenter = nil;
                 bossAppeared = YES;
                 [self generateBoss];
             }
-            if (sec % 3) {
-                [self.boss throwFireballAt:self.myPlayer];
-                NSLog(@"throw fireball");
-            }
-            NSLog(@"10 sec left");
+//            if (sec % 3) {
+//                [self.boss throwFireballAt:self.myPlayer];
+//                NSLog(@"throw fireball");
+//            }
+//            NSLog(@"10 sec left");
         }
     }        
     // check if a new word was entered (very inefficient) and then check against all monsters

@@ -22,6 +22,7 @@
 {
     double timeLeft; // how long till game is over
     double nextMonsterTimer; // next monster shows up in x seconds
+    double nextFireballTimer;
     double score;
     CGSize screenSize;
     CGPoint playerPosition;

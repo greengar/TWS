@@ -170,6 +170,9 @@
 		F921237E15603E5700706C5D /* boss-dragon-5.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237215603E5700706C5D /* boss-dragon-5.png */; };
 		F921237F15603E5700706C5D /* boss-dragon-6-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237315603E5700706C5D /* boss-dragon-6-hd.png */; };
 		F921238015603E5700706C5D /* boss-dragon-6.png in Resources */ = {isa = PBXBuildFile; fileRef = F921237415603E5700706C5D /* boss-dragon-6.png */; };
+		F9212382156040C800706C5D /* Fireball.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9212381156040C800706C5D /* Fireball.plist */; };
+		F92123851560410500706C5D /* Fireball.m in Sources */ = {isa = PBXBuildFile; fileRef = F92123841560410400706C5D /* Fireball.m */; };
+		F92123871560425300706C5D /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = F92123861560425300706C5D /* blank.png */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -498,6 +501,10 @@
 		F921237215603E5700706C5D /* boss-dragon-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-5.png"; sourceTree = "<group>"; };
 		F921237315603E5700706C5D /* boss-dragon-6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6-hd.png"; sourceTree = "<group>"; };
 		F921237415603E5700706C5D /* boss-dragon-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6.png"; sourceTree = "<group>"; };
+		F9212381156040C800706C5D /* Fireball.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fireball.plist; sourceTree = "<group>"; };
+		F92123831560410400706C5D /* Fireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fireball.h; sourceTree = "<group>"; };
+		F92123841560410400706C5D /* Fireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fireball.m; sourceTree = "<group>"; };
+		F92123861560425300706C5D /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -570,6 +577,7 @@
 		901F802C155F56140019E2F9 /* Emitters */ = {
 			isa = PBXGroup;
 			children = (
+				F9212381156040C800706C5D /* Fireball.plist */,
 				901F802D155F56140019E2F9 /* MonsterPlosion.plist */,
 			);
 			name = Emitters;
@@ -712,6 +720,8 @@
 				F9E3ED06155FAA0E0096E10C /* BossDragon.m */,
 				F96BD872155F075400CF399A /* MinionDragon.h */,
 				F96BD873155F075400CF399A /* MinionDragon.m */,
+				F92123831560410400706C5D /* Fireball.h */,
+				F92123841560410400706C5D /* Fireball.m */,
 				F95CBAF4155F90070008E77A /* BloodDrip.h */,
 				F95CBAF5155F90070008E77A /* BloodDrip.m */,
 				F96BD890155F4FC900CF399A /* EndScreen.h */,
@@ -1073,6 +1083,7 @@
 		F921234E1560343C00706C5D /* bossdragon */ = {
 			isa = PBXGroup;
 			children = (
+				F92123861560425300706C5D /* blank.png */,
 				F921236915603E5700706C5D /* boss-dragon-1-hd.png */,
 				F921236A15603E5700706C5D /* boss-dragon-1.png */,
 				F921236B15603E5700706C5D /* boss-dragon-2-hd.png */,
@@ -1245,6 +1256,8 @@
 				F921237E15603E5700706C5D /* boss-dragon-5.png in Resources */,
 				F921237F15603E5700706C5D /* boss-dragon-6-hd.png in Resources */,
 				F921238015603E5700706C5D /* boss-dragon-6.png in Resources */,
+				F9212382156040C800706C5D /* Fireball.plist in Resources */,
+				F92123871560425300706C5D /* blank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1378,7 @@
 				901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */,
 				F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */,
 				F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */,
+				F92123851560410500706C5D /* Fireball.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
