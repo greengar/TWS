@@ -28,7 +28,6 @@
         [self reorderChild:self.name z:1];
         //self.name.position = ccp(self.name.position.x, self.name.position.y - 
         [self.name setColor:ccBLACK];
-        [self.name setPosition:ccp(0,-10)];
     }
     return self;
 }
