@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		901F802A155F45C20019E2F9 /* small-dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8028155F45C20019E2F9 /* small-dragon.png */; };
 		901F802B155F45C20019E2F9 /* small-dragon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8029155F45C20019E2F9 /* small-dragon-hd.png */; };
+		901F802E155F56140019E2F9 /* MonsterPlosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901F802D155F56140019E2F9 /* MonsterPlosion.plist */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -134,6 +135,7 @@
 /* Begin PBXFileReference section */
 		901F8028155F45C20019E2F9 /* small-dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon.png"; sourceTree = "<group>"; };
 		901F8029155F45C20019E2F9 /* small-dragon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-hd.png"; sourceTree = "<group>"; };
+		901F802D155F56140019E2F9 /* MonsterPlosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonsterPlosion.plist; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -409,6 +411,15 @@
 			path = Resources/monsters;
 			sourceTree = "<group>";
 		};
+		901F802C155F56140019E2F9 /* Emitters */ = {
+			isa = PBXGroup;
+			children = (
+				901F802D155F56140019E2F9 /* MonsterPlosion.plist */,
+			);
+			name = Emitters;
+			path = Resources/Emitters;
+			sourceTree = "<group>";
+		};
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +477,7 @@
 		90FC052F155EFD21002C3BAE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				901F802C155F56140019E2F9 /* Emitters */,
 				901F8027155F45B70019E2F9 /* monsters */,
 				90FC0530155EFD21002C3BAE /* Default.png */,
 				90FC0532155EFD21002C3BAE /* fps_images.png */,
@@ -868,6 +880,7 @@
 				90FC06CD155F1872002C3BAE /* README.md in Resources */,
 				901F802A155F45C20019E2F9 /* small-dragon.png in Resources */,
 				901F802B155F45C20019E2F9 /* small-dragon-hd.png in Resources */,
+				901F802E155F56140019E2F9 /* MonsterPlosion.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

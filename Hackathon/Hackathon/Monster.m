@@ -40,12 +40,20 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 }
 
 - (void)die {
-    [self runAction:[CCSequence actions:
-                     [CCScaleTo actionWithDuration:1 scale:0.1],
-                     [CCCallBlock actionWithBlock:^{
-        [self removeFromParentAndCleanup:YES];
+    CCParticleSystemQuad *explosion = [CCParticleSystemQuad particleWithFile:@"MonsterPlosion.plist"];
+    [self.parent addChild:explosion];
+    explosion.position = self.position;
+    
+    [explosion runAction:[CCSequence actions:
+                          //[CCScaleTo actionWithDuration:1 scale:0.1],
+                          [CCDelayTime actionWithDuration:1],
+                          [CCCallBlock actionWithBlock:^{
+        [explosion removeFromParentAndCleanup:YES];
     }],
-                     nil]];
+                          nil]];
+
+    [self removeFromParentAndCleanup:YES];
+    
 }
 
 -(void) marchTo:(CGPoint)destination {
