@@ -19,6 +19,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    /////////////////////////////////////////
+    // 1. instantiate the Mesh Network Center
+    
     networkCenter = [[MNCenter alloc] init];
     
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
@@ -26,16 +29,19 @@
     
     connectedDevices = [[NSMutableArray alloc] initWithCapacity:10];
     
+    /////////////////////////
+    // 2. set three callbacks
+    
     networkCenter.deviceConnectedCallback = ^(Device *device) {
         [connectedDevices addObject:device];
         
-        [self connected];
+        [self refreshDeviceList];
     };
     
     networkCenter.deviceDisconnectedCallback = ^(Device *device) {
         [connectedDevices removeObject:device];
         
-        [self connected];
+        [self refreshDeviceList];
     };
     
     networkCenter.dataReceivedCallback = ^(NSData *data, Device *device) {
@@ -44,33 +50,10 @@
         messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", device.deviceName, msg] toText:messages.text];
     };
     
+    /////////////////////////////////////
+    // 3. start advertising and searching
+    
     [networkCenter start];
-    
-//    [networkCenter startWithDeviceAvailable:^(Device *device) {
-//        NSLog(@"device became available");
-//        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-//        for (Device *d in [networkCenter sortedDevices]) {
-//            // no harm should come from attempting to connect to already-connected devices
-//            //[d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)]; // now handled directly in SessionManager
-//            connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
-//        }
-//    } deviceUnavailable:^(Device *device) {
-//        NSLog(@"device became unavailable");
-//        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-//        for (Device *d in [networkCenter sortedDevices]) {
-//            connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
-//        }
-//    }];
-    
-//    [networkCenter.sessionManager setOnStateChange:^{
-//        [self connected];
-//    }];
-    
-//    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
-//        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", d.deviceName, msg] toText:messages.text];
-//    };
-    
-    //[connections release];
 }
 
 - (NSString *)appendMessage:(NSString *)msg toText:(NSString *)txt {
@@ -89,33 +72,26 @@
     return result;
 }
 
-- (void)connected {
+- (void)refreshDeviceList {
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nConnected devices:\n", [networkCenter deviceName]];
-//    for (Device *d in [networkCenter sortedDevices]) {
-//        connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
-//    }
     
     for (Device *d in connectedDevices) {
         connections.text = [connections.text stringByAppendingFormat:@"%@", d.deviceName];
     }
 }
 
-- (void)notConnected {
-    // ...
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //////////////////////////////////////
+    // 4. send data to all connected peers
+    
     [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding] callback:^(NSError *err) {
         NSLog(@"callback");
     }];
     
-//    [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
-//        NSLog(@"callback");
-//    }];
     
+    // data sent is NOT received by myself, so add my own message to my own log
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
-    
     textField.text = @"";
     return YES;
 }
