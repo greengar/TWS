@@ -12,6 +12,7 @@
 #import "Monster.h"
 #import "MinionDragon.h"
 #import "MNCenter.h"
+#import <objc/runtime.h>
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -217,6 +218,15 @@ static MNCenter *mnCenter = nil;
         [self resetGame]; // reset all counters, labels, etc.
         
         [self schedule: @selector(tick:)];
+        
+/*
+        // Data encoding test
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+        [dict setObject:@"abc" forKey:@"123"];
+        NSKeyedArchiver *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
+        NSMutableDictionary *newDict = [NSKeyedUnarchiver unarchiveObjectWithData:keyed];
+        NSLog(@"!!!!!!Unarchived value for 123: %@", [newDict valueForKey:@"123"]);
+*/        
 	}
 	return self;
 }
