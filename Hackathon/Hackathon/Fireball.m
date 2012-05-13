@@ -25,7 +25,8 @@
         fireParticle.position = ccp(0,0);
         
         timeLeftToReachPlayer = FIREBALL_MOVE_DURATION_SECONDS;
-        
+        [self reorderChild:self.name z:1];
+        //self.name.position = ccp(self.name.position.x, self.name.position.y - 
         [self.name setColor:ccBLACK];
     }
     return self;
