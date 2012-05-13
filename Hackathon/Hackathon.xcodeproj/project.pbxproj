@@ -187,6 +187,7 @@
 		F96BD874155F075400CF399A /* MinionDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD873155F075400CF399A /* MinionDragon.m */; };
 		F96BD877155F0DC700CF399A /* CommonWords-SixOrLess.txt in Resources */ = {isa = PBXBuildFile; fileRef = F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */; };
 		F96BD892155F4FC900CF399A /* EndScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F96BD891155F4FC900CF399A /* EndScreen.m */; };
+		F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3ED06155FAA0E0096E10C /* BossDragon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -504,6 +505,8 @@
 		F96BD876155F0DC700CF399A /* CommonWords-SixOrLess.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-SixOrLess.txt"; sourceTree = "<group>"; };
 		F96BD890155F4FC900CF399A /* EndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndScreen.h; sourceTree = "<group>"; };
 		F96BD891155F4FC900CF399A /* EndScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndScreen.m; sourceTree = "<group>"; };
+		F9E3ED05155FAA0E0096E10C /* BossDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDragon.h; sourceTree = "<group>"; };
+		F9E3ED06155FAA0E0096E10C /* BossDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDragon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +681,8 @@
 				90FC0689155EFD23002C3BAE /* GameConfig.h */,
 				90FC06A8155F01F7002C3BAE /* Monster.h */,
 				90FC06A9155F01F7002C3BAE /* Monster.m */,
+				F9E3ED05155FAA0E0096E10C /* BossDragon.h */,
+				F9E3ED06155FAA0E0096E10C /* BossDragon.m */,
 				F96BD872155F075400CF399A /* MinionDragon.h */,
 				F96BD873155F075400CF399A /* MinionDragon.m */,
 				F95CBAF4155F90070008E77A /* BloodDrip.h */,
@@ -1298,8 +1303,8 @@
 				901F80A8155F7C480019E2F9 /* SessionManager.m in Sources */,
 				901F80A9155F7C480019E2F9 /* DataHandler.m in Sources */,
 				901F80AA155F7C480019E2F9 /* MNCenter.m in Sources */,
-				901F80AC155F7C480019E2F9 /* DeviceCell.m in Sources */,
 				F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */,
+				F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
