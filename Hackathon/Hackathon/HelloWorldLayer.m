@@ -314,7 +314,7 @@ static MNCenter *mnCenter = nil;
 }
 
 -(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
-    if (self.isGameOver)
+    if (self.isGameOver || (timeLeft < 0))
         return; // monsters don't bother us if we're not playing
     Player *player = [self.players objectForKey:device.peerID];
     // make sure monster has not been created yet! (bosses get re-communicated in some cases)
@@ -507,7 +507,7 @@ static MNCenter *mnCenter = nil;
     int sec = ((int) timeLeft) % 60;
     
     // game is over, time is up and all monsters created are killed
-    if (timeLeft <= 0 && [self.localMonsters count] == 0) {
+    if (timeLeft <= 0 && [self.monsters count] == 0) {
         // game over, timed out
         self.isGameOver = YES;
         self.gameOverReason = kGameOverTimeOut;
