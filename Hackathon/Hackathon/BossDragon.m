@@ -28,6 +28,10 @@
     return self;
 }
 
+-(int) getKillScore {
+    return self.points;
+}
+    
 -(void) marchTo:(CGPoint)destination {
     return; // no movement for boss dragon
 }
