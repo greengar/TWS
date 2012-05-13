@@ -344,8 +344,15 @@ static MNCenter *mnCenter = nil;
     }
     
     if (theDead) {
+        theDead.isSlatedToDie = YES;
         // For now, just kill the monster, since we don't yet have an associated player:
-        [theDead die];
+        Player *player = [self.players objectForKey:theDead.peerID];
+        if (player) {
+            [player throwWeaponAt:theDead];
+        } else {
+            // someone killed it but we don't know who. Just explode it
+            [theDead die];
+        }
         [self.monsters removeObject:theDead];
     }
 }

@@ -22,6 +22,7 @@
 @synthesize isMe;
 @synthesize swayAction = _swayAction;
 @synthesize throwAction = _throwAction;
+@synthesize isLeaving = _isLeaving;
 
 -(Player *) initWithName:(NSString *) playerName {
     CCAnimation *animation = [Monster animationFromTemplate:TEMPLATE_NAME andFrames:FRAME_ORDER];
@@ -29,6 +30,7 @@
 
     if (self = [super initWithSpriteFrame:[animation.frames lastObject]]) {
         screenSize = [[CCDirector sharedDirector] winSize];
+        self.isLeaving = NO;
         self.name = playerName;
         self.color = ccRED;
         CCLabelTTF *name = [CCLabelTTF labelWithString:self.name fontName:@"Arial-BoldMT" fontSize:15];
@@ -46,6 +48,11 @@
 }
 
 -(void) throwWeaponAt:(Monster *)monster {
+    if (self.isLeaving) {
+        // player is leaving so we're not adding animation
+        [monster die];
+        return;
+    }
     if (!self.swayAction.isDone) {
         [self stopAction:self.swayAction];
     }
@@ -89,6 +96,7 @@
 }
 
 -(void) walkOffScreen {
+    self.isLeaving = YES;
     CGPoint newPosition = ccp(-self.boundingBox.size.width, self.position.y);
     CCMoveTo *moveAction = [CCMoveTo actionWithDuration:0.5 position:newPosition];
     CCFiniteTimeAction *cleanupAction = [CCCallBlock actionWithBlock:^{

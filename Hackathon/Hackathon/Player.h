@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString *name;
 @property BOOL isMe;
 @property (nonatomic, retain) CCFiniteTimeAction *swayAction, *throwAction;
+@property BOOL isLeaving; // YES once player is leaving screen. no new actions on it
 
 -(Player *) initWithName:(NSString *) playerName;
 -(void) throwWeaponAt:(Monster *)monster;
