@@ -9,18 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Monster : CCSprite {
+typedef enum {
+    kMonsterTypeMinion=1,
+} MonsterType;
 
+@interface Monster : CCSprite {
+    double timeLeftToReachPlayer; // usually the full monster amount, but when deserializing monsters, might be less
 }
+
+// IMPORTANT: If adding new fields that need to transfer between devices, make sure to update the serialize and deserialize methods!!!
 
 @property (nonatomic, retain) NSString* word;
 @property int points;
 @property BOOL reachedPlayer;
-@property (nonatomic, retain) CCFiniteTimeAction *walkAction;
+@property (nonatomic, retain) CCFiniteTimeAction *walkAction; // movement animation
+@property (nonatomic, retain) CCActionInterval *moveAction; // actual movement towards player
 @property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
 @property int uniqueID;
 @property (nonatomic, retain) NSString *peerID; // if a remote monster
-
+@property (readonly) MonsterType monsterType; // used in serialization
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
 
@@ -31,5 +38,9 @@
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;
 -(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
+-(BOOL) isMine; // YES if the monster is owned locally
+
+-(NSMutableDictionary *) serialize; // dump the state into a dictionary
++(Monster *) deserialize:(NSDictionary *)dict peerID:(NSString *)thePeerID;
 
 @end

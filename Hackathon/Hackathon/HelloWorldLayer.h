@@ -13,6 +13,7 @@
 #import "CCTextField.h"
 #import "Player.h"
 #import "EndScreen.h"
+#import "MNCenter.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
@@ -36,8 +37,15 @@
 @property BOOL isGameOver;
 @property (nonatomic, retain) Player *myPlayer;
 @property (nonatomic, retain) EndScreen* gameOverScreen;
+@property (nonatomic, retain) NSMutableSet *devices;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+
+
+/******* communication *********/
+-(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device;
+-(void) sendJoinRequest:(Device *)device; // actually sends to all devices
+-(void) sendMonsterBornMessage:(Monster *)monster;
 
 @end

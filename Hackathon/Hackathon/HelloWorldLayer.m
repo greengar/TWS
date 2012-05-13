@@ -12,6 +12,7 @@
 #import "Monster.h"
 #import "MinionDragon.h"
 #import "MNCenter.h"
+#import "Messages.h"
 #import <objc/runtime.h>
 
 // HelloWorldLayer implementation
@@ -29,6 +30,9 @@
 @synthesize isGameOver;
 @synthesize myPlayer = _myPlayer;
 @synthesize gameOverScreen = _gameOverScreen;
+@synthesize devices = _devices;
+
+
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 
 #pragma mark - setters and getters 
@@ -119,18 +123,21 @@ static MNCenter *mnCenter = nil;
         [self removeChild:self.gameOverScreen cleanup:YES];
         [self.textEntryFieldCC setFocus];
     }
+    [self sendJoinRequest:nil]; // broadcast request for monster info
 }
 
 -(void) initCommChannel {
+    self.devices = [NSMutableSet setWithCapacity:5];
     MNCenter *networkCenter = [HelloWorldLayer sharedMNCenter];
     networkCenter.deviceConnectedCallback = ^(Device *device) {
-        //[connectedDevices addObject:device];
+        [self.devices addObject:device];
         NSLog(@"Connected: %@", [device deviceName]);
+        [self sendJoinRequest:device];
         //[self connected];
     };
     
     networkCenter.deviceDisconnectedCallback = ^(Device *device) {
-        //[connectedDevices removeObject:device];
+        [self.devices removeObject:device];
         NSLog(@"Disconnected: %@", [device deviceName]);
         
         //[self connected];
@@ -144,6 +151,7 @@ static MNCenter *mnCenter = nil;
     
     networkCenter.dataReceivedCallback = ^(NSData *data, Device *d) {
         NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        [self handleIncomingMessage:data fromDevice:d];
         NSLog(@"Received msg from %@: %@", d.deviceName, msg);
     };
     
@@ -231,6 +239,15 @@ static MNCenter *mnCenter = nil;
 */        
 	}
 	return self;
+}
+
+-(void) peerMonsterGenerator:(NSDictionary *)dict device: (Device *) device{
+
+    Monster *monster = [Monster deserialize:dict peerID:device.peerID];
+    [self.monsters addObject:monster];
+    [self addChild:monster];
+    [monster marchTo:playerPosition]; // will take into account time left
+
 }
 
 -(void)randomMonsterGenerator:(ccTime) dt {
@@ -336,6 +353,59 @@ static MNCenter *mnCenter = nil;
     return YES; 
 }
 
+
+
+/************* Communication **************/
+
+-(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device {
+    NSMutableDictionary *dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    PeerMessageType peerMessageType = [[dict objectForKey:MESSAGE_TYPE] intValue];
+    NSLog(@"Got message of type: %i", peerMessageType);
+    switch (peerMessageType) {
+        case kMessageJoinRequest: {
+            NSLog(@"New peer wants to join the game. Send them a dump of all current (local) monsters");
+            for (Monster *monster in self.monsters) {
+                if (monster.isMine) {
+                    [self sendMonsterBornMessage:monster];
+                }
+            }
+        }
+            break;
+            
+        case kMessageMonsterBorn:
+            [self peerMonsterGenerator:dict device:device];
+            break;
+            
+        default:
+            NSLog(@"unknown message type received!");
+            break;
+    }
+}
+
+
+-(void) sendMessage:(NSDictionary *)dict{
+    NSData *keyed = [NSKeyedArchiver archivedDataWithRootObject:dict];
+    [[HelloWorldLayer sharedMNCenter] sendDataToAllPeers:keyed callback:^(NSError *error) {
+        NSLog(@"COMM: Couldn't send data %@", [error localizedDescription]);
+    } ];
+}
+
+-(void) sendJoinRequest:(Device *)device {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageJoinRequest]  forKey:MESSAGE_TYPE];
+    [self sendMessage:dict];
+}
+
+-(void) sendMonsterBornMessage:(Monster *)monster {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessageMonsterBorn] forKey:MESSAGE_TYPE];
+    [dict addEntriesFromDictionary:[monster serialize]];
+    [self sendMessage:dict];
+}
+
+
+
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
@@ -350,7 +420,7 @@ static MNCenter *mnCenter = nil;
     self.textEntryFieldCC = nil;
     self.lastWord = nil;
     self.myPlayer = nil;
-
+    self.devices = nil;
 
 	// don't forget to call "super dealloc"
 	[super dealloc];

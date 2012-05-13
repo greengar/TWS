@@ -261,6 +261,7 @@
 		901F80C8155F82520019E2F9 /* grass-background-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-2.png"; sourceTree = "<group>"; };
 		901F80C9155F82520019E2F9 /* grass-background-3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-3-hd.png"; sourceTree = "<group>"; };
 		901F80CA155F82520019E2F9 /* grass-background-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-3.png"; sourceTree = "<group>"; };
+		901F80DC155F91000019E2F9 /* Messages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -711,13 +712,14 @@
 		90FC052E155EFD21002C3BAE /* Hackathon */ = {
 			isa = PBXGroup;
 			children = (
+				901F80DC155F91000019E2F9 /* Messages.h */,
+				90FC06AB155F0262002C3BAE /* Constants.h */,
 				901F802F155F58BD0019E2F9 /* Player.h */,
 				901F8030155F58BD0019E2F9 /* Player.m */,
 				90FC0680155EFD23002C3BAE /* AppDelegate.h */,
 				90FC0681155EFD23002C3BAE /* AppDelegate.m */,
 				90FC0683155EFD23002C3BAE /* RootViewController.h */,
 				90FC0684155EFD23002C3BAE /* RootViewController.m */,
-				90FC06AB155F0262002C3BAE /* Constants.h */,
 				90FC0686155EFD23002C3BAE /* HelloWorldLayer.h */,
 				90FC0687155EFD23002C3BAE /* HelloWorldLayer.m */,
 				90FC0689155EFD23002C3BAE /* GameConfig.h */,

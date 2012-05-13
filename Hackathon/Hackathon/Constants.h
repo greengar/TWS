@@ -9,7 +9,7 @@
 #ifndef Hackathon_Constants_h
 #define Hackathon_Constants_h
 
-#define GAME_LENGTH_SECONDS 20.0 // number of seconds for a game play
+#define GAME_LENGTH_SECONDS 120 // number of seconds for a game play
 #define MONSTER_EVERY_X_SECONDS 2.5 // for now
 #define MONSTER_MOVE_EVERY_X_SECONDS 3.0 // for now
 #define MONSTER_MOVE_DURATION_SECONDS 10.0 // seconds
