@@ -93,13 +93,6 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     [self notifyTime:timeLeft];
     [self notifyScore:score];
     
-    // remove existing monsters
-    for (Monster* monster in self.monsters) {
-        [self removeChild:monster cleanup:YES];
-    }
-    
-    [self.monsters removeAllObjects];
-    
     if (gameCount > 1) {
         NSLog(@"game over screen is %@",self.gameOverScreen);
         [self removeChild:self.gameOverScreen cleanup:YES];
@@ -206,6 +199,13 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     self.gameOverScreen = [[EndScreen alloc] initWithColor:ccc4(220, 220, 220, 255) width:screenSize.width height:screenSize.height];
     [self.gameOverScreen createWithFinalScore:score withReason:self.gameOverReason];
     [self addChild:self.gameOverScreen z:2];
+    
+    // remove existing monsters
+    for (Monster* monster in self.monsters) {
+        [self removeChild:monster cleanup:YES];
+    }
+    
+    [self.monsters removeAllObjects];
 }
 
 
@@ -220,7 +220,16 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
     if (self.isGameOver)
         return;
     
-    if (timeLeft > 0) { // game not over yet so:
+    // game is over, time is up and all monsters created are killed
+    if (timeLeft <= 0 && [self.monsters count] == 0) {
+        // game over, timed out
+        self.isGameOver = YES;
+        self.gameOverReason = kGameOverTimeOut;
+        [self showGameOverScreen];
+    } 
+    
+    // game not over yet either bc time is not up yet or there are still monsters
+    else {
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
         [self randomMonsterGenerator:dt];
@@ -241,7 +250,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
                 [self notifyScore:score];
             }
             if ([deadMonsters count] > 0) {
-                // we killed a monster, so clear field
+                // we killed a monster, so clear field  
                 self.textEntryFieldCC.text = @"";
             }
             [self.monsters minusSet:deadMonsters];
@@ -257,15 +266,7 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
             }
         }
         [self.monsters minusSet:deadMonsters];
-    } else {
-        // game over, timed out
-        if ([self.monsters count] == 0) {
-            self.isGameOver = YES;
-            self.gameOverReason = kGameOverTimeOut;
-            [self showGameOverScreen];
-        }
     }
-    
 }
 
 -(BOOL) textFieldShouldReturn:(CCTextField *)textField {
