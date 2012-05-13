@@ -36,10 +36,11 @@
 @synthesize bossDictionary = _bossDictionary;
 @synthesize localMonsters = _localMonsters;
 @synthesize boss = _boss;
+@synthesize fireballDictionary = _fireballDictionary;
 
 NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 NSString* const BOSS_DICTIONARY_FILE = @"CommonWords-TwelveOrMore";
-
+NSString* const FIREBALL_DICTIONARY_FILE = @"CommonWords-TwoOrLess";
 
 #pragma mark - setters and getters 
 
@@ -76,6 +77,16 @@ NSString* const BOSS_DICTIONARY_FILE = @"CommonWords-TwelveOrMore";
     _bossDictionary = bossDictionary;
 }
 
+- (NSMutableArray*)fireballDictionary { 
+    if (_fireballDictionary == nil) {
+        _fireballDictionary = [[NSMutableArray alloc] init];
+    }
+    return _fireballDictionary;
+}
+
+- (void)setFireballDictionary:(NSMutableArray *)fireballDictionary {
+    _fireballDictionary = fireballDictionary;
+}
 
 static MNCenter *mnCenter = nil;
 +(MNCenter *) sharedMNCenter {
@@ -86,7 +97,6 @@ static MNCenter *mnCenter = nil;
     return mnCenter;
 
 }
-
 
 
 +(CCScene *) scene
@@ -230,7 +240,7 @@ static MNCenter *mnCenter = nil;
         self.scoreLabel.position = ccp(screenSize.width, screenSize.height);
         [self addChild:self.scoreLabel z:1];
         
-        // 'dictionary' is filled upon game load and holds all possible words
+        // minion words
         NSError* error;
         NSString* filePath = [[NSBundle mainBundle] pathForResource:DICTIONARY_FILE ofType:@"txt"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
@@ -241,6 +251,7 @@ static MNCenter *mnCenter = nil;
             }
         }
         
+        // boss words
         filePath = [[NSBundle mainBundle] pathForResource:BOSS_DICTIONARY_FILE ofType:@"txt"];
         fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
         wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -250,12 +261,21 @@ static MNCenter *mnCenter = nil;
             }
         }
         
-
+        // fireball words
+        filePath = [[NSBundle mainBundle] pathForResource:FIREBALL_DICTIONARY_FILE ofType:@"txt"];
+        fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
+        wordsWithBlanks = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for (NSString* word in wordsWithBlanks) {
+            if (![[word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
+                [self.fireballDictionary addObject:word];
+            }
+        }
+        
+        
 //        self.dictionary = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 //        self.dictionary = [fileContents componentsSeparatedByString:@"\n\r"];
 //        NSLog(@"the file contents are %@",fileContents);
-        
-        NSLog(@"the dictionary is : %@",self.bossDictionary);
+//        NSLog(@"the dictionary is : %@",self.fireballDictionary);
         
         self.textEntryFieldCC = [CCTextField textFieldWithFieldSize:CGSizeMake(screenSize.width, 30) fontName:@"Arial-BoldMT" andFontSize:20];
         self.textEntryFieldCC.delegate = self;
@@ -310,9 +330,9 @@ static MNCenter *mnCenter = nil;
     while (nextMonsterTimer < 0) {
 
         // create new monster with random word and random location at the top
-        int randomWordGen = arc4random() % [self.dictionary count];
-        NSString* newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
+        int randomWordGen;
         double delta;
+        NSString* newWord;
         Monster* newMonster = nil;
         CGPoint location;
         int randomXLoc = arc4random() % (int)screenSize.width;
@@ -320,14 +340,19 @@ static MNCenter *mnCenter = nil;
         switch (monsterType) {
             case kMonsterTypeMinion:
                 delta = MONSTER_EVERY_X_SECONDS;
+                randomWordGen = arc4random() % [self.dictionary count];
+                newWord = [self.dictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
                 newMonster = [[MinionDragon alloc] createWithWord:newWord];
                 location = ccp(randomXLoc, screenSize.height); 
                 break;
                 
             case kMonsterTypeFireball:
                 delta = FIREBALL_EVERY_X_SECONDS;
+                randomWordGen = arc4random() % [self.fireballDictionary count];
+                newWord = [self.fireballDictionary objectAtIndex:MAX(0,(randomWordGen - 1))];
                 newMonster = [[Fireball alloc] createWithWord:newWord];
-                location = ccp(screenSize.width/2, screenSize.height-self.boss.boundingBox.size.height/0.75);                break;
+                location = ccp(screenSize.width/2, screenSize.height-self.boss.boundingBox.size.height/0.75);
+                break;
                 
             default:
                 delta = 10000; // what the hell is going on?
@@ -370,11 +395,11 @@ static MNCenter *mnCenter = nil;
         [newMonster marchTo:self.myPlayer.position];
         NSLog(@"new monster is %@",newMonster);
         
-        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
-        
-        for (Monster* monster in self.monsters) {
-            [monster decreasePointValue];
-        }
+//        [self sendMonsterBornMessage:newMonster]; // tell the world - we're proud parents of a new monster
+//        
+//        for (Monster* monster in self.monsters) {
+//            [monster decreasePointValue];
+//        }
     }
 }
  */
@@ -486,9 +511,13 @@ static MNCenter *mnCenter = nil;
     if (timeLeft > 0) { // game not over yet since timer still ticking
         timeLeft -= dt;
         [self notifyTime:MAX(timeLeft, 0)];
-        if (timeLeft > 10) {
+        if (timeLeft > BOSS_APPEARS_AT_TIME_LEFT) {
             [self randomMonsterGenerator:dt monsterType:kMonsterTypeMinion];
         } else {
+            if (bossAppeared == NO) {
+                bossAppeared = YES;
+                [self generateBoss];
+            }
             [self randomMonsterGenerator:dt monsterType:kMonsterTypeFireball];
         }
     }
