@@ -101,17 +101,12 @@ NSString* const DICTIONARY_FILE = @"CommonWords-SixOrLess";
 		// ask director the the window size
 		screenSize = [[CCDirector sharedDirector] winSize];
         
-/*
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
 
-	
-		// position the label on the center of the screen
-		label.position =  ccp( screenSize.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-*/
+        // background
+        CCSprite *background = [CCSprite spriteWithFile:@"grass-background.png"];
+        background.position = ccpMult(ccpFromSize(screenSize), 0.5);
+        [self addChild:background z:-1];
+        
         // Timer label
         self.timerLabel = [CCLabelTTF labelWithString:@"HELLO" fontName:@"Arial-BoldMT" fontSize:20];
         [self.timerLabel setAnchorPoint:ccp(0, 1)];

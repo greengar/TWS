@@ -7,7 +7,7 @@
 //
 
 #import "Player.h"
-#define NINJA_IMAGE @"small-dragon.png"
+#define NINJA_IMAGE @"ninja-standing.png"
 
 @implementation Player
 

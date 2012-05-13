@@ -35,6 +35,10 @@
 		901F8060155F5C7D0019E2F9 /* small-dragon-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8048155F5C7D0019E2F9 /* small-dragon-8.png */; };
 		901F8061155F5C7D0019E2F9 /* small-dragon-9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8049155F5C7D0019E2F9 /* small-dragon-9-hd.png */; };
 		901F8062155F5C7D0019E2F9 /* small-dragon-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F804A155F5C7D0019E2F9 /* small-dragon-9.png */; };
+		901F8065155F67970019E2F9 /* ninja-standing-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8063155F67970019E2F9 /* ninja-standing-hd.png */; };
+		901F8066155F67970019E2F9 /* ninja-standing.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8064155F67970019E2F9 /* ninja-standing.png */; };
+		901F806A155F68F10019E2F9 /* grass-background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8068155F68F10019E2F9 /* grass-background-hd.png */; };
+		901F806B155F68F10019E2F9 /* grass-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 901F8069155F68F10019E2F9 /* grass-background.png */; };
 		90FC051F155EFD21002C3BAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC051E155EFD21002C3BAE /* QuartzCore.framework */; };
 		90FC0521155EFD21002C3BAE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0520155EFD21002C3BAE /* OpenGLES.framework */; };
 		90FC0523155EFD21002C3BAE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC0522155EFD21002C3BAE /* OpenAL.framework */; };
@@ -187,6 +191,10 @@
 		901F8048155F5C7D0019E2F9 /* small-dragon-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-8.png"; sourceTree = "<group>"; };
 		901F8049155F5C7D0019E2F9 /* small-dragon-9-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-9-hd.png"; sourceTree = "<group>"; };
 		901F804A155F5C7D0019E2F9 /* small-dragon-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-dragon-9.png"; sourceTree = "<group>"; };
+		901F8063155F67970019E2F9 /* ninja-standing-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-standing-hd.png"; sourceTree = "<group>"; };
+		901F8064155F67970019E2F9 /* ninja-standing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja-standing.png"; sourceTree = "<group>"; };
+		901F8068155F68F10019E2F9 /* grass-background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background-hd.png"; sourceTree = "<group>"; };
+		901F8069155F68F10019E2F9 /* grass-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass-background.png"; sourceTree = "<group>"; };
 		90FC051A155EFD21002C3BAE /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FC051E155EFD21002C3BAE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90FC0520155EFD21002C3BAE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -455,6 +463,8 @@
 		901F8027155F45B70019E2F9 /* monsters */ = {
 			isa = PBXGroup;
 			children = (
+				901F8063155F67970019E2F9 /* ninja-standing-hd.png */,
+				901F8064155F67970019E2F9 /* ninja-standing.png */,
 				901F8032155F5C7D0019E2F9 /* redragon */,
 				901F8028155F45C20019E2F9 /* small-dragon.png */,
 				901F8029155F45C20019E2F9 /* small-dragon-hd.png */,
@@ -501,6 +511,16 @@
 				901F804A155F5C7D0019E2F9 /* small-dragon-9.png */,
 			);
 			path = redragon;
+			sourceTree = "<group>";
+		};
+		901F8067155F68F10019E2F9 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				901F8068155F68F10019E2F9 /* grass-background-hd.png */,
+				901F8069155F68F10019E2F9 /* grass-background.png */,
+			);
+			name = backgrounds;
+			path = Resources/backgrounds;
 			sourceTree = "<group>";
 		};
 		90FC050F155EFD21002C3BAE = {
@@ -562,6 +582,7 @@
 		90FC052F155EFD21002C3BAE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				901F8067155F68F10019E2F9 /* backgrounds */,
 				901F802C155F56140019E2F9 /* Emitters */,
 				901F8027155F45B70019E2F9 /* monsters */,
 				90FC0530155EFD21002C3BAE /* Default.png */,
@@ -990,6 +1011,10 @@
 				901F8060155F5C7D0019E2F9 /* small-dragon-8.png in Resources */,
 				901F8061155F5C7D0019E2F9 /* small-dragon-9-hd.png in Resources */,
 				901F8062155F5C7D0019E2F9 /* small-dragon-9.png in Resources */,
+				901F8065155F67970019E2F9 /* ninja-standing-hd.png in Resources */,
+				901F8066155F67970019E2F9 /* ninja-standing.png in Resources */,
+				901F806A155F68F10019E2F9 /* grass-background-hd.png in Resources */,
+				901F806B155F68F10019E2F9 /* grass-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
