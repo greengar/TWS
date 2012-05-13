@@ -24,6 +24,7 @@
 @synthesize throwAction = _throwAction;
 @synthesize isLeaving = _isLeaving;
 @synthesize eventualPosition;
+@synthesize nameLabel = _nameLabel;
 
 -(Player *) initWithName:(NSString *) playerName {
     CCAnimation *animation = [Monster animationFromTemplate:TEMPLATE_NAME andFrames:FRAME_ORDER];
@@ -34,10 +35,10 @@
         self.isLeaving = NO;
         self.name = [[playerName componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" .,"]] objectAtIndex:0];
         self.color = ccRED;
-        CCLabelTTF *name = [CCLabelTTF labelWithString:self.name fontName:@"Arial-BoldMT" fontSize:15];
-        [name setAnchorPoint:ccp(0.5, 0)];
-        [self addChild:name];
-        name.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height );
+        self.nameLabel = [CCLabelTTF labelWithString:self.name fontName:@"Arial-BoldMT" fontSize:15];
+        [self.nameLabel setAnchorPoint:ccp(0.5, 0)];
+        [self addChild:self.nameLabel];
+        self.nameLabel.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height );
         self.swayAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:animation restoreOriginalFrame:NO]];
         CCAnimation *throwAnim = [Monster animationFromTemplate:THROW_TEMPLATE_NAME andFrames:THROW_FRAME_ORDER];
         self.throwAction = [CCAnimate actionWithDuration:0.2 animation:throwAnim restoreOriginalFrame:YES];
@@ -104,12 +105,16 @@
     [self runAction:[CCSequence actions:moveAction, cleanupAction, nil ]];
 }
 
+-(void) notifyTypedMessage:(NSString *)text {
+    [self.nameLabel setString:text];
+}
+
 - (void)dealloc
 {
     self.name = nil;
     self.swayAction = nil;
     self.throwAction = nil;
-    
+    self.nameLabel = nil;
     [super dealloc];
 }
 

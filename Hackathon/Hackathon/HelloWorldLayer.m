@@ -433,7 +433,7 @@ static MNCenter *mnCenter = nil;
         if (min == 0 && sec <= 10) {
             if (bossAppeared == NO) {
                 bossAppeared = YES;
-                [self generateBoss];
+                //[self generateBoss];
             }
             if (sec % 3) {
                 [self.boss throwFireballAt:self.myPlayer];
@@ -462,15 +462,22 @@ static MNCenter *mnCenter = nil;
     
     NSString *letter = string.lowercaseString;
     NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:3];
+    BOOL monsterWasHit = NO;
+    BOOL monsterWasKilled = NO;
     
     // attack all monsters with letter
     for (Monster *monster in self.monsters) {
-        if ([monster attackWithString:letter]) {
+        if ([monster attackWithString:letter didHit:&monsterWasHit]) {
             monster.isSlatedToDie = YES;
             [deadMonsters addObject:monster];
             [self sendMonsterDiedMessage:monster];
+            
+            monsterWasKilled = YES;
+            // clear field because I killed a monster
+            textField.text = @"";
         }
     }
+    
     for (Monster *monster in deadMonsters) {
         [self.myPlayer throwWeaponAt:monster]; // TODO: for animation, use fixed velocity instead of fixed time
         
@@ -479,13 +486,16 @@ static MNCenter *mnCenter = nil;
         
         [self notifyScore:score];
     }
-    // clearing field no longer necessary because there is no visible field
+    
     [self.monsters minusSet:deadMonsters];
     [self.localMonsters minusSet:deadMonsters];
     
     [deadMonsters removeAllObjects];
     
-    // field not meant to be visible anymore
+    if (monsterWasHit == YES && monsterWasKilled == NO) {
+        [self sendPlayerTypedMessage:textField.text];
+        return YES; // allow textField to change if this letter was successful
+    }
     return NO;
 }
 
@@ -582,6 +592,16 @@ static MNCenter *mnCenter = nil;
     }
 }
 
+-(void) remotePlayerTyped:(NSDictionary *)dict device:(Device *)device {
+    NSString *text = [dict objectForKey:KEY_TEXT];
+    Player *player = [self.players objectForKey:device.peerID];
+    if (player) {
+        [player notifyTypedMessage:text];
+    } else {
+        NSLog(@"COMM: Typed message from unknown player %@: %@", device.peerID, text );
+    }
+}
+
 /************* Communication **************/
 
 -(void) handleIncomingMessage:(NSData *)data fromDevice:(Device *)device {
@@ -614,6 +634,11 @@ static MNCenter *mnCenter = nil;
         case kMessagePlayerLeft:
             [self remotePlayerLeft:device];
             break;
+            
+        case kMessagePlayerTyped:
+            [self remotePlayerTyped:dict device:device];
+            break;
+            
         default:
             NSLog(@"unknown message type received!");
             break;
@@ -653,6 +678,13 @@ static MNCenter *mnCenter = nil;
     [self sendMessage:dict];
 }
 
+// notify that player typed a message
+-(void) sendPlayerTypedMessage:(NSString *)text {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5 ];
+    [dict setObject:[NSNumber numberWithInt:kMessagePlayerTyped] forKey:MESSAGE_TYPE];
+    [dict setObject:text forKey:KEY_TEXT];
+    [self sendMessage:dict];
+}
 
 
 // on "dealloc" you need to release all your retained objects
