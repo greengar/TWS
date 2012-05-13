@@ -158,7 +158,18 @@
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
 		F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */ = {isa = PBXBuildFile; fileRef = F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */; };
-		F92123501560344300706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921234F1560344300706C5D /* boss-dragon-1-hd.png */; };
+		F921235715603C3900706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235115603C3900706C5D /* boss-dragon-1-hd.png */; };
+		F921235815603C3900706C5D /* boss-dragon-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235215603C3900706C5D /* boss-dragon-2-hd.png */; };
+		F921235915603C3900706C5D /* boss-dragon-3-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235315603C3900706C5D /* boss-dragon-3-hd.png */; };
+		F921235A15603C3900706C5D /* boss-dragon-4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235415603C3900706C5D /* boss-dragon-4-hd.png */; };
+		F921235B15603C3900706C5D /* boss-dragon-5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235515603C3900706C5D /* boss-dragon-5-hd.png */; };
+		F921235C15603C3900706C5D /* boss-dragon-6-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235615603C3900706C5D /* boss-dragon-6-hd.png */; };
+		F921236315603CF300706C5D /* boss-dragon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235D15603CF300706C5D /* boss-dragon-1.png */; };
+		F921236415603CF300706C5D /* boss-dragon-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235E15603CF300706C5D /* boss-dragon-2.png */; };
+		F921236515603CF300706C5D /* boss-dragon-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F921235F15603CF300706C5D /* boss-dragon-3.png */; };
+		F921236615603CF300706C5D /* boss-dragon-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236015603CF300706C5D /* boss-dragon-4.png */; };
+		F921236715603CF300706C5D /* boss-dragon-5.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236115603CF300706C5D /* boss-dragon-5.png */; };
+		F921236815603CF300706C5D /* boss-dragon-6.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236215603CF300706C5D /* boss-dragon-6.png */; };
 		F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CBAF5155F90070008E77A /* BloodDrip.m */; };
 		F95CBAFE155F9AB80008E77A /* blood-screen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */; };
 		F95CBAFF155F9AB80008E77A /* blood-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F95CBAFD155F9AB80008E77A /* blood-screen.png */; };
@@ -475,7 +486,18 @@
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F921234B15602B6200706C5D /* CommonWords-TwelveOrMore.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CommonWords-TwelveOrMore.txt"; sourceTree = "<group>"; };
-		F921234F1560344300706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
+		F921235115603C3900706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
+		F921235215603C3900706C5D /* boss-dragon-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2-hd.png"; sourceTree = "<group>"; };
+		F921235315603C3900706C5D /* boss-dragon-3-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-3-hd.png"; sourceTree = "<group>"; };
+		F921235415603C3900706C5D /* boss-dragon-4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-4-hd.png"; sourceTree = "<group>"; };
+		F921235515603C3900706C5D /* boss-dragon-5-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-5-hd.png"; sourceTree = "<group>"; };
+		F921235615603C3900706C5D /* boss-dragon-6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6-hd.png"; sourceTree = "<group>"; };
+		F921235D15603CF300706C5D /* boss-dragon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1.png"; sourceTree = "<group>"; };
+		F921235E15603CF300706C5D /* boss-dragon-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2.png"; sourceTree = "<group>"; };
+		F921235F15603CF300706C5D /* boss-dragon-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-3.png"; sourceTree = "<group>"; };
+		F921236015603CF300706C5D /* boss-dragon-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-4.png"; sourceTree = "<group>"; };
+		F921236115603CF300706C5D /* boss-dragon-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-5.png"; sourceTree = "<group>"; };
+		F921236215603CF300706C5D /* boss-dragon-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-6.png"; sourceTree = "<group>"; };
 		F95CBAF4155F90070008E77A /* BloodDrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDrip.h; sourceTree = "<group>"; };
 		F95CBAF5155F90070008E77A /* BloodDrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDrip.m; sourceTree = "<group>"; };
 		F95CBAFC155F9AB80008E77A /* blood-screen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blood-screen-hd.png"; sourceTree = "<group>"; };
@@ -1051,7 +1073,18 @@
 		F921234E1560343C00706C5D /* bossdragon */ = {
 			isa = PBXGroup;
 			children = (
-				F921234F1560344300706C5D /* boss-dragon-1-hd.png */,
+				F921235D15603CF300706C5D /* boss-dragon-1.png */,
+				F921235E15603CF300706C5D /* boss-dragon-2.png */,
+				F921235F15603CF300706C5D /* boss-dragon-3.png */,
+				F921236015603CF300706C5D /* boss-dragon-4.png */,
+				F921236115603CF300706C5D /* boss-dragon-5.png */,
+				F921236215603CF300706C5D /* boss-dragon-6.png */,
+				F921235115603C3900706C5D /* boss-dragon-1-hd.png */,
+				F921235215603C3900706C5D /* boss-dragon-2-hd.png */,
+				F921235315603C3900706C5D /* boss-dragon-3-hd.png */,
+				F921235415603C3900706C5D /* boss-dragon-4-hd.png */,
+				F921235515603C3900706C5D /* boss-dragon-5-hd.png */,
+				F921235615603C3900706C5D /* boss-dragon-6-hd.png */,
 			);
 			name = bossdragon;
 			sourceTree = "<group>";
@@ -1200,7 +1233,18 @@
 				F95CBB5E155FA3030008E77A /* small-dragon-12-hd.png in Resources */,
 				F95CBB5F155FA3030008E77A /* small-dragon-12.png in Resources */,
 				F921234C15602B6200706C5D /* CommonWords-TwelveOrMore.txt in Resources */,
-				F92123501560344300706C5D /* boss-dragon-1-hd.png in Resources */,
+				F921235715603C3900706C5D /* boss-dragon-1-hd.png in Resources */,
+				F921235815603C3900706C5D /* boss-dragon-2-hd.png in Resources */,
+				F921235915603C3900706C5D /* boss-dragon-3-hd.png in Resources */,
+				F921235A15603C3900706C5D /* boss-dragon-4-hd.png in Resources */,
+				F921235B15603C3900706C5D /* boss-dragon-5-hd.png in Resources */,
+				F921235C15603C3900706C5D /* boss-dragon-6-hd.png in Resources */,
+				F921236315603CF300706C5D /* boss-dragon-1.png in Resources */,
+				F921236415603CF300706C5D /* boss-dragon-2.png in Resources */,
+				F921236515603CF300706C5D /* boss-dragon-3.png in Resources */,
+				F921236615603CF300706C5D /* boss-dragon-4.png in Resources */,
+				F921236715603CF300706C5D /* boss-dragon-5.png in Resources */,
+				F921236815603CF300706C5D /* boss-dragon-6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

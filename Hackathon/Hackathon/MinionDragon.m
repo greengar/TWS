@@ -19,8 +19,11 @@
 
 -(MinionDragon *) createWithWord:(NSString *)word {
     if ((self = (MinionDragon *) [super createWithWord:word animationTemplate:TEMPLATE_NAME frames:FRAME_ORDER])) {
+        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:self.animation restoreOriginalFrame:NO]];
+        [self runAction:self.walkAction];
     }
     return self;
 }
+
 
 @end

@@ -41,6 +41,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *peerID; // if a remote monster
 @property (readonly) MonsterType monsterType; // used in serialization
 @property BOOL isMine;
+@property (nonatomic, retain) CCAnimation* animation;
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
 

@@ -16,7 +16,6 @@
     
 }
 
-
 -(MinionDragon *) createWithWord:(NSString *)word;
 
 @end

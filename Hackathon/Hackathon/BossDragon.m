@@ -8,8 +8,8 @@
 
 #import "BossDragon.h"
 
-#define TEMPLATE_NAME @"small-dragon-%@.png"
-#define FRAME_ORDER @"1,2,3,4,5,6,7,8,9,10,11,12"
+#define TEMPLATE_NAME @"boss-dragon-%@.png"
+#define FRAME_ORDER @"1,2,3,4,5,6,5,4,3,2,1"
 
 @implementation BossDragon
 
@@ -20,6 +20,8 @@
 -(BossDragon *) createWithWord:(NSString *)word {
     if ((self = (BossDragon *) [super createWithWord:word animationTemplate:TEMPLATE_NAME frames:FRAME_ORDER])) {
         self.points = BOSS_INITIAL_POINTS;
+        self.walkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:self.animation restoreOriginalFrame:NO]];
+        [self runAction:self.walkAction];
     }
     return self;
 }
