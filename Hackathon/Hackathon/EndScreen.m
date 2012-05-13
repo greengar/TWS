@@ -39,13 +39,26 @@
     
     // final score label
     NSString* finalScoreLabel = [NSString stringWithFormat:@"Final Score: %i",(int)finalScore];
-    self.finalScoreLabel = [CCLabelTTF labelWithString:finalScoreLabel fontName:@"Arial-BoldMT" fontSize:30];
+    self.finalScoreLabel = [CCLabelTTF labelWithString:finalScoreLabel fontName:@"Arial-BoldMT" fontSize:25];
     [self.finalScoreLabel setAnchorPoint:ccp(0.5,0.5)];
     self.finalScoreLabel.position = ccp(screenSize.width/2,300);
     [self addChild:self.finalScoreLabel z:3];
     
-    // high score label
+    // high score label: if no high score, then save final score as high score, otherwise, return high score
+    double currentHighScore = [[NSUserDefaults standardUserDefaults] doubleForKey:@"highScore"];
+    if (currentHighScore && currentHighScore > finalScore) {
+        // do nothing
+    } else {
+        currentHighScore = finalScore;
+        [[NSUserDefaults standardUserDefaults] setDouble:finalScore forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
+    NSString* highScoreLabel = [NSString stringWithFormat:@"High Score: %i",(int)currentHighScore];
+    self.highScoreLabel = [CCLabelTTF labelWithString:highScoreLabel fontName:@"Arial-BoldMT" fontSize:25];
+    [self.highScoreLabel setAnchorPoint:ccp(0.5,0.5)];
+    self.highScoreLabel.position = ccp(screenSize.width/2,275);
+    [self addChild:self.highScoreLabel z:3];
     
     // play again button
 }
