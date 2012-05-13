@@ -25,6 +25,7 @@
 @synthesize peerID;
 @synthesize uniqueID;
 @synthesize moveAction = _moveAction;
+@synthesize name;
 @synthesize completedLabel;
 @synthesize isMine;
 @synthesize animation = _animation;
@@ -55,26 +56,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     return animation;
 }
 
-// init for monsters without animation
-- (Monster*)createWithWord:(NSString*)word {
-    NSLog(@"hi im in monster constructor");
-    if ((self = [super initWithFile:@"blank.png"])) {
-        timeLeftToReachPlayer = MONSTER_MOVE_DURATION_SECONDS;
-        self.isSlatedToDie = NO;
-        self.word = word;
-        self.points = INITIAL_POINTS;
-        self.reachedPlayer = NO;
-        
-        CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
-        [name setAnchorPoint:ccp(0.5, 1)];
-        [self addChild:name];
-        [name setColor:ccBLACK];
-        name.position = ccp(self.boundingBox.size.width / 2,-10);
-    }
-    return self;
-}
-
-// init for monsters with animation
+// init for monsters with animation (e.g. minions/boss)
 - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames {
     
     CCAnimation *animation = [Monster animationFromTemplate:animationTemplate andFrames:frames];
@@ -89,7 +71,7 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         self.points = INITIAL_POINTS;
         self.reachedPlayer = NO;
         
-        CCLabelTTF *name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
+        name = [CCLabelTTF labelWithString:self.word fontName:@"Arial-BoldMT" fontSize:15];
         [name setAnchorPoint:ccp(0.5, 1)];
         [self addChild:name];
         name.position = ccp(self.boundingBox.size.width / 2,0 );
@@ -133,10 +115,13 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [self runAction:self.moveAction];
 }
 
--(BOOL) attackWithString:(NSString *)string
+-(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit
 {
     NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
     if ([stringRemaining hasPrefix:string]) {
+        
+        if (*monsterWasHit == NO) *monsterWasHit = YES;
+        
         if (string.length >= lettersRemaining) {
             return YES;
         }

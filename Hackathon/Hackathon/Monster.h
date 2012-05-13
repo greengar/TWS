@@ -39,6 +39,7 @@ typedef enum {
 @property BOOL reachedPlayer;
 @property (nonatomic, retain) CCFiniteTimeAction *movementAnimationAction; // movement animation
 @property (nonatomic, retain) CCActionInterval *moveAction; // actual movement towards player
+@property (nonatomic, readonly) CCLabelTTF *name;
 @property (nonatomic, retain) CCLabelTTF *completedLabel;
 @property BOOL isSlatedToDie; // true if the monster is marked for death, but the star hasn't reached it yet. Make sure it doesnt' kill the player by mistake
 @property int uniqueID;
@@ -48,11 +49,10 @@ typedef enum {
 @property (nonatomic, retain) CCAnimation* animation;
 
 +(CCAnimation *) animationFromTemplate:(NSString *)animationTemplate andFrames:(NSString *)frames; // convenience method to return an animation from a list of frames and a template
-- (Monster*)createWithWord:(NSString*)word;
 - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
--(BOOL) attackWithString:(NSString *)string; // returns YES if monster dead
+-(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit; // returns YES if monster dead
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;
 -(void) setOwnerMe:(BOOL)isMine uniqueID:(int)theUniqueId peerID:(NSString *)thePeerID; // set me as the owner, or provide a set of IDS to identify the monster
