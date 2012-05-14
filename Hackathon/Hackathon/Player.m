@@ -23,10 +23,10 @@
 @synthesize name = _name;
 @synthesize isMe;
 @synthesize swayAction = _swayAction;
-@synthesize throwAction = _throwAction;
 @synthesize isLeaving = _isLeaving;
 @synthesize eventualPosition;
 @synthesize nameLabel = _nameLabel;
+@synthesize throwAnimation = _throwAnimation;
 
 -(Player *) initWithName:(NSString *) playerName {
     CCAnimation *animation = [Monster animationFromTemplate:TEMPLATE_NAME andFrames:FRAME_ORDER];
@@ -42,8 +42,7 @@
         [self addChild:self.nameLabel];
         self.nameLabel.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height );
         self.swayAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:1 animation:animation restoreOriginalFrame:NO]];
-        CCAnimation *throwAnim = [Monster animationFromTemplate:THROW_TEMPLATE_NAME andFrames:THROW_FRAME_ORDER];
-        self.throwAction = [CCAnimate actionWithDuration:0.2 animation:throwAnim restoreOriginalFrame:YES];
+        self.throwAnimation = [Monster animationFromTemplate:THROW_TEMPLATE_NAME andFrames:THROW_FRAME_ORDER];
         
         [self runAction:self.swayAction];
     
@@ -52,7 +51,7 @@
 }
 
 -(void) throwWeaponAt:(Monster *)monster {
-    if (self.isLeaving || !self.throwAction.isDone) {
+    if (self.isLeaving) {
         // player is leaving so we're not adding animation
         // OR throw action still running, so don't double-run
         [monster die];
@@ -87,11 +86,12 @@
         [projectile runAction:[CCSequence actions:starMove, monsterIsDead, nil]];
     }];
     
-    
+    CCAnimate *throwAction = [CCAnimate actionWithDuration:0.2 animation:self.throwAnimation restoreOriginalFrame:YES];
+
     
     
     [self runAction:[CCSequence actions:
-                     self.throwAction,
+                     throwAction,
                      revertToSwaying,
                      starAction,
                      nil]];
@@ -127,7 +127,7 @@
 {
     self.name = nil;
     self.swayAction = nil;
-    self.throwAction = nil;
+    self.throwAnimation = nil;
     self.nameLabel = nil;
     [super dealloc];
 }
