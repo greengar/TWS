@@ -19,6 +19,6 @@
 //- (NSData *)getDataToSend;
 //- (BOOL)storeData:(NSData*)data andReplyTo:(id)delegate selector:(SEL)selector;
 
-- (void)receiveString:(NSString *)str fromDevice:(Device *)d;
+- (void)receiveData:(NSData *)data fromDevice:(Device *)d;
 
 @end

@@ -13,10 +13,25 @@
 
 @implementation MinionDragon
 
+-(MonsterType) monsterType {
+    return kMonsterTypeMinion;
+}
+
 -(MinionDragon *) createWithWord:(NSString *)word {
     if ((self = (MinionDragon *) [super createWithWord:word animationTemplate:TEMPLATE_NAME frames:FRAME_ORDER])) {
+        self.movementAnimationAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithDuration:2 animation:self.animation restoreOriginalFrame:NO]];
+        [self runAction:self.movementAnimationAction];
     }
     return self;
 }
+
+-(void) markAsRemote {
+    //self.color = ccBLACK;
+    CCSprite *halo = [CCSprite spriteWithFile:@"halo.png"];
+    [self setAnchorPoint:ccp(0.5, 0)];
+    halo.position = ccp(self.boundingBox.size.width / 2, self.boundingBox.size.height);
+    [self addChild:halo];
+}
+
 
 @end

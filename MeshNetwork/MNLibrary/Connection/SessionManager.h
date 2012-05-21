@@ -12,8 +12,6 @@
 #import "DevicesManager.h"
 #import "Device.h"
 
-#define MESH_NETWORK_GLOBAL_SESSION_ID @"meshnetwork"
-
 #define NOTIFICATION_DEVICE_AVAILABLE @"notif_device_available"
 #define NOTIFICATION_DEVICE_UNAVAILABLE @"notif_device_unavailable"
 #define NOTIFICATION_DEVICE_CONNECTED @"notif_device_connected"
@@ -25,13 +23,13 @@
 typedef void(^BasicBlock)(void);
 
 @interface SessionManager : NSObject<GKSessionDelegate> {
-	GKSession *meshSession;
 	DevicesManager *devicesManager;
 }
 
+@property (nonatomic, readonly) GKSession *meshSession;
 @property (nonatomic, copy) BasicBlock onStateChange;
 
-- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager;
+- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager sessionID:(NSString *)sid;
 - (void)start;
 - (void)sendStringToAllPeers:(NSString *)string callback:(ErrorBlock)callback;
 - (void)stop;

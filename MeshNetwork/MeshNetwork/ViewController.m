@@ -19,36 +19,43 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    /////////////////////////////////////////
+    // 1. instantiate the Mesh Network Center
+    
     networkCenter = [[MNCenter alloc] init];
+    
+    NSLog(@"my peerID: %@", networkCenter.peerID);
     
     connections.text = [NSString stringWithFormat:@"Your name: %@\n\nSearching for devices...", [networkCenter deviceName]];
     [self.view addSubview:connections];
     
-    [networkCenter startWithDeviceAvailable:^(Device *device) {
-        NSLog(@"device became available");
-        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-        for (Device *d in [networkCenter sortedDevices]) {
-            // no harm should come from attempting to connect to already-connected devices
-            [d connectAndReplyTo:self selector:@selector(connected) errorSelector:@selector(notConnected)];
-            connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
-        }
-    } deviceUnavailable:^(Device *device) {
-        NSLog(@"device became unavailable");
-        connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-        for (Device *d in [networkCenter sortedDevices]) {
-            connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
-        }
-    }];
+    connectedDevices = [[NSMutableArray alloc] initWithCapacity:10];
     
-    [networkCenter.sessionManager setOnStateChange:^{
-        [self connected];
-    }];
+    /////////////////////////
+    // 2. set three callbacks
     
-    networkCenter.receiveMessageCallback = ^(NSString *msg, Device *d) {
-        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", d.deviceName, msg] toText:messages.text];
+    networkCenter.deviceConnectedCallback = ^(Device *device) {
+        [connectedDevices addObject:device];
+        
+        [self refreshDeviceList];
     };
     
-    //[connections release];
+    networkCenter.deviceDisconnectedCallback = ^(Device *device) {
+        [connectedDevices removeObject:device];
+        
+        [self refreshDeviceList];
+    };
+    
+    networkCenter.dataReceivedCallback = ^(NSData *data, Device *device) {
+        NSString *msg = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        
+        messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", device.deviceName, msg] toText:messages.text];
+    };
+    
+    /////////////////////////////////////
+    // 3. start advertising and searching
+    
+    [networkCenter start];
 }
 
 - (NSString *)appendMessage:(NSString *)msg toText:(NSString *)txt {
@@ -67,26 +74,35 @@
     return result;
 }
 
-- (void)connected {
-    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nNearby devices:\n", [networkCenter deviceName]];
-    for (Device *d in [networkCenter sortedDevices]) {
-        connections.text = [connections.text stringByAppendingFormat:@"%@ - %@\n", d.deviceName, [d statusString]];
+- (void)refreshDeviceList {
+    connections.text = [NSString stringWithFormat:@"Your name: %@\n\nConnected devices:\n", [networkCenter deviceName]];
+    
+    for (Device *d in connectedDevices) {
+        connections.text = [connections.text stringByAppendingFormat:@"%@\n", d.deviceName];
     }
-}
-
-- (void)notConnected {
-    // ...
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [networkCenter.sessionManager sendStringToAllPeers:textField.text callback:^(NSError *err) {
-        NSLog(@"callback");
-    }];
+    //////////////////////////////////////
+    // 4. send data to all connected peers
     
+    [networkCenter sendDataToAllPeers:[textField.text dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // data sent is NOT received by myself, so add my own message to my own log
     messages.text = [self appendMessage:[NSString stringWithFormat:@"%@: %@", [[UIDevice currentDevice] name], textField.text] toText:messages.text];
-    
     textField.text = @"";
+    
+    ////////////////////////////////////
+    // 5. send data to one specific peer
+    
+    if ([connectedDevices count] > 0) {
+        BOOL success = [networkCenter sendData:[@"You're #0!" dataUsingEncoding:NSUTF8StringEncoding] toPeerID:[(Device *)[connectedDevices objectAtIndex:0] peerID]];
+        if (!success) {
+            NSLog(@"unable to queue data for sending");
+        }
+    }
+    
     return YES;
 }
 

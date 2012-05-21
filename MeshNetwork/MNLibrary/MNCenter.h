@@ -12,23 +12,24 @@
 #import "DevicesManager.h"
 
 typedef void(^DeviceBlock)(Device *);
-typedef void(^MessageBlock)(NSString *, Device *);
+typedef void(^DataBlock)(NSData *, Device *);
 
 @interface MNCenter : NSObject <DataProvider>
 {
 	DataHandler *dataHandler;
 	DevicesManager *devicesManager;
-    
-    DeviceBlock deviceAvailableBlock;
-    DeviceBlock deviceUnavailableBlock;
 }
 
 @property (nonatomic, retain) SessionManager *sessionManager;
-@property (nonatomic, copy) DeviceBlock deviceAvailableBlock;
-@property (nonatomic, copy) DeviceBlock deviceUnavailableBlock;
-@property (nonatomic, copy) MessageBlock receiveMessageCallback;
+@property (nonatomic, copy) DeviceBlock deviceConnectedCallback;
+@property (nonatomic, copy) DeviceBlock deviceDisconnectedCallback;
+@property (nonatomic, copy) DataBlock dataReceivedCallback;
+@property (nonatomic, readonly) NSString *peerID;
 
-- (void)startWithDeviceAvailable:(DeviceBlock)ab deviceUnavailable:(DeviceBlock)ub;
+- (id)initWithSessionID:(NSString *)sessionID;
+- (void)start;
+- (BOOL)sendDataToAllPeers:(NSData *)data;
+- (BOOL)sendData:(NSData *)data toPeerID:(NSString *)peerID;
 - (NSArray *)sortedDevices;
 - (NSString *)deviceName;
 

@@ -137,7 +137,8 @@
         NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         NSLog(@"%@: %@", device.deviceName, str);
         
-        [dataProvider receiveString:str fromDevice:device];
+//        [dataProvider receiveString:str fromDevice:device];
+        [dataProvider receiveData:data fromDevice:device];
         
         // bail early!!!
         return;
@@ -409,14 +410,14 @@
     // ...
 }
 
-- (void)dataPrepared {
-	[self showProcess:NSLocalizedString(@"CONNECTION_PROCESS", @"Connecting dialog")];
-	
-	if (![currentStateRelatedDevice isConnected])
-		[currentStateRelatedDevice connectAndReplyTo:self selector:@selector(deviceConnected) errorSelector:@selector(deviceConnectionFailed)];
-	else
-		[self deviceConnected];
-}
+//- (void)dataPrepared {
+//	[self showProcess:NSLocalizedString(@"CONNECTION_PROCESS", @"Connecting dialog")];
+//	
+//	if (![currentStateRelatedDevice isConnected])
+//		[currentStateRelatedDevice connectAndReplyTo:self selector:@selector(deviceConnected) errorSelector:@selector(deviceConnectionFailed)];
+//	else
+//		[self deviceConnected];
+//}
 
 - (void)deviceConnected {
 	[self sendRequestData];

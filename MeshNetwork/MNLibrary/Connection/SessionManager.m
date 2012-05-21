@@ -20,16 +20,18 @@
 
 @implementation SessionManager
 
-@synthesize onStateChange;
+@synthesize meshSession, onStateChange;
 
-- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager {
+- (id)initWithDataHandler:(DataHandler *)handler devicesManager:(DevicesManager *)manager sessionID:(NSString *)sid
+{
 	self = [super init];
 	
 	if (self) {
 		devicesManager = manager;
 
-		meshSession = [[GKSession alloc] initWithSessionID:MESH_NETWORK_GLOBAL_SESSION_ID displayName:nil sessionMode:GKSessionModePeer];
+		meshSession = [[GKSession alloc] initWithSessionID:sid displayName:nil sessionMode:GKSessionModePeer];
 		meshSession.delegate = self;
+        meshSession.disconnectTimeout = 30; // 30 sec timeout
 		[meshSession setDataReceiveHandler:handler withContext:nil];
 	}
 	
@@ -41,7 +43,9 @@
 }
 
 - (void)stop {
+    NSLog(@"-[SessionManager stop]");
     meshSession.available = NO;
+    [meshSession disconnectFromAllPeers];
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -85,6 +89,9 @@
 			if (!currentDevice) {
 				currentDevice = [self addDevice:peerID];
 				[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DEVICE_AVAILABLE object:nil userInfo:[self getDeviceInfo:currentDevice]];
+                
+                // automatically connect to all available peers
+                [currentDevice connect];
 			}
             
             // set all connecting = NO, available = NO

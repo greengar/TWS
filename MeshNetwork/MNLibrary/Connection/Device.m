@@ -34,41 +34,37 @@
 	return object && ([object isKindOfClass:[Device class]]) && ([((Device *) object).peerID isEqual:peerID]);
 }
 
-//typedef enum {
-//    GKPeerStateAvailable,
-//    GKPeerStateUnavailable,
-//    GKPeerStateConnected,
-//    GKPeerStateDisconnected,
-//    GKPeerStateConnecting
-//} GKPeerConnectionState;
-
-- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection
-{
-    if (unavailable) {
-        NSLog(@"device unavailable");
-        return;
-    }
-    if (connected) {
-        NSLog(@"device already connected");
-        return;
-    }
-    if (connecting) {
-        NSLog(@"device connecting");
-        return;
-    }
-    
-	// We need to persist this info, because the call to connect is assynchronous.
-	delegateToCallAboutConnection = delegate;
-	selectorToPerformWhenConnectionWasStablished = connectionStablishedConnection;
-	selectorToPerformWhenConnectionWasNotStablished = connectionNotStablishedConnection;
-	
-	// The SessionManager will be responsible for sending the notification that will be caught here.
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionSuccessfull:) name:NOTIFICATION_DEVICE_CONNECTED object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionFailed:) name:NOTIFICATION_DEVICE_CONNECTION_FAILED object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionFailed:) name:NOTIFICATION_DEVICE_UNAVAILABLE object:nil];
-
-	[session connectToPeer:peerID withTimeout:CONNECTION_TIMEOUT];
+- (void)connect {
+    [session connectToPeer:peerID withTimeout:CONNECTION_TIMEOUT];
 }
+
+//- (void)connectAndReplyTo:(id)delegate selector:(SEL)connectionStablishedConnection errorSelector:(SEL)connectionNotStablishedConnection
+//{
+//    if (unavailable) {
+//        NSLog(@"device unavailable");
+//        return;
+//    }
+//    if (connected) {
+//        NSLog(@"device already connected");
+//        return;
+//    }
+//    if (connecting) {
+//        NSLog(@"device connecting");
+//        return;
+//    }
+//    
+//	// We need to persist this info, because the call to connect is assynchronous.
+//	delegateToCallAboutConnection = delegate;
+//	selectorToPerformWhenConnectionWasStablished = connectionStablishedConnection;
+//	selectorToPerformWhenConnectionWasNotStablished = connectionNotStablishedConnection;
+//	
+//	// The SessionManager will be responsible for sending the notification that will be caught here.
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionSuccessfull:) name:NOTIFICATION_DEVICE_CONNECTED object:nil];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionFailed:) name:NOTIFICATION_DEVICE_CONNECTION_FAILED object:nil];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(triggerConnectionFailed:) name:NOTIFICATION_DEVICE_UNAVAILABLE object:nil];
+//
+//	[session connectToPeer:peerID withTimeout:CONNECTION_TIMEOUT];
+//}
 
 - (void)triggerConnectionSuccessfull:(NSNotification *)notification {
     
