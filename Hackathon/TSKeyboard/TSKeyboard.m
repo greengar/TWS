@@ -62,13 +62,14 @@
         const int mid = top+9; // 9 keys
         const int bottomCount = 7; // keys
         const float keyWidth=32;
-        float x=0, y=0;
+        float x=0, y=4;
         for (int i=0; i<layout.length; i++) {
             NSString *letter = [NSString stringWithFormat:@"%c", [layout characterAtIndex:i]];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setBackgroundImage:[UIImage imageNamed:@"key-darkgray"] forState:UIControlStateNormal];
             [button setTitle:letter forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont boldSystemFontOfSize:22];
             [button addTarget:self action:@selector(hover:) forControlEvents:(UIControlEventTouchDown | UIControlEventTouchDragInside | UIControlEventTouchDragEnter)];
             [button addTarget:self action:@selector(unhover:) forControlEvents:(UIControlEventTouchDragOutside | UIControlEventTouchDragExit | UIControlEventTouchCancel)];
             [button addTarget:self action:@selector(activate:) forControlEvents:UIControlEventTouchUpInside];
