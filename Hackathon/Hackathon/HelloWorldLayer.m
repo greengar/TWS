@@ -282,6 +282,9 @@ static MNCenter *mnCenter = nil;
         self.textEntryFieldCC.delegate = self;
         self.textEntryFieldCC.position = ccp(0,110); // intentionally hidden now (was 210)
         self.textEntryFieldCC.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        TSKeyboard *keyboard = [TSKeyboard shared];
+        self.textEntryFieldCC.textField.inputView = keyboard;
+        keyboard.delegate = self;
         [self addChild:self.textEntryFieldCC];
         [self.textEntryFieldCC setTextColor:ccWHITE];
         [self.textEntryFieldCC setText:@""];
@@ -549,11 +552,24 @@ static MNCenter *mnCenter = nil;
 //    [self.monsters minusSet:deadMonsters];
 }
 
-- (BOOL)textField:(CCTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//- (BOOL)textField:(CCTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+
+// return YES if activating this key would kill a monster
+- (BOOL)keyboard:(TSKeyboard *)keyboard shouldHoverKey:(UIButton *)key
 {
-    if ([string isEqualToString:@""] || string == nil) return YES; // backspace won't do anything anyway
+    NSString *letter = key.titleLabel.text.lowercaseString;
     
-    NSString *letter = string.lowercaseString;
+    for (Monster *monster in self.monsters) {
+        if ([monster wouldBeKilledByString:letter]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)keyboard:(TSKeyboard *)keyboard didActivateKey:(UIButton *)key
+{   
+    NSString *letter = key.titleLabel.text.lowercaseString;
     NSMutableSet *deadMonsters = [NSMutableSet setWithCapacity:3];
     BOOL monsterWasHit = NO;
     BOOL monsterWasKilled = NO;
@@ -567,7 +583,7 @@ static MNCenter *mnCenter = nil;
             
             monsterWasKilled = YES;
             // clear field because I killed a monster
-            textField.text = @"";
+//            textField.text = @"";
             [self sendPlayerTypedMessage:@""];
         }
     }
@@ -586,11 +602,11 @@ static MNCenter *mnCenter = nil;
     
     [deadMonsters removeAllObjects];
     
-    if (monsterWasHit == YES && monsterWasKilled == NO) {
-        [self sendPlayerTypedMessage:[textField.text stringByReplacingCharactersInRange:range withString:string]];
-        return YES; // allow textField to change if this letter was successful
-    }
-    return NO;
+//    if (monsterWasHit == YES && monsterWasKilled == NO) {
+////        [self sendPlayerTypedMessage:[textField.text stringByReplacingCharactersInRange:range withString:string]];
+//        return YES; // allow textField to change if this letter was successful
+//    }
+//    return NO;
 }
 
 -(BOOL) textFieldShouldReturn:(CCTextField *)textField {

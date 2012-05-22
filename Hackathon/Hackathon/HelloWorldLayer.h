@@ -16,9 +16,10 @@
 #import "BloodDrip.h"
 #import "MNCenter.h"
 #import "BossDragon.h"
+#import "TSKeyboard.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer <CCTextFieldDelegate>
+@interface HelloWorldLayer : CCLayer <CCTextFieldDelegate, TSKeyboardDelegate>
 {
     double timeLeft; // how long till game is over
     double nextMonsterTimer; // next monster shows up in x seconds

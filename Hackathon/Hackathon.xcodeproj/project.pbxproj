@@ -159,6 +159,9 @@
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
+		A934F4AB156B01A60071336A /* TSKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A934F4AA156B01A60071336A /* TSKeyboard.m */; };
+		A934F4AD156C171E0071336A /* key-darkgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4AC156C171E0071336A /* key-darkgray@2x.png */; };
+		A934F4AF156C1CB60071336A /* key-darkgray.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4AE156C1CB60071336A /* key-darkgray.png */; };
 		F921237515603E5700706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236915603E5700706C5D /* boss-dragon-1-hd.png */; };
 		F921237615603E5700706C5D /* boss-dragon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236A15603E5700706C5D /* boss-dragon-1.png */; };
 		F921237715603E5700706C5D /* boss-dragon-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236B15603E5700706C5D /* boss-dragon-2-hd.png */; };
@@ -502,6 +505,10 @@
 		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A934F4A9156B01A60071336A /* TSKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSKeyboard.h; path = TSKeyboard/TSKeyboard.h; sourceTree = "<group>"; };
+		A934F4AA156B01A60071336A /* TSKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSKeyboard.m; path = TSKeyboard/TSKeyboard.m; sourceTree = "<group>"; };
+		A934F4AC156C171E0071336A /* key-darkgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray@2x.png"; path = "TSKeyboard/key-darkgray@2x.png"; sourceTree = "<group>"; };
+		A934F4AE156C1CB60071336A /* key-darkgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray.png"; path = "TSKeyboard/key-darkgray.png"; sourceTree = "<group>"; };
 		F921236915603E5700706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
 		F921236A15603E5700706C5D /* boss-dragon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1.png"; sourceTree = "<group>"; };
 		F921236B15603E5700706C5D /* boss-dragon-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2-hd.png"; sourceTree = "<group>"; };
@@ -697,6 +704,7 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
+				A934F4A7156B01840071336A /* TSKeyboard */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
@@ -1116,6 +1124,17 @@
 			path = libs/CCTextField;
 			sourceTree = "<group>";
 		};
+		A934F4A7156B01840071336A /* TSKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A934F4A9156B01A60071336A /* TSKeyboard.h */,
+				A934F4AA156B01A60071336A /* TSKeyboard.m */,
+				A934F4AE156C1CB60071336A /* key-darkgray.png */,
+				A934F4AC156C171E0071336A /* key-darkgray@2x.png */,
+			);
+			name = TSKeyboard;
+			sourceTree = "<group>";
+		};
 		F921234E1560343C00706C5D /* bossdragon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1325,8 @@
 				F92123AF1560704100706C5D /* play-again-button.png in Resources */,
 				F9C7F4B61560822300F3790D /* Icon.png in Resources */,
 				F9C7F4B71560822300F3790D /* Icon@2x.png in Resources */,
+				A934F4AD156C171E0071336A /* key-darkgray@2x.png in Resources */,
+				A934F4AF156C1CB60071336A /* key-darkgray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1448,7 @@
 				F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */,
 				F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */,
 				F92123851560410500706C5D /* Fireball.m in Sources */,
+				A934F4AB156B01A60071336A /* TSKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

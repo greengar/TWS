@@ -52,6 +52,7 @@ typedef enum {
 - (Monster*)createWithWord:(NSString*)word animationTemplate:(NSString *)animationTemplate frames:(NSString *)frames;
 - (void)die;
 
+-(BOOL) wouldBeKilledByString:(NSString *)string;
 -(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit; // returns YES if monster dead
 -(void) marchTo: (CGPoint) destination;
 -(void) decreasePointValue;

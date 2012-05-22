@@ -115,6 +115,16 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [self runAction:self.moveAction];
 }
 
+// return YES if this string would kill this monster
+-(BOOL) wouldBeKilledByString:(NSString *)string
+{
+    if (lettersRemaining == 1 && [string isEqualToString:[self.word substringFromIndex:(self.word.length-lettersRemaining)]])
+    {
+        return YES;
+    }
+    return NO;
+}
+
 -(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit
 {
     NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
