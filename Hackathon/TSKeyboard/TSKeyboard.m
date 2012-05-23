@@ -58,34 +58,63 @@
         self.backgroundColor = [UIColor blackColor];
         
         NSString *layout = @"QWERTYUIOPASDFGHJKLZXCVBNM";
-        const int top = 10-1; // 10 keys
+        const int top = 10; // 10 keys
         const int mid = top+9; // 9 keys
         const int bottomCount = 7; // keys
-        const float keyWidth=32;
-        float x=0, y=4;
-        for (int i=0; i<layout.length; i++) {
+        const float standardKeyWidth=32;
+        const float midOffset=(frame.size.width-((mid-top)*standardKeyWidth))/2;
+        float x=0, y=0;
+        for (int i=0; i<layout.length; i++)
+        {
             NSString *letter = [NSString stringWithFormat:@"%c", [layout characterAtIndex:i]];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button setBackgroundImage:[UIImage imageNamed:@"key-darkgray"] forState:UIControlStateNormal];
+            
             [button setTitle:letter forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+            button.titleLabel.shadowColor = [UIColor blackColor];
+            button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+            
+            UIImage *image = [UIImage imageNamed:@"key-darkgray"];
+            [button setImage:image forState:UIControlStateNormal];
+            
             [button addTarget:self action:@selector(hover:) forControlEvents:(UIControlEventTouchDown | UIControlEventTouchDragInside | UIControlEventTouchDragEnter)];
             [button addTarget:self action:@selector(unhover:) forControlEvents:(UIControlEventTouchDragOutside | UIControlEventTouchDragExit | UIControlEventTouchCancel)];
             [button addTarget:self action:@selector(activate:) forControlEvents:UIControlEventTouchUpInside];
+            
+            const float standardTopInset = 4; // need to move all key images down by 4pt
+            float keyWidth = standardKeyWidth;
+            
+            button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width, 0, 0);
+            
+            if (i==top) { // 'A'
+                x=0;
+                y+=keyHeight;
+                keyWidth += midOffset;
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, midOffset, -standardTopInset, -midOffset);
+                button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width+midOffset/2, 0, -midOffset/2);
+            } else if (i==top+1) { // 'S'
+                x+=standardKeyWidth+midOffset;
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+            } else if (i==mid-1) { // 'L'
+                x+=standardKeyWidth;
+                keyWidth += midOffset;
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+                button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width-midOffset/2, 0, midOffset/2);
+            } else if (i==mid) { // 'Z'
+                x=(frame.size.width-(bottomCount*standardKeyWidth))/2;
+                y+=keyHeight;
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+            } else if (i!=0) { // not 'Q'
+                x+=standardKeyWidth;
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+            } else { // 'Q'
+                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+            }
+            
             button.frame = CGRectMake(x, y, keyWidth, keyHeight);
             
-//            button.backgroundColor = [UIColor orangeColor];
-            
             [self addSubview:button];
-            x+=keyWidth;
-            if (i == top) {
-                x=(frame.size.width-((mid-top)*keyWidth))/2;
-                y+=keyHeight;
-            } else if (i == mid) {
-                x=(frame.size.width-(bottomCount*keyWidth))/2;
-                y+=keyHeight;
-            }
         }
     }
     return self;
