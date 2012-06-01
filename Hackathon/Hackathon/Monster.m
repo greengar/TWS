@@ -45,10 +45,8 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         // prepare set of frame names
         animation = [CCAnimation animation];
         NSArray *frameNumbers = [frames componentsSeparatedByString:@","];
-        NSMutableArray *frameNames = [NSMutableArray arrayWithCapacity:[frameNumbers count]];
         for (NSString *num in frameNumbers) {
             [animation addFrameWithFilename:[NSString stringWithFormat:animationTemplate, num]];
-            //NSLog(@"Adding frame: %@", [frameNames lastObject]);
             
         }
         [[CCAnimationCache sharedAnimationCache] addAnimation:animation name:animationName];
