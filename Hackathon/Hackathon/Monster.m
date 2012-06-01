@@ -126,18 +126,19 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
 -(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit
 {
     NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
-    if ([stringRemaining hasPrefix:string]) {
-        
+    if ([stringRemaining hasPrefix:string])
+    {
         if (*monsterWasHit == NO) *monsterWasHit = YES;
         
-        if (string.length >= lettersRemaining) {
-            return YES;
-        }
         lettersRemaining -= string.length;
     }
     uint completedLength = self.word.length-lettersRemaining;
     NSString *completedString = [self.word substringToIndex:completedLength];
     self.completedLabel.string = completedString;
+    
+    if (lettersRemaining <= 0) {
+        return YES;
+    }
     return NO;
 }
 
