@@ -12,6 +12,51 @@
 #define keyHeight (54)
 #define numRows (3)
 
+// need to move all key images down by 4pt
+#define standardTopInset (4)
+
+//enum {
+//    keyTagDefault = 1,
+//    keyTagA,
+//    keyTagS,
+//    keyTagL,
+//};
+
+
+
+// 10 keys
+#define top (10)
+
+// 9 keys
+#define mid (top+9)
+
+#define bottomCount (7)
+
+#define keyTagQ (0)
+#define keyTagP (top-1)
+#define keyTagA (top)
+#define keyTagS (top+1)
+#define keyTagL (mid-1)
+
+#define standardKeyWidth (32)
+
+#define KEY_FONT ([UIFont boldSystemFontOfSize:22])
+#define KEY_IMAGE ([UIImage imageNamed:@"key-darkgray"])
+#define midOffset ((self.frame.size.width-((mid-top)*standardKeyWidth))/2)
+#define keyImageEdgeInsetsDefault (UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0))
+#define keyTitleEdgeInsetsDefault \
+    (UIEdgeInsetsMake(standardTopInset+6, -(KEY_IMAGE).size.width, 0, 0))
+#define keyImageEdgeInsetsA (UIEdgeInsetsMake(standardTopInset, midOffset, -standardTopInset, -midOffset))
+#define keyTitleEdgeInsetsA \
+    (UIEdgeInsetsMake(standardTopInset+6, -(KEY_IMAGE).size.width+midOffset/2, 0, -midOffset/2))
+#define keyTitleEdgeInsetsL (UIEdgeInsetsMake(standardTopInset+6, -(KEY_IMAGE).size.width-midOffset/2, 0, midOffset/2))
+
+
+// TODO: stop using these; just use Default
+#define keyImageEdgeInsetsS keyImageEdgeInsetsDefault
+#define keyImageEdgeInsetsL keyImageEdgeInsetsDefault
+
+
 //@interface UIView (extraFirstResponderMethod)
 //- (UIView *)getFirstResponder;
 //@end
@@ -49,6 +94,12 @@
     return sharedKeyboard;
 }
 
+static const NSString *keyboardLayout = @"QWERTYUIOPASDFGHJKLZXCVBNM";
+
+//- (NSInteger)tagForKeyString:(NSString *)letter {
+//    return [keyboardLayout rangeOfString:letter].location;
+//}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -57,21 +108,15 @@
         
         self.backgroundColor = [UIColor blackColor];
         
-        NSString *layout = @"QWERTYUIOPASDFGHJKLZXCVBNM";
-        const int top = 10; // 10 keys
-        const int mid = top+9; // 9 keys
-        const int bottomCount = 7; // keys
-        const float standardKeyWidth=32;
-        const float midOffset=(frame.size.width-((mid-top)*standardKeyWidth))/2;
         float x=0, y=0;
-        for (int i=0; i<layout.length; i++)
+        for (int i=0; i<keyboardLayout.length; i++)
         {
-            NSString *letter = [NSString stringWithFormat:@"%c", [layout characterAtIndex:i]];
+            NSString *letter = [NSString stringWithFormat:@"%c", [keyboardLayout characterAtIndex:i]];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             
             [button setTitle:letter forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            button.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+            button.titleLabel.font = KEY_FONT;
             button.titleLabel.shadowColor = [UIColor blackColor];
             button.titleLabel.shadowOffset = CGSizeMake(0, -1);
             
@@ -82,34 +127,34 @@
             [button addTarget:self action:@selector(unhover:) forControlEvents:(UIControlEventTouchDragOutside | UIControlEventTouchDragExit | UIControlEventTouchCancel)];
             [button addTarget:self action:@selector(activate:) forControlEvents:UIControlEventTouchUpInside];
             
-            const float standardTopInset = 4; // need to move all key images down by 4pt
             float keyWidth = standardKeyWidth;
             
-            button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width, 0, 0);
+            button.titleEdgeInsets = keyTitleEdgeInsetsDefault;
+            button.tag = i;
             
-            if (i==top) { // 'A'
+            if (i==0) { // 'Q'
+                button.imageEdgeInsets = keyImageEdgeInsetsDefault;
+            } else if (i==keyTagA) { // 'A'
                 x=0;
                 y+=keyHeight;
                 keyWidth += midOffset;
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, midOffset, -standardTopInset, -midOffset);
-                button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width+midOffset/2, 0, -midOffset/2);
-            } else if (i==top+1) { // 'S'
+                button.imageEdgeInsets = keyImageEdgeInsetsA;
+                button.titleEdgeInsets = keyTitleEdgeInsetsA;
+            } else if (i==keyTagS) { // 'S'
                 x+=standardKeyWidth+midOffset;
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
-            } else if (i==mid-1) { // 'L'
+                button.imageEdgeInsets = keyImageEdgeInsetsS;
+            } else if (i==keyTagL) { // 'L'
                 x+=standardKeyWidth;
                 keyWidth += midOffset;
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
-                button.titleEdgeInsets = UIEdgeInsetsMake(standardTopInset+6, -image.size.width-midOffset/2, 0, midOffset/2);
+                button.imageEdgeInsets = keyImageEdgeInsetsL;
+                button.titleEdgeInsets = keyTitleEdgeInsetsL;
             } else if (i==mid) { // 'Z'
                 x=(frame.size.width-(bottomCount*standardKeyWidth))/2;
                 y+=keyHeight;
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
-            } else if (i!=0) { // not 'Q'
+                button.imageEdgeInsets = keyImageEdgeInsetsDefault;
+            } else {
                 x+=standardKeyWidth;
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
-            } else { // 'Q'
-                button.imageEdgeInsets = UIEdgeInsetsMake(standardTopInset, 0, -standardTopInset, 0);
+                button.imageEdgeInsets = keyImageEdgeInsetsDefault;
             }
             
             button.frame = CGRectMake(x, y, keyWidth, keyHeight);
@@ -124,8 +169,57 @@
     if (delegate && [delegate respondsToSelector:@selector(keyboard:shouldHoverKey:)] && [delegate keyboard:self shouldHoverKey:key])
     {
         // show special key hover graphic
-    } else {
+        
+        key.imageEdgeInsets = UIEdgeInsetsMake(-227/2, -123/2, -9, -123/2);
+        UIImage *image = [UIImage imageNamed:@"keypressed-middle"];
+        [key setImage:image forState:UIControlStateHighlighted];
+        
+        if (key.tag == keyTagQ)
+        {
+            UIImage *image = [UIImage imageNamed:@"keypressed-left"];
+            [key setImage:image forState:UIControlStateHighlighted];
+        }
+        else if (key.tag == keyTagP)
+        {
+            UIImage *image = [UIImage imageNamed:@"keypressed-right"];
+            [key setImage:image forState:UIControlStateHighlighted];
+        }
+        else if (key.tag == keyTagA)
+        {
+            key.imageEdgeInsets = UIEdgeInsetsMake(-227/2, -123/2+midOffset, -9, -123/2-midOffset);
+        }
+    }
+    else
+    {
         // show normal key hover graphic
+        
+        // insets: more negative is farther from the center
+        
+        key.imageEdgeInsets = UIEdgeInsetsMake(-227/2, -123/2, -9, -123/2);
+        UIImage *image = [UIImage imageNamed:@"keypressed-middle-darkgrey"];
+        [key setImage:image forState:UIControlStateHighlighted];
+        
+        key.imageEdgeInsets = UIEdgeInsetsMake(-50, -20, 0, -20); // works
+        key.titleEdgeInsets = UIEdgeInsetsMake(-93, -image.size.width, 0, 0);
+        
+        // should be 41, but 33 is the largest that 'W' currently works with
+        key.titleLabel.font = [UIFont boldSystemFontOfSize:33];
+        
+        if (key.tag == keyTagQ)
+        {
+            UIImage *image = [UIImage imageNamed:@"keypressed-left-darkgrey"];
+            [key setImage:image forState:UIControlStateHighlighted];
+            key.titleEdgeInsets = UIEdgeInsetsMake(-40, -image.size.width, 0, 0);
+        }
+        else if (key.tag == keyTagP)
+        {
+            UIImage *image = [UIImage imageNamed:@"keypressed-right-darkgrey"];
+            [key setImage:image forState:UIControlStateHighlighted];
+        }
+        else if (key.tag == keyTagA)
+        {
+            key.imageEdgeInsets = UIEdgeInsetsMake(-227/2, -123/2+midOffset, -9, -123/2-midOffset);
+        }
     }
     
 //    key.backgroundColor = [UIColor blueColor];
@@ -135,6 +229,34 @@
 - (void)unhover:(UIButton *)key {
 //    key.backgroundColor = [UIColor orangeColor];
 //    NSLog(@"unhover:");
+    NSLog(@"unhover:%d",key.tag);
+    
+    key.titleLabel.font = KEY_FONT;
+    
+    if (key.tag == keyTagA) {
+        key.imageEdgeInsets = keyImageEdgeInsetsA;
+        key.titleEdgeInsets = keyTitleEdgeInsetsA;
+    } else if (key.tag == keyTagL) {
+        key.imageEdgeInsets = keyImageEdgeInsetsL;
+        key.titleEdgeInsets = keyTitleEdgeInsetsL;
+    } else {
+        key.titleEdgeInsets = keyTitleEdgeInsetsDefault;
+        key.imageEdgeInsets = keyImageEdgeInsetsDefault;
+    }
+    
+//    if (key.tag == keyTagDefault) {
+////        key.titleEdgeInsets = keyTitleEdgeInsetsDefault;
+//    } else if (key.tag == keyTagA) {
+//        NSLog(@"unhover:A");
+////        key.titleEdgeInsets = keyTitleEdgeInsetsA;
+//        key.imageEdgeInsets = keyImageEdgeInsetsA;
+//    }
+//    
+//    if (key.tag == [self tagForKeyString:@"Q"]) {
+//        key.imageEdgeInsets = keyImageEdgeInsetsDefault;
+//    } else {
+//        key.imageEdgeInsets = keyImageEdgeInsetsDefault;
+//    }
 }
 
 - (void)activate:(UIButton *)key {
@@ -142,7 +264,11 @@
     
     if (delegate && [delegate respondsToSelector:@selector(keyboard:didActivateKey:)]) {
         [delegate keyboard:self didActivateKey:key];
+        
+        
     }
+    
+    [self unhover:key];
     
 //    UITextField *firstResponder = (UITextField *)[[[UIApplication sharedApplication] keyWindow] getFirstResponder];
 //    if (firstResponder && [firstResponder isKindOfClass:[UITextField class]]) {
