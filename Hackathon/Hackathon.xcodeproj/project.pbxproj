@@ -159,19 +159,21 @@
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
-		A917AF6E157842CB00F1125B /* keypressed-right.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF6C157842CB00F1125B /* keypressed-right.png */; };
-		A917AF6F157842CB00F1125B /* keypressed-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF6D157842CB00F1125B /* keypressed-right@2x.png */; };
-		A917AF73157851AF00F1125B /* keypressed-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF71157851AF00F1125B /* keypressed-left.png */; };
-		A917AF74157851AF00F1125B /* keypressed-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF72157851AF00F1125B /* keypressed-left@2x.png */; };
-		A917AF771578526D00F1125B /* keypressed-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF751578526D00F1125B /* keypressed-middle.png */; };
-		A917AF781578526D00F1125B /* keypressed-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF761578526D00F1125B /* keypressed-middle@2x.png */; };
-		A917AF7A1578549900F1125B /* keypressed-left-darkgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF791578549900F1125B /* keypressed-left-darkgrey.png */; };
-		A917AF7C157854B400F1125B /* keypressed-right-darkgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = A917AF7B157854B400F1125B /* keypressed-right-darkgrey.png */; };
 		A934F4AB156B01A60071336A /* TSKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A934F4AA156B01A60071336A /* TSKeyboard.m */; };
-		A934F4AD156C171E0071336A /* key-darkgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4AC156C171E0071336A /* key-darkgray@2x.png */; };
-		A934F4AF156C1CB60071336A /* key-darkgray.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4AE156C1CB60071336A /* key-darkgray.png */; };
-		A934F4B6156D711D0071336A /* keypressed-middle-darkgrey.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4B4156D711D0071336A /* keypressed-middle-darkgrey.png */; };
-		A934F4B7156D711D0071336A /* keypressed-middle-darkgrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A934F4B5156D711D0071336A /* keypressed-middle-darkgrey@2x.png */; };
+		A98C3533157C9F3C00D75E8B /* keypressed-star-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */; };
+		A98C3534157C9F3C00D75E8B /* keypressed-star-right.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */; };
+		A98C3535157C9F3C00D75E8B /* keypressed-star-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */; };
+		A98C3536157C9F3C00D75E8B /* keypressed-star-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */; };
+		A98C3537157C9F3C00D75E8B /* keypressed-star-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */; };
+		A98C3538157C9F3C00D75E8B /* keypressed-star-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */; };
+		A98C3539157C9F3C00D75E8B /* keypressed-normal-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */; };
+		A98C353A157C9F3C00D75E8B /* keypressed-normal-right.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */; };
+		A98C353B157C9F3C00D75E8B /* keypressed-normal-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */; };
+		A98C353C157C9F3C00D75E8B /* keypressed-normal-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */; };
+		A98C353D157C9F3C00D75E8B /* keypressed-normal-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */; };
+		A98C353E157C9F3C00D75E8B /* keypressed-normal-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */; };
+		A98C353F157C9F3C00D75E8B /* key-darkgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */; };
+		A98C3540157C9F3C00D75E8B /* key-darkgray.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3532157C9F3C00D75E8B /* key-darkgray.png */; };
 		F921237515603E5700706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236915603E5700706C5D /* boss-dragon-1-hd.png */; };
 		F921237615603E5700706C5D /* boss-dragon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236A15603E5700706C5D /* boss-dragon-1.png */; };
 		F921237715603E5700706C5D /* boss-dragon-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236B15603E5700706C5D /* boss-dragon-2-hd.png */; };
@@ -515,20 +517,22 @@
 		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		A917AF6C157842CB00F1125B /* keypressed-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-right.png"; path = "TSKeyboard/keypressed-right.png"; sourceTree = "<group>"; };
-		A917AF6D157842CB00F1125B /* keypressed-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-right@2x.png"; path = "TSKeyboard/keypressed-right@2x.png"; sourceTree = "<group>"; };
-		A917AF71157851AF00F1125B /* keypressed-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-left.png"; path = "TSKeyboard/keypressed-left.png"; sourceTree = "<group>"; };
-		A917AF72157851AF00F1125B /* keypressed-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-left@2x.png"; path = "TSKeyboard/keypressed-left@2x.png"; sourceTree = "<group>"; };
-		A917AF751578526D00F1125B /* keypressed-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-middle.png"; path = "TSKeyboard/keypressed-middle.png"; sourceTree = "<group>"; };
-		A917AF761578526D00F1125B /* keypressed-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-middle@2x.png"; path = "TSKeyboard/keypressed-middle@2x.png"; sourceTree = "<group>"; };
-		A917AF791578549900F1125B /* keypressed-left-darkgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-left-darkgrey.png"; path = "TSKeyboard/keypressed-left-darkgrey.png"; sourceTree = "<group>"; };
-		A917AF7B157854B400F1125B /* keypressed-right-darkgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-right-darkgrey.png"; path = "TSKeyboard/keypressed-right-darkgrey.png"; sourceTree = "<group>"; };
 		A934F4A9156B01A60071336A /* TSKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSKeyboard.h; path = TSKeyboard/TSKeyboard.h; sourceTree = "<group>"; };
 		A934F4AA156B01A60071336A /* TSKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSKeyboard.m; path = TSKeyboard/TSKeyboard.m; sourceTree = "<group>"; };
-		A934F4AC156C171E0071336A /* key-darkgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray@2x.png"; path = "TSKeyboard/key-darkgray@2x.png"; sourceTree = "<group>"; };
-		A934F4AE156C1CB60071336A /* key-darkgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray.png"; path = "TSKeyboard/key-darkgray.png"; sourceTree = "<group>"; };
-		A934F4B4156D711D0071336A /* keypressed-middle-darkgrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-middle-darkgrey.png"; path = "TSKeyboard/keypressed-middle-darkgrey.png"; sourceTree = "<group>"; };
-		A934F4B5156D711D0071336A /* keypressed-middle-darkgrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-middle-darkgrey@2x.png"; path = "TSKeyboard/keypressed-middle-darkgrey@2x.png"; sourceTree = "<group>"; };
+		A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-right@2x.png"; path = "TSKeyboard/keypressed-star-right@2x.png"; sourceTree = "<group>"; };
+		A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-right.png"; path = "TSKeyboard/keypressed-star-right.png"; sourceTree = "<group>"; };
+		A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-middle@2x.png"; path = "TSKeyboard/keypressed-star-middle@2x.png"; sourceTree = "<group>"; };
+		A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-middle.png"; path = "TSKeyboard/keypressed-star-middle.png"; sourceTree = "<group>"; };
+		A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-left@2x.png"; path = "TSKeyboard/keypressed-star-left@2x.png"; sourceTree = "<group>"; };
+		A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-left.png"; path = "TSKeyboard/keypressed-star-left.png"; sourceTree = "<group>"; };
+		A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-right@2x.png"; path = "TSKeyboard/keypressed-normal-right@2x.png"; sourceTree = "<group>"; };
+		A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-right.png"; path = "TSKeyboard/keypressed-normal-right.png"; sourceTree = "<group>"; };
+		A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-middle@2x.png"; path = "TSKeyboard/keypressed-normal-middle@2x.png"; sourceTree = "<group>"; };
+		A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-middle.png"; path = "TSKeyboard/keypressed-normal-middle.png"; sourceTree = "<group>"; };
+		A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-left@2x.png"; path = "TSKeyboard/keypressed-normal-left@2x.png"; sourceTree = "<group>"; };
+		A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-left.png"; path = "TSKeyboard/keypressed-normal-left.png"; sourceTree = "<group>"; };
+		A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray@2x.png"; path = "TSKeyboard/key-darkgray@2x.png"; sourceTree = "<group>"; };
+		A98C3532157C9F3C00D75E8B /* key-darkgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray.png"; path = "TSKeyboard/key-darkgray.png"; sourceTree = "<group>"; };
 		F921236915603E5700706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
 		F921236A15603E5700706C5D /* boss-dragon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1.png"; sourceTree = "<group>"; };
 		F921236B15603E5700706C5D /* boss-dragon-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2-hd.png"; sourceTree = "<group>"; };
@@ -1149,18 +1153,20 @@
 			children = (
 				A934F4A9156B01A60071336A /* TSKeyboard.h */,
 				A934F4AA156B01A60071336A /* TSKeyboard.m */,
-				A934F4AE156C1CB60071336A /* key-darkgray.png */,
-				A934F4AC156C171E0071336A /* key-darkgray@2x.png */,
-				A917AF791578549900F1125B /* keypressed-left-darkgrey.png */,
-				A934F4B4156D711D0071336A /* keypressed-middle-darkgrey.png */,
-				A934F4B5156D711D0071336A /* keypressed-middle-darkgrey@2x.png */,
-				A917AF7B157854B400F1125B /* keypressed-right-darkgrey.png */,
-				A917AF71157851AF00F1125B /* keypressed-left.png */,
-				A917AF72157851AF00F1125B /* keypressed-left@2x.png */,
-				A917AF751578526D00F1125B /* keypressed-middle.png */,
-				A917AF761578526D00F1125B /* keypressed-middle@2x.png */,
-				A917AF6C157842CB00F1125B /* keypressed-right.png */,
-				A917AF6D157842CB00F1125B /* keypressed-right@2x.png */,
+				A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */,
+				A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */,
+				A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */,
+				A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */,
+				A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */,
+				A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */,
+				A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */,
+				A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */,
+				A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */,
+				A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */,
+				A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */,
+				A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */,
+				A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */,
+				A98C3532157C9F3C00D75E8B /* key-darkgray.png */,
 			);
 			name = TSKeyboard;
 			sourceTree = "<group>";
@@ -1355,18 +1361,20 @@
 				F92123AF1560704100706C5D /* play-again-button.png in Resources */,
 				F9C7F4B61560822300F3790D /* Icon.png in Resources */,
 				F9C7F4B71560822300F3790D /* Icon@2x.png in Resources */,
-				A934F4AD156C171E0071336A /* key-darkgray@2x.png in Resources */,
-				A934F4AF156C1CB60071336A /* key-darkgray.png in Resources */,
-				A934F4B6156D711D0071336A /* keypressed-middle-darkgrey.png in Resources */,
-				A934F4B7156D711D0071336A /* keypressed-middle-darkgrey@2x.png in Resources */,
-				A917AF6E157842CB00F1125B /* keypressed-right.png in Resources */,
-				A917AF6F157842CB00F1125B /* keypressed-right@2x.png in Resources */,
-				A917AF73157851AF00F1125B /* keypressed-left.png in Resources */,
-				A917AF74157851AF00F1125B /* keypressed-left@2x.png in Resources */,
-				A917AF771578526D00F1125B /* keypressed-middle.png in Resources */,
-				A917AF781578526D00F1125B /* keypressed-middle@2x.png in Resources */,
-				A917AF7A1578549900F1125B /* keypressed-left-darkgrey.png in Resources */,
-				A917AF7C157854B400F1125B /* keypressed-right-darkgrey.png in Resources */,
+				A98C3533157C9F3C00D75E8B /* keypressed-star-right@2x.png in Resources */,
+				A98C3534157C9F3C00D75E8B /* keypressed-star-right.png in Resources */,
+				A98C3535157C9F3C00D75E8B /* keypressed-star-middle@2x.png in Resources */,
+				A98C3536157C9F3C00D75E8B /* keypressed-star-middle.png in Resources */,
+				A98C3537157C9F3C00D75E8B /* keypressed-star-left@2x.png in Resources */,
+				A98C3538157C9F3C00D75E8B /* keypressed-star-left.png in Resources */,
+				A98C3539157C9F3C00D75E8B /* keypressed-normal-right@2x.png in Resources */,
+				A98C353A157C9F3C00D75E8B /* keypressed-normal-right.png in Resources */,
+				A98C353B157C9F3C00D75E8B /* keypressed-normal-middle@2x.png in Resources */,
+				A98C353C157C9F3C00D75E8B /* keypressed-normal-middle.png in Resources */,
+				A98C353D157C9F3C00D75E8B /* keypressed-normal-left@2x.png in Resources */,
+				A98C353E157C9F3C00D75E8B /* keypressed-normal-left.png in Resources */,
+				A98C353F157C9F3C00D75E8B /* key-darkgray@2x.png in Resources */,
+				A98C3540157C9F3C00D75E8B /* key-darkgray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
