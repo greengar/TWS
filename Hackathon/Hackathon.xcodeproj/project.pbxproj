@@ -159,6 +159,21 @@
 		90FC06AA155F01F7002C3BAE /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06A9155F01F7002C3BAE /* Monster.m */; };
 		90FC06CC155F1872002C3BAE /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC06CA155F1872002C3BAE /* CCTextField.m */; };
 		90FC06CD155F1872002C3BAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90FC06CB155F1872002C3BAE /* README.md */; };
+		A934F4AB156B01A60071336A /* TSKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A934F4AA156B01A60071336A /* TSKeyboard.m */; };
+		A98C3533157C9F3C00D75E8B /* keypressed-star-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */; };
+		A98C3534157C9F3C00D75E8B /* keypressed-star-right.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */; };
+		A98C3535157C9F3C00D75E8B /* keypressed-star-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */; };
+		A98C3536157C9F3C00D75E8B /* keypressed-star-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */; };
+		A98C3537157C9F3C00D75E8B /* keypressed-star-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */; };
+		A98C3538157C9F3C00D75E8B /* keypressed-star-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */; };
+		A98C3539157C9F3C00D75E8B /* keypressed-normal-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */; };
+		A98C353A157C9F3C00D75E8B /* keypressed-normal-right.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */; };
+		A98C353B157C9F3C00D75E8B /* keypressed-normal-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */; };
+		A98C353C157C9F3C00D75E8B /* keypressed-normal-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */; };
+		A98C353D157C9F3C00D75E8B /* keypressed-normal-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */; };
+		A98C353E157C9F3C00D75E8B /* keypressed-normal-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */; };
+		A98C353F157C9F3C00D75E8B /* key-darkgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */; };
+		A98C3540157C9F3C00D75E8B /* key-darkgray.png in Resources */ = {isa = PBXBuildFile; fileRef = A98C3532157C9F3C00D75E8B /* key-darkgray.png */; };
 		F921237515603E5700706C5D /* boss-dragon-1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236915603E5700706C5D /* boss-dragon-1-hd.png */; };
 		F921237615603E5700706C5D /* boss-dragon-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236A15603E5700706C5D /* boss-dragon-1.png */; };
 		F921237715603E5700706C5D /* boss-dragon-2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F921236B15603E5700706C5D /* boss-dragon-2-hd.png */; };
@@ -502,6 +517,22 @@
 		90FC06C9155F1872002C3BAE /* CCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
 		90FC06CA155F1872002C3BAE /* CCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
 		90FC06CB155F1872002C3BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A934F4A9156B01A60071336A /* TSKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSKeyboard.h; path = TSKeyboard/TSKeyboard.h; sourceTree = "<group>"; };
+		A934F4AA156B01A60071336A /* TSKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSKeyboard.m; path = TSKeyboard/TSKeyboard.m; sourceTree = "<group>"; };
+		A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-right@2x.png"; path = "TSKeyboard/keypressed-star-right@2x.png"; sourceTree = "<group>"; };
+		A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-right.png"; path = "TSKeyboard/keypressed-star-right.png"; sourceTree = "<group>"; };
+		A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-middle@2x.png"; path = "TSKeyboard/keypressed-star-middle@2x.png"; sourceTree = "<group>"; };
+		A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-middle.png"; path = "TSKeyboard/keypressed-star-middle.png"; sourceTree = "<group>"; };
+		A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-left@2x.png"; path = "TSKeyboard/keypressed-star-left@2x.png"; sourceTree = "<group>"; };
+		A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-star-left.png"; path = "TSKeyboard/keypressed-star-left.png"; sourceTree = "<group>"; };
+		A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-right@2x.png"; path = "TSKeyboard/keypressed-normal-right@2x.png"; sourceTree = "<group>"; };
+		A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-right.png"; path = "TSKeyboard/keypressed-normal-right.png"; sourceTree = "<group>"; };
+		A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-middle@2x.png"; path = "TSKeyboard/keypressed-normal-middle@2x.png"; sourceTree = "<group>"; };
+		A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-middle.png"; path = "TSKeyboard/keypressed-normal-middle.png"; sourceTree = "<group>"; };
+		A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-left@2x.png"; path = "TSKeyboard/keypressed-normal-left@2x.png"; sourceTree = "<group>"; };
+		A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypressed-normal-left.png"; path = "TSKeyboard/keypressed-normal-left.png"; sourceTree = "<group>"; };
+		A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray@2x.png"; path = "TSKeyboard/key-darkgray@2x.png"; sourceTree = "<group>"; };
+		A98C3532157C9F3C00D75E8B /* key-darkgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "key-darkgray.png"; path = "TSKeyboard/key-darkgray.png"; sourceTree = "<group>"; };
 		F921236915603E5700706C5D /* boss-dragon-1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1-hd.png"; sourceTree = "<group>"; };
 		F921236A15603E5700706C5D /* boss-dragon-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-1.png"; sourceTree = "<group>"; };
 		F921236B15603E5700706C5D /* boss-dragon-2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boss-dragon-2-hd.png"; sourceTree = "<group>"; };
@@ -697,6 +728,7 @@
 		90FC050F155EFD21002C3BAE = {
 			isa = PBXGroup;
 			children = (
+				A934F4A7156B01840071336A /* TSKeyboard */,
 				90FC052E155EFD21002C3BAE /* Hackathon */,
 				90FC051D155EFD21002C3BAE /* Frameworks */,
 				90FC051B155EFD21002C3BAE /* Products */,
@@ -1116,6 +1148,29 @@
 			path = libs/CCTextField;
 			sourceTree = "<group>";
 		};
+		A934F4A7156B01840071336A /* TSKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A934F4A9156B01A60071336A /* TSKeyboard.h */,
+				A934F4AA156B01A60071336A /* TSKeyboard.m */,
+				A98C3525157C9F3C00D75E8B /* keypressed-star-right@2x.png */,
+				A98C3526157C9F3C00D75E8B /* keypressed-star-right.png */,
+				A98C3527157C9F3C00D75E8B /* keypressed-star-middle@2x.png */,
+				A98C3528157C9F3C00D75E8B /* keypressed-star-middle.png */,
+				A98C3529157C9F3C00D75E8B /* keypressed-star-left@2x.png */,
+				A98C352A157C9F3C00D75E8B /* keypressed-star-left.png */,
+				A98C352B157C9F3C00D75E8B /* keypressed-normal-right@2x.png */,
+				A98C352C157C9F3C00D75E8B /* keypressed-normal-right.png */,
+				A98C352D157C9F3C00D75E8B /* keypressed-normal-middle@2x.png */,
+				A98C352E157C9F3C00D75E8B /* keypressed-normal-middle.png */,
+				A98C352F157C9F3C00D75E8B /* keypressed-normal-left@2x.png */,
+				A98C3530157C9F3C00D75E8B /* keypressed-normal-left.png */,
+				A98C3531157C9F3C00D75E8B /* key-darkgray@2x.png */,
+				A98C3532157C9F3C00D75E8B /* key-darkgray.png */,
+			);
+			name = TSKeyboard;
+			sourceTree = "<group>";
+		};
 		F921234E1560343C00706C5D /* bossdragon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1361,20 @@
 				F92123AF1560704100706C5D /* play-again-button.png in Resources */,
 				F9C7F4B61560822300F3790D /* Icon.png in Resources */,
 				F9C7F4B71560822300F3790D /* Icon@2x.png in Resources */,
+				A98C3533157C9F3C00D75E8B /* keypressed-star-right@2x.png in Resources */,
+				A98C3534157C9F3C00D75E8B /* keypressed-star-right.png in Resources */,
+				A98C3535157C9F3C00D75E8B /* keypressed-star-middle@2x.png in Resources */,
+				A98C3536157C9F3C00D75E8B /* keypressed-star-middle.png in Resources */,
+				A98C3537157C9F3C00D75E8B /* keypressed-star-left@2x.png in Resources */,
+				A98C3538157C9F3C00D75E8B /* keypressed-star-left.png in Resources */,
+				A98C3539157C9F3C00D75E8B /* keypressed-normal-right@2x.png in Resources */,
+				A98C353A157C9F3C00D75E8B /* keypressed-normal-right.png in Resources */,
+				A98C353B157C9F3C00D75E8B /* keypressed-normal-middle@2x.png in Resources */,
+				A98C353C157C9F3C00D75E8B /* keypressed-normal-middle.png in Resources */,
+				A98C353D157C9F3C00D75E8B /* keypressed-normal-left@2x.png in Resources */,
+				A98C353E157C9F3C00D75E8B /* keypressed-normal-left.png in Resources */,
+				A98C353F157C9F3C00D75E8B /* key-darkgray@2x.png in Resources */,
+				A98C3540157C9F3C00D75E8B /* key-darkgray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1496,7 @@
 				F95CBAF6155F90070008E77A /* BloodDrip.m in Sources */,
 				F9E3ED07155FAA0E0096E10C /* BossDragon.m in Sources */,
 				F92123851560410500706C5D /* Fireball.m in Sources */,
+				A934F4AB156B01A60071336A /* TSKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1504,6 +1574,41 @@
 			};
 			name = Release;
 		};
+		A9290408157872F100C1DF55 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GreenGar Studios";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75BB1F62-A53E-4075-A19B-6F26B165188A";
+				SDKROOT = iphoneos;
+			};
+			name = TestFlight;
+		};
+		A9290409157872F100C1DF55 /* TestFlight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Hackathon/Prefix.pch;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = Hackathon/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_LDFLAGS = "-lz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = TestFlight;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1512,6 +1617,7 @@
 			buildConfigurations = (
 				90FC068A155EFD23002C3BAE /* Debug */,
 				90FC068B155EFD23002C3BAE /* Release */,
+				A9290408157872F100C1DF55 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1521,6 +1627,7 @@
 			buildConfigurations = (
 				90FC068D155EFD23002C3BAE /* Debug */,
 				90FC068E155EFD23002C3BAE /* Release */,
+				A9290409157872F100C1DF55 /* TestFlight */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

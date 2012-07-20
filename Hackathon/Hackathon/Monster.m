@@ -45,10 +45,8 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
         // prepare set of frame names
         animation = [CCAnimation animation];
         NSArray *frameNumbers = [frames componentsSeparatedByString:@","];
-        NSMutableArray *frameNames = [NSMutableArray arrayWithCapacity:[frameNumbers count]];
         for (NSString *num in frameNumbers) {
             [animation addFrameWithFilename:[NSString stringWithFormat:animationTemplate, num]];
-            //NSLog(@"Adding frame: %@", [frameNames lastObject]);
             
         }
         [[CCAnimationCache sharedAnimationCache] addAnimation:animation name:animationName];
@@ -115,21 +113,32 @@ NSString* const MINION_MONSTER_IMAGE = @"small-dragon.png";
     [self runAction:self.moveAction];
 }
 
+// return YES if this string would kill this monster
+-(BOOL) wouldBeKilledByString:(NSString *)string
+{
+    if (lettersRemaining == 1 && [string isEqualToString:[self.word substringFromIndex:(self.word.length-lettersRemaining)]])
+    {
+        return YES;
+    }
+    return NO;
+}
+
 -(BOOL) attackWithString:(NSString *)string didHit:(BOOL *)monsterWasHit
 {
     NSString *stringRemaining = [self.word substringFromIndex:(self.word.length-lettersRemaining)];
-    if ([stringRemaining hasPrefix:string]) {
-        
+    if ([stringRemaining hasPrefix:string])
+    {
         if (*monsterWasHit == NO) *monsterWasHit = YES;
         
-        if (string.length >= lettersRemaining) {
-            return YES;
-        }
         lettersRemaining -= string.length;
     }
     uint completedLength = self.word.length-lettersRemaining;
     NSString *completedString = [self.word substringToIndex:completedLength];
     self.completedLabel.string = completedString;
+    
+    if (lettersRemaining <= 0) {
+        return YES;
+    }
     return NO;
 }
 
